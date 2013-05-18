@@ -74,18 +74,12 @@ $wgHooks['ParserBeforeStrip'][] = 'loadBootstrap';
 
 
 // register resource modules with the Resource Loader
-//$wgResourceModules['ext.bootstrap.styles'] = array(
-//	'localBasePath' => $dir,
-//	'remoteExtPath' => 'Bootstrap',
-//	'styles' => 'Bootstrap/css/bootstrap.css',
-//);
 
 $wgResourceModules['ext.bootstrap'] = array(
-//	'dependencies' => array( 'ext.bootstrap.styles' ),
 	'dependencies' => array( ),
 );
 
-$scriptmodule = array(
+$moduleTemplate = array(
 	'localBasePath' => $dir,
 	'remoteExtPath' => 'Bootstrap',
 	'dependencies' => array( 'jquery' ),
@@ -109,29 +103,29 @@ $moduleNames = array(
 
 foreach ( $moduleNames as $modName ) {
 
-	$wgResourceModules["ext.bootstrap.scripts.$modName"] = array_merge( $scriptmodule, array(
+	$wgResourceModules["ext.bootstrap.scripts.$modName"] = array_merge( $moduleTemplate, array(
 		'scripts' => array( "bootstrap/js/bootstrap-$modName.js" ),
 			) );
 
 	$wgResourceModules['ext.bootstrap']['dependencies'][] = "ext.bootstrap.scripts.$modName";
 }
 
-$wgexBootstrapFile = $dir . '/bootstrap/less/bootstrap.less';
+// Fix dependencies between modules explicitely
+$wgResourceModules['ext.bootstrap.scripts.popover']['dependencies'][] = "ext.bootstrap.scripts.tooltip";
 
 unset( $dir );
 
 function loadBootstrap( Parser &$parser ) {
-
-	global $wgexBootstrapFile;
 
 	static $style = null;
 
 	if ( !$style ) {
 
 		$lessCompiler = new lessc();
-		$lessCompiler->setFormatter( "compressed" );
+		$lessCompiler->setFormatter( 'compressed' );
 
-		$style = $lessCompiler->compileFile( $wgexBootstrapFile );
+		$file = dirname( __FILE__ ) . '/fixed.less';
+		$style = $lessCompiler->compileFile( $file );
 
 		if ( wfGetLangObj()->getDir() === 'rtl' ) {
 			$style = CSSJanus::transform( $style, true, false );
@@ -141,13 +135,16 @@ function loadBootstrap( Parser &$parser ) {
 	// load scripts and styles
 	$out = RequestContext::getMain()->getOutput();
 	if ( $out->isArticle() ) {
+
 		$parserOutput = $parser->getOutput();
 		$parserOutput->addHeadItem( "<style>$style</style>", 'ext.bootstrap.style' );
 		$parserOutput->addModules( 'ext.bootstrap' );
+
 	} else {
 
 		$out->addHeadItem( 'ext.bootstrap.style', "<style>$style</style>" );
 		$out->addModules( 'ext.bootstrap' );
+
 	}
 
 	return true;
