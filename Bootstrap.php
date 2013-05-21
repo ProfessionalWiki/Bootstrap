@@ -63,26 +63,32 @@ $dir = dirname( __FILE__ );
 
 // register message files
 $wgExtensionMessagesFiles['Bootstrap'] = $dir . '/Bootstrap.i18n.php';
-//$wgExtensionMessagesFiles['BootstrapMagic'] = $dir . '/Bootstrap.magic.php';
-//$wgExtensionMessagesFiles['BootstrapAlias'] = $dir . '/Bootstrap.alias.php';
-// register class files with the Autoloader
-// register Special page
-// $wgSpecialPages['Foo'] = 'Foo';
+
 // register hook handlers
-// Specify the function that will initialize the parser function.
 $wgHooks['ParserBeforeStrip'][] = 'loadBootstrap';
 
-
 // register resource modules with the Resource Loader
-
-$wgResourceModules['ext.bootstrap'] = array(
-	'dependencies' => array( ),
-);
 
 $moduleTemplate = array(
 	'localBasePath' => $dir,
 	'remoteExtPath' => 'Bootstrap',
 	'dependencies' => array( 'jquery' ),
+);
+
+// module loading all styles
+$wgResourceModules['ext.bootstrap.styles'] = array(
+	'localBasePath' => $dir,
+	'remoteExtPath' => 'Bootstrap',
+	'styles' => array( 'fixed.less' ),
+	'class' => 'ResourceLoaderLessFileModule',
+	'dependencies' => array( ),
+);
+
+// module loading all scripts
+$wgResourceModules['ext.bootstrap.scripts'] = array(
+	'localBasePath' => $dir,
+	'remoteExtPath' => 'Bootstrap',
+	'dependencies' => array(  ),
 );
 
 $moduleNames = array(
@@ -107,43 +113,35 @@ foreach ( $moduleNames as $modName ) {
 		'scripts' => array( "bootstrap/js/bootstrap-$modName.js" ),
 			) );
 
-	$wgResourceModules['ext.bootstrap']['dependencies'][] = "ext.bootstrap.scripts.$modName";
+	$wgResourceModules['ext.bootstrap.scripts']['dependencies'][] = "ext.bootstrap.scripts.$modName";
 }
 
 // Fix dependencies between modules explicitely
 $wgResourceModules['ext.bootstrap.scripts.popover']['dependencies'][] = "ext.bootstrap.scripts.tooltip";
 
+// all-including module
+$wgResourceModules['ext.bootstrap'] = array(
+	'localBasePath' => $dir,
+	'remoteExtPath' => 'Bootstrap',
+	'dependencies' => array( 'ext.bootstrap.styles', 'ext.bootstrap.scripts' ),
+);
+
 unset( $dir );
 
 function loadBootstrap( Parser &$parser ) {
-
-	static $style = null;
-
-	if ( !$style ) {
-
-		$lessCompiler = new lessc();
-		$lessCompiler->setFormatter( 'compressed' );
-
-		$file = dirname( __FILE__ ) . '/fixed.less';
-		$style = $lessCompiler->compileFile( $file );
-
-		if ( wfGetLangObj()->getDir() === 'rtl' ) {
-			$style = CSSJanus::transform( $style, true, false );
-		}
-	}
 
 	// load scripts and styles
 	$out = RequestContext::getMain()->getOutput();
 	if ( $out->isArticle() ) {
 
 		$parserOutput = $parser->getOutput();
-		$parserOutput->addHeadItem( "<style>$style</style>", 'ext.bootstrap.style' );
-		$parserOutput->addModules( 'ext.bootstrap' );
+		$parserOutput->addModules( 'ext.bootstrap.scripts' );
+		$parserOutput->addModuleStyles( 'ext.bootstrap.styles' );
 
 	} else {
 
-		$out->addHeadItem( 'ext.bootstrap.style', "<style>$style</style>" );
-		$out->addModules( 'ext.bootstrap' );
+		$out->addModules( 'ext.bootstrap.scripts' );
+		$out->addModuleStyles( 'ext.bootstrap.styles' );
 
 	}
 
