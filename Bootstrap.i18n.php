@@ -18,3 +18,58 @@ $messages['qqq'] = array(
 	'bootstrap-desc' => '{{desc|name=Bootstrap|url=http://www.mediawiki.org/wiki/Extension:Bootstrap}}',
 );
 
+/** German (Deutsch)
+ * @author Metalhead64
+ */
+$messages['de'] = array(
+	'bootstrap-desc' => 'Erweitert das Wiki um das [http://twitter.github.io/bootstrap/ Bootstrap]-Framework',
+);
+
+/** Spanish (español)
+ * @author VegaDark
+ */
+$messages['es'] = array(
+	'bootstrap-desc' => 'Proporciona la estructura [http://twitter.github.io/bootstrap/ Bootstrap] en el wiki.',
+);
+
+/** French (français)
+ * @author Gomoko
+ */
+$messages['fr'] = array(
+	'bootstrap-desc' => 'Fournit l’environnement de travail [http://twitter.github.io/bootstrap/ Bootstrap] dans le wiki.',
+);
+
+/** Galician (galego)
+ * @author Toliño
+ */
+$messages['gl'] = array(
+	'bootstrap-desc' => 'Proporciona o contorno [http://twitter.github.io/bootstrap/ Bootstrap] no wiki.',
+);
+
+/** Italian (italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'bootstrap-desc' => 'Fornisce il framework [http://twitter.github.io/bootstrap/ Bootstrap] nel wiki.',
+);
+
+/** Japanese (日本語)
+ * @author Shirayuki
+ */
+$messages['ja'] = array(
+	'bootstrap-desc' => 'ウィキ内で [http://twitter.github.io/bootstrap/ Bootstrap] フレームワークを提供する',
+);
+
+/** Macedonian (македонски)
+ * @author Bjankuloski06
+ */
+$messages['mk'] = array(
+	'bootstrap-desc' => 'Дава рамка за [http://twitter.github.io/bootstrap/ Bootstrap] на викито.',
+);
+
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'bootstrap-desc' => "Dèje 'u framework [http://twitter.github.io/bootstrap/ Bootstrap] jndr'à uicchi.",
+);
