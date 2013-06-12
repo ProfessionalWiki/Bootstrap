@@ -32,6 +32,13 @@ $messages['es'] = array(
 	'bootstrap-desc' => 'Proporciona la estructura [http://twitter.github.io/bootstrap/ Bootstrap] en el wiki.',
 );
 
+/** Basque (euskara)
+ * @author Theklan
+ */
+$messages['eu'] = array(
+	'bootstrap-desc' => '[http://twitter.github.io/bootstrap/ Bootstrap] tresna sartzen du wikian.',
+);
+
 /** French (français)
  * @author Gomoko
  */
