@@ -18,6 +18,13 @@ $messages['qqq'] = array(
 	'bootstrap-desc' => '{{desc|name=Bootstrap|url=http://www.mediawiki.org/wiki/Extension:Bootstrap}}',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'bootstrap-desc' => 'Proporciona la estructura [http://twitter.github.io/bootstrap/ Bootstrap] na wiki.',
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */
