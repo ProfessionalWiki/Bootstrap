@@ -87,3 +87,10 @@ $messages['mk'] = array(
 $messages['roa-tara'] = array(
 	'bootstrap-desc' => "Dèje 'u framework [http://twitter.github.io/bootstrap/ Bootstrap] jndr'à uicchi.",
 );
+
+/** Traditional Chinese (中文（繁體）‎)
+ * @author Justincheng12345
+ */
+$messages['zh-hant'] = array(
+	'bootstrap-desc' => '於維基內提供[http://twitter.github.io/bootstrap/ Bootstrap]框架。',
+);
