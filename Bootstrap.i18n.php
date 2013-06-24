@@ -81,6 +81,13 @@ $messages['mk'] = array(
 	'bootstrap-desc' => 'Дава рамка за [http://twitter.github.io/bootstrap/ Bootstrap] на викито.',
 );
 
+/** Malay (Bahasa Melayu)
+ * @author Anakmalaysia
+ */
+$messages['ms'] = array(
+	'bootstrap-desc' => 'Menyediakan rangka [http://twitter.github.io/bootstrap/ Bootstrap] dalam wiki.',
+);
+
 /** tarandíne (tarandíne)
  * @author Joetaras
  */
