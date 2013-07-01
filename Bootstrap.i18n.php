@@ -88,6 +88,13 @@ $messages['ms'] = array(
 	'bootstrap-desc' => 'Menyediakan rangka [http://twitter.github.io/bootstrap/ Bootstrap] dalam wiki.',
 );
 
+/** Dutch (Nederlands)
+ * @author Siebrand
+ */
+$messages['nl'] = array(
+	'bootstrap-desc' => 'Geeft toegang tot het [http://twitter.github.io/bootstrap/ Bootstrapframework] in de wiki',
+);
+
 /** tarandíne (tarandíne)
  * @author Joetaras
  */
