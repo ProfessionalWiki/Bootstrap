@@ -25,6 +25,13 @@ $messages['ast'] = array(
 	'bootstrap-desc' => 'Proporciona la estructura [http://twitter.github.io/bootstrap/ Bootstrap] na wiki.',
 );
 
+/** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
+ * @author Wizardist
+ */
+$messages['be-tarask'] = array(
+	'bootstrap-desc' => 'Падтрымка фрэймворку [http://twitter.github.io/bootstrap/ Bootstrap].',
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */
