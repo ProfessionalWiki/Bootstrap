@@ -53,6 +53,13 @@ $messages['eu'] = array(
 	'bootstrap-desc' => '[http://twitter.github.io/bootstrap/ Bootstrap] tresna sartzen du wikian.',
 );
 
+/** Persian (فارسی)
+ * @author Reza1615
+ */
+$messages['fa'] = array(
+	'bootstrap-desc' => 'تهیه چارچوب  [http://twitter.github.io/bootstrap/ بوت استریم] در ویکی.',
+);
+
 /** French (français)
  * @author Gomoko
  */
