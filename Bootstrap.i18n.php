@@ -9,7 +9,7 @@
 $messages = array();
 
 $messages['en'] = array(
-	'bootstrap-desc' => 'Provides the [http://twitter.github.io/bootstrap/ Bootstrap] framework in the wiki.',
+	'bootstrap-desc' => 'Provides the [http://twitter.github.io/bootstrap/ Bootstrap] framework in the wiki',
 );
 
 /** Message documentation (Message documentation)
