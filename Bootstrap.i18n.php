@@ -109,6 +109,13 @@ $messages['nl'] = array(
 	'bootstrap-desc' => 'Geeft toegang tot het [http://twitter.github.io/bootstrap/ Bootstrapframework] in de wiki',
 );
 
+/** Polish (polski)
+ * @author Woytecr
+ */
+$messages['pl'] = array(
+	'bootstrap-desc' => 'Dodaje framework [http://twitter.github.io/bootstrap/ Bootstrap] do wiki',
+);
+
 /** tarandíne (tarandíne)
  * @author Joetaras
  */
