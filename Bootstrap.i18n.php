@@ -123,6 +123,13 @@ $messages['roa-tara'] = array(
 	'bootstrap-desc' => "Dèje 'u framework [http://twitter.github.io/bootstrap/ Bootstrap] jndr'à uicchi.",
 );
 
+/** Ukrainian (українська)
+ * @author Ата
+ */
+$messages['uk'] = array(
+	'bootstrap-desc' => 'Забезпечує у вікі структуру [http://twitter.github.io/bootstrap/ Bootstrap]',
+);
+
 /** Traditional Chinese (中文（繁體）‎)
  * @author Justincheng12345
  */
