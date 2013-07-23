@@ -130,6 +130,13 @@ $messages['uk'] = array(
 	'bootstrap-desc' => 'Забезпечує у вікі структуру [http://twitter.github.io/bootstrap/ Bootstrap]',
 );
 
+/** Simplified Chinese (中文（简体）‎)
+ * @author Qiyue2001
+ */
+$messages['zh-hans'] = array(
+	'bootstrap-desc' => '于维基内提供[http://twitter.github.io/bootstrap/ Bootstrap]框架。',
+);
+
 /** Traditional Chinese (中文（繁體）‎)
  * @author Justincheng12345
  */
