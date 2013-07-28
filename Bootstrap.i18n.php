@@ -74,6 +74,13 @@ $messages['gl'] = array(
 	'bootstrap-desc' => 'Proporciona o contorno [http://twitter.github.io/bootstrap/ Bootstrap] no wiki.',
 );
 
+/** Interlingua (interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'bootstrap-desc' => 'Forni le structura [http://twitter.github.io/bootstrap/ Bootstrap] in le wiki',
+);
+
 /** Italian (italiano)
  * @author Beta16
  */
