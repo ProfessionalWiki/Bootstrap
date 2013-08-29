@@ -25,6 +25,13 @@ $messages['ast'] = array(
 	'bootstrap-desc' => 'Proporciona la estructura [http://twitter.github.io/bootstrap/ Bootstrap] na wiki.',
 );
 
+/** Bikol Central (Bikol Central)
+ * @author Geopoet
+ */
+$messages['bcl'] = array(
+	'bootstrap-desc' => 'Minatao sa [http://twitter.github.io/bootstrap/ Estrapa-na-pambotas] premang gibo sa laog nin wiki',
+);
+
 /** Belarusian (Taraškievica orthography) (беларуская (тарашкевіца)‎)
  * @author Wizardist
  */
@@ -114,6 +121,13 @@ $messages['ms'] = array(
  */
 $messages['nl'] = array(
 	'bootstrap-desc' => 'Geeft toegang tot het [http://twitter.github.io/bootstrap/ Bootstrapframework] in de wiki',
+);
+
+/** Occitan (occitan)
+ * @author Cedric31
+ */
+$messages['oc'] = array(
+	'bootstrap-desc' => 'Provesís l’environament de trabalh [http://twitter.github.io/bootstrap/ Bootstrap] dins lo wiki.',
 );
 
 /** Polish (polski)
