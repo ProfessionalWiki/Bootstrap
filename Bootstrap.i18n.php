@@ -102,6 +102,13 @@ $messages['ja'] = array(
 	'bootstrap-desc' => 'ウィキ内で [http://twitter.github.io/bootstrap/ Bootstrap] フレームワークを提供する',
 );
 
+/** Korean (한국어)
+ * @author 아라
+ */
+$messages['ko'] = array(
+	'bootstrap-desc' => '위키에 [http://twitter.github.io/bootstrap/ Bootstrap] 프레임워크를 제공합니다',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
