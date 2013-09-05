@@ -144,6 +144,20 @@ $messages['pl'] = array(
 	'bootstrap-desc' => 'Dodaje framework [http://twitter.github.io/bootstrap/ Bootstrap] do wiki',
 );
 
+/** Portuguese (português)
+ * @author Cainamarques
+ */
+$messages['pt'] = array(
+	'bootstrap-desc' => 'Disponibiliza o framework [http://twitter.github.io/bootstrap/ Bootstrap]',
+);
+
+/** Brazilian Portuguese (português do Brasil)
+ * @author Cainamarques
+ */
+$messages['pt-br'] = array(
+	'bootstrap-desc' => 'Disponibiliza o framework [http://twitter.github.io/bootstrap/ Bootstrap]',
+);
+
 /** tarandíne (tarandíne)
  * @author Joetaras
  */
