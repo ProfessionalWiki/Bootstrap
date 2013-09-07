@@ -109,6 +109,13 @@ $messages['ko'] = array(
 	'bootstrap-desc' => '위키에 [http://twitter.github.io/bootstrap/ Bootstrap] 프레임워크를 제공합니다',
 );
 
+/** Colognian (Ripoarisch)
+ * @author Purodha
+ */
+$messages['ksh'] = array(
+	'bootstrap-desc' => 'Brängk et <i lang="en" xml:lang="en">[http://twitter.github.io/bootstrap/ Bootstrap]</code>-Jeröß en et Wikki.',
+);
+
 /** Macedonian (македонски)
  * @author Bjankuloski06
  */
