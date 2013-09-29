@@ -172,6 +172,13 @@ $messages['roa-tara'] = array(
 	'bootstrap-desc' => "Dèje 'u framework [http://twitter.github.io/bootstrap/ Bootstrap] jndr'à uicchi.",
 );
 
+/** Russian (русский)
+ * @author Okras
+ */
+$messages['ru'] = array(
+	'bootstrap-desc' => 'Добавляет поддержку фреймворка [http://twitter.github.io/bootstrap/ Bootstrap] для проекта',
+);
+
 /** Ukrainian (українська)
  * @author Ата
  */
