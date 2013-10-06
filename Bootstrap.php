@@ -58,28 +58,29 @@ $wgExtensionCredits['other'][] = array(
 );
 
 
+// register hook handlers
+$wgHooks['ParserFirstCallInit'][] = 'loadBootstrap';
+
+// define global variables
+
+// Bootstrap is disabled by default as it interferes with skins
+// It needs to be enabled in skins using it.
+$wgEnableBootstrap = false;
+
 // server-local path to this file
 $dir = dirname( __FILE__ );
 
 // register message files
 $wgExtensionMessagesFiles['Bootstrap'] = $dir . '/Bootstrap.i18n.php';
 
-// register hook handlers
-$wgHooks['ParserBeforeStrip'][] = 'loadBootstrap';
-
 // register resource modules with the Resource Loader
 
-$moduleTemplate = array(
-	'localBasePath' => $dir,
-	'remoteExtPath' => 'Bootstrap',
-	'dependencies' => array( 'jquery' ),
-);
-
 // module loading all styles
+// It is enough to include fixes.less. Everything else is included through this file.
 $wgResourceModules['ext.bootstrap.styles'] = array(
 	'localBasePath' => $dir,
 	'remoteExtPath' => 'Bootstrap',
-	'styles' => array( 'fixed.less' ),
+	'styles' => array( 'fixes.less' ),
 	'class' => 'ResourceLoaderLessFileModule',
 	'dependencies' => array( ),
 );
@@ -104,14 +105,20 @@ $moduleNames = array(
 	'tab',
 	'tooltip',
 	'transition',
-	'typeahead'
 );
 
+$moduleTemplate = array(
+	'localBasePath' => $dir,
+	'remoteExtPath' => 'Bootstrap',
+	'dependencies' => array( 'jquery' ),
+);
+
+// register bootstrap modules with the ResourceLoader
 foreach ( $moduleNames as $modName ) {
 
-	$wgResourceModules["ext.bootstrap.scripts.$modName"] = array_merge( $moduleTemplate, array(
-		'scripts' => array( "bootstrap/js/bootstrap-$modName.js" ),
-			) );
+	$wgResourceModules[ "ext.bootstrap.scripts.$modName" ] = array_merge( $moduleTemplate, array(
+		'scripts' => array( "bootstrap/js/$modName.js" ),
+	) );
 
 	$wgResourceModules['ext.bootstrap.scripts']['dependencies'][] = "ext.bootstrap.scripts.$modName";
 }
@@ -128,22 +135,38 @@ $wgResourceModules['ext.bootstrap'] = array(
 
 unset( $dir );
 
+/**
+ * add the Bootstrap modules to the output page
+ *
+ * @param Parser $parser
+ * @return boolean
+ */
 function loadBootstrap( Parser &$parser ) {
 
-	// load scripts and styles
-	$out = RequestContext::getMain()->getOutput();
-	if ( $out->isArticle() ) {
+	global $wgEnableBootstrap, $wgHtml5;
 
-		$parserOutput = $parser->getOutput();
-		$parserOutput->addModules( 'ext.bootstrap.scripts' );
-		$parserOutput->addModuleStyles( 'ext.bootstrap.styles' );
+	if ( $wgEnableBootstrap ) {
 
-	} else {
+		// TODO: $wgHtml5 is deprecated since 1.22
+		if ( $wgHtml5 ) {
 
-		$out->addModules( 'ext.bootstrap.scripts' );
-		$out->addModuleStyles( 'ext.bootstrap.styles' );
+			// load scripts and styles
+			$out = RequestContext::getMain()->getOutput();
+			if ( $out->isArticle() ) {
 
+				$parserOutput = $parser->getOutput();
+				$parserOutput->addModules( 'ext.bootstrap.scripts' );
+				$parserOutput->addModuleStyles( 'ext.bootstrap.styles' );
+
+			} else {
+
+				$out->addModules( 'ext.bootstrap.scripts' );
+				$out->addModuleStyles( 'ext.bootstrap.styles' );
+
+			}
+		} else {
+			wfDebug('Extension Bootstrap requires HTML5. Set $wgHtml5=true.');
+		}
 	}
-
 	return true;
 }
