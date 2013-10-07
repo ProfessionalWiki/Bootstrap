@@ -38,10 +38,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
 }
 
-if ( !defined( 'LESS_VERSION' ) ) {
-	die( '<b>Error:</b> The <a href="https://www.mediawiki.org/wiki/Extension:Bootstrap">Bootstrap</a> extension depends on the Less extension. You need to install the <a href="https://www.mediawiki.org/wiki/Extension:Less">Less</a> extension first.' );
-}
-
 /**
  * The extension version
  */
@@ -57,16 +53,6 @@ $wgExtensionCredits['other'][] = array(
 	'version' => BS_VERSION,
 );
 
-
-// register hook handlers
-$wgHooks['ParserFirstCallInit'][] = 'loadBootstrap';
-
-// define global variables
-
-// Bootstrap is disabled by default as it interferes with skins
-// It needs to be enabled in skins using it.
-$wgEnableBootstrap = false;
-
 // server-local path to this file
 $dir = dirname( __FILE__ );
 
@@ -81,8 +67,6 @@ $wgResourceModules['ext.bootstrap.styles'] = array(
 	'localBasePath' => $dir,
 	'remoteExtPath' => 'Bootstrap',
 	'styles' => array( 'fixes.less' ),
-	'class' => 'ResourceLoaderLessFileModule',
-	'dependencies' => array( ),
 );
 
 // module loading all scripts
@@ -134,39 +118,3 @@ $wgResourceModules['ext.bootstrap'] = array(
 );
 
 unset( $dir );
-
-/**
- * add the Bootstrap modules to the output page
- *
- * @param Parser $parser
- * @return boolean
- */
-function loadBootstrap( Parser &$parser ) {
-
-	global $wgEnableBootstrap, $wgHtml5;
-
-	if ( $wgEnableBootstrap ) {
-
-		// TODO: $wgHtml5 is deprecated since 1.22
-		if ( $wgHtml5 ) {
-
-			// load scripts and styles
-			$out = RequestContext::getMain()->getOutput();
-			if ( $out->isArticle() ) {
-
-				$parserOutput = $parser->getOutput();
-				$parserOutput->addModules( 'ext.bootstrap.scripts' );
-				$parserOutput->addModuleStyles( 'ext.bootstrap.styles' );
-
-			} else {
-
-				$out->addModules( 'ext.bootstrap.scripts' );
-				$out->addModuleStyles( 'ext.bootstrap.styles' );
-
-			}
-		} else {
-			wfDebug('Extension Bootstrap requires HTML5. Set $wgHtml5=true.');
-		}
-	}
-	return true;
-}
