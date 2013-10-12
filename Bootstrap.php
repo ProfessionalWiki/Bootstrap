@@ -35,7 +35,11 @@
  * @ingroup Bootstrap
  */
 if ( !defined( 'MEDIAWIKI' ) ) {
-	die( 'This file is part of a MediaWiki extension, it is not a valid entry point.' );
+	die( 'This file is part of the MediaWiki extension Bootstrap, it is not a valid entry point.' );
+}
+
+if ( version_compare( $wgVersion, '1.22alpha', 'lt' ) ) {
+	die( '<b>Error:</b> This version of <a href="https://www.mediawiki.org/wiki/Extension:Bootstrap">Bootstrap</a> is only compatible with MediaWiki 1.22 or above. You need to upgrade MediaWiki first.' );
 }
 
 /**
@@ -59,62 +63,18 @@ $dir = dirname( __FILE__ );
 // register message files
 $wgExtensionMessagesFiles['Bootstrap'] = $dir . '/Bootstrap.i18n.php';
 
-// register resource modules with the Resource Loader
+$wgAutoloadClasses['bootstrap\ResourceLoaderBootstrapModule'] = $dir . '/ResourceLoaderBootstrapModule.php';
+$wgAutoloadClasses['Bootstrap'] = $dir . '/Bootstrap.class.php';
 
-// module loading all styles
-// It is enough to include fixes.less. Everything else is included through this file.
-$wgResourceModules['ext.bootstrap.styles'] = array(
-	'localBasePath' => $dir,
-	'remoteExtPath' => 'Bootstrap',
-	'styles' => array( 'fixes.less' ),
-);
-
-// module loading all scripts
-$wgResourceModules['ext.bootstrap.scripts'] = array(
-	'localBasePath' => $dir,
-	'remoteExtPath' => 'Bootstrap',
-	'dependencies' => array(  ),
-);
-
-$moduleNames = array(
-	'affix',
-	'alert',
-	'button',
-	'carousel',
-	'collapse',
-	'dropdown',
-	'modal',
-	'popover',
-	'scrollspy',
-	'tab',
-	'tooltip',
-	'transition',
-);
-
-$moduleTemplate = array(
-	'localBasePath' => $dir,
-	'remoteExtPath' => 'Bootstrap',
-	'dependencies' => array( 'jquery' ),
-);
-
-// register bootstrap modules with the ResourceLoader
-foreach ( $moduleNames as $modName ) {
-
-	$wgResourceModules[ "ext.bootstrap.scripts.$modName" ] = array_merge( $moduleTemplate, array(
-		'scripts' => array( "bootstrap/js/$modName.js" ),
-	) );
-
-	$wgResourceModules['ext.bootstrap.scripts']['dependencies'][] = "ext.bootstrap.scripts.$modName";
-}
-
-// Fix dependencies between modules explicitely
-$wgResourceModules['ext.bootstrap.scripts.popover']['dependencies'][] = "ext.bootstrap.scripts.tooltip";
-
-// all-including module
+// register skeleton resource module with the Resource Loader
 $wgResourceModules['ext.bootstrap'] = array(
 	'localBasePath' => $dir,
 	'remoteExtPath' => 'Bootstrap',
-	'dependencies' => array( 'ext.bootstrap.styles', 'ext.bootstrap.scripts' ),
+	'class' => 'bootstrap\ResourceLoaderBootstrapModule',
+	'styles' => array(),
+	'variables' => array(),
+	'paths' => array( $dir . '/bootstrap/less' ),
+	'dependencies' => array(),
 );
 
 unset( $dir );
