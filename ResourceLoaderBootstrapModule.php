@@ -128,11 +128,18 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 				$compiler->addImportDir( $path );
 			}
 
-			$styles = array( 'all' => $compiler->compile( $lessCode ) );
+			try {
+
+				$styles = array( 'all' => $compiler->compile( $lessCode ) );
+				$cache->set( $cacheKey, array( 'styles' => $styles, 'storetime' => time() ) );
+
+			} catch ( \Exception $e ) {
+				wfDebug( $e->getMessage() );
+				$styles = '/* LESS compile error: ' . $e->getMessage() . '*/';
+			}
 
 			unlink( $tmpFile );
 
-			$cache->set( $cacheKey, array( 'styles' => $styles, 'storetime' => time() ) );
 		}
 
 		return $styles;
