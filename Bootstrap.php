@@ -6,7 +6,7 @@
  * @see http://twitter.github.io/bootstrap
  *
  * @author Stephan Gambke
- * @version 0.1 alpha
+ * @version 0.1
  *
  * @defgroup Bootstrap Bootstrap
  */
@@ -45,7 +45,7 @@ if ( version_compare( $wgVersion, '1.22alpha', 'lt' ) ) {
 /**
  * The extension version
  */
-define( 'BS_VERSION', '0.1 alpha' );
+define( 'BS_VERSION', '0.1' );
 
 // register the extension
 $wgExtensionCredits['other'][] = array(

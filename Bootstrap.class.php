@@ -23,6 +23,9 @@
  * @ingroup   Bootstrap
  */
 
+/**
+ * Class managing the Bootstrap framework.
+ */
 class Bootstrap {
 
 

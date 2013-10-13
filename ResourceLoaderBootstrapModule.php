@@ -1,6 +1,6 @@
 <?php
 /**
- * File holding the Bootstrap class
+ * File holding the ResourceLoaderBootstrapModule class
  *
  * @copyright (C) 2013, Stephan Gambke
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
