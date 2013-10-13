@@ -73,43 +73,69 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 	 */
 	public function getStyles( ResourceLoaderContext $context ) {
 
-		$compiler = ResourceLoader::getLessCompiler();
+		global $IP, $wgUser;
 
-		// prepare a temp file containing all the variables to load
-		// have to use a temp file for variables because inline variables do not overwrite @import'ed variables even if
-		// set after the @import (see https://github.com/leafo/lessphp/issues/302 )
-		$tmpFile = null;
+		// Try for cache hit
+		$data     = $wgUser->getId(); // caching styles per user
+		$cacheKey = wfMemcKey( 'ext', 'bootstrap', $data );
 
-		if ( !empty( $this->variables ) ) {
+		$cache       = wfGetCache( CACHE_ANYTHING );
+		$cacheResult = $cache->get( $cacheKey );
 
-			$tmpFile = tempnam( sys_get_temp_dir(), 'php' );
+		// only use styles from cache if LocalSettings was not modified after the caching
+		if ( is_array( $cacheResult ) && $cacheResult[ 'storetime' ] >= filemtime( $IP . '/LocalSettings.php' ) ) {
 
-			$handle = fopen( $tmpFile, 'w' );
+			wfDebug( "ext.bootstrap: Cache hit: Got styles from cache.\n" );
+			$styles = $cacheResult[ 'styles' ];
 
-			foreach ( $this->variables as $key => $value ) {
-				fwrite( $handle, "@$key: $value;\n" );
+		} else {
+
+			if ( is_array( $cacheResult ) ) {
+				wfDebug( "ext.bootstrap: Cache miss: Cache outdated, LocalSettings have changed.\n" );
+			} else {
+				wfDebug( "ext.bootstrap: Cache miss: Styles not found in cache.\n" );
 			}
 
-			fclose( $handle );
+			$compiler = ResourceLoader::getLessCompiler();
 
-			$this->styles[ ] = basename( $tmpFile );
-			$this->paths[ ]  = dirname( $tmpFile );
+			// prepare a temp file containing all the variables to load
+			// have to use a temp file for variables because inline variables do not overwrite @import'ed variables even if
+			// set after the @import (see https://github.com/leafo/lessphp/issues/302 )
+			$tmpFile = null;
 
+			if ( !empty( $this->variables ) ) {
+
+				$tmpFile = tempnam( sys_get_temp_dir(), 'php' );
+
+				$handle = fopen( $tmpFile, 'w' );
+
+				foreach ( $this->variables as $key => $value ) {
+					fwrite( $handle, "@$key: $value;\n" );
+				}
+
+				fclose( $handle );
+
+				$this->styles[ ] = basename( $tmpFile );
+				$this->paths[ ]  = dirname( $tmpFile );
+
+			}
+
+			// add all
+			$lessCode = implode( array_map( function ( $module ) { return "@import \"$module\";\n"; }, $this->styles ) );
+
+			// add additional paths for external files
+			foreach ( $this->paths as $path ) {
+				$compiler->addImportDir( $path );
+			}
+
+			$styles = array( 'all' => $compiler->compile( $lessCode ) );
+
+			unlink( $tmpFile );
+
+			$cache->set( $cacheKey, array( 'styles' => $styles, 'storetime' => time() ) );
 		}
 
-		// add all
-		$lessCode = implode( array_map( function ( $module ) { return "@import \"$module\";\n"; }, $this->styles ) );
-
-		// add additional paths for external files
-		foreach ( $this->paths as $path ) {
-			$compiler->addImportDir( $path );
-		}
-
-		$styles = $compiler->compile( $lessCode );
-
-		unlink( $tmpFile );
-
-		return array( 'all' => $styles );
+		return $styles;
 	}
 
 	public function supportsURLLoading() {
