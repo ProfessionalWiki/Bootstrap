@@ -78,7 +78,7 @@ $messages['fr'] = array(
  * @author Toliño
  */
 $messages['gl'] = array(
-	'bootstrap-desc' => 'Proporciona o contorno [http://getbootstrap.com/ Bootstrap] no wiki.',
+	'bootstrap-desc' => 'Proporciona o contorno [http://getbootstrap.com/ Bootstrap] no wiki',
 );
 
 /** Interlingua (interlingua)
