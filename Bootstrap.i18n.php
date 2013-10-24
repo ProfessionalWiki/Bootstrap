@@ -179,6 +179,13 @@ $messages['ru'] = array(
 	'bootstrap-desc' => 'Добавляет поддержку фреймворка [http://getbootstrap.com/ Bootstrap] для проекта',
 );
 
+/** Swedish (svenska)
+ * @author LittleGun
+ */
+$messages['sv'] = array(
+	'bootstrap-desc' => 'Tillhandahåller [http://getbootstrap.com/ Bootstrap-ramverket] i wikin',
+);
+
 /** Ukrainian (українська)
  * @author Ата
  */
