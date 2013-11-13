@@ -60,6 +60,9 @@ $wgExtensionCredits['other'][] = array(
 // server-local path to this file
 $dir = dirname( __FILE__ );
 
+// remote path to the Bootstrap extension
+$scriptPath = ( $wgExtensionAssetsPath === false ? $wgScriptPath . '/extensions' : $wgExtensionAssetsPath ) . '/Bootstrap';
+
 // register message files
 $wgExtensionMessagesFiles['Bootstrap'] = $dir . '/Bootstrap.i18n.php';
 
@@ -72,9 +75,12 @@ $wgResourceModules['ext.bootstrap'] = array(
 	'remoteExtPath' => 'Bootstrap',
 	'class' => 'bootstrap\ResourceLoaderBootstrapModule',
 	'styles' => array(),
-	'variables' => array(),
+	'variables' => array(
+		'icon-font-path' => "\"$scriptPath/bootstrap/fonts/\"",
+	),
 	'paths' => array( $dir . '/bootstrap/less' ),
 	'dependencies' => array(),
 );
 
 unset( $dir );
+unset( $scriptPath );

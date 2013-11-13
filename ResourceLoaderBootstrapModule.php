@@ -135,7 +135,7 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 
 			} catch ( \Exception $e ) {
 				wfDebug( $e->getMessage() );
-				$styles = '/* LESS compile error: ' . $e->getMessage() . '*/';
+				$styles = array( 'all' => '/* LESS compile error: ' . $e->getMessage() . '*/' );
 			}
 
 			unlink( $tmpFile );
