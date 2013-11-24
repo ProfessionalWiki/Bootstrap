@@ -61,10 +61,11 @@ $messages['eu'] = array(
 );
 
 /** Persian (فارسی)
+ * @author Ebraminio
  * @author Reza1615
  */
 $messages['fa'] = array(
-	'bootstrap-desc' => 'تهیه چارچوب  [http://getbootstrap.com/ بوت استریم] در ویکی.',
+	'bootstrap-desc' => 'چارچوب [http://getbootstrap.com/ بوت‌استرپ] را در ویکی فراهم می‌کند.',
 );
 
 /** French (français)
