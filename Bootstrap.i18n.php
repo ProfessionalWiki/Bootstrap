@@ -82,6 +82,13 @@ $messages['gl'] = array(
 	'bootstrap-desc' => 'Proporciona o contorno [http://getbootstrap.com/ Bootstrap] no wiki',
 );
 
+/** Upper Sorbian (hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'bootstrap-desc' => 'Steji framework [http://getbootstrap.com/ Bootstrap] we wikiju k dispoziciji.',
+);
+
 /** Interlingua (interlingua)
  * @author McDutchie
  */
