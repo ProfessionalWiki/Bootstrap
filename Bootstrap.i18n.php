@@ -46,6 +46,13 @@ $messages['de'] = array(
 	'bootstrap-desc' => 'Erweitert das Wiki um das [http://getbootstrap.com/ Bootstrap]-Framework',
 );
 
+/** Lower Sorbian (dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'bootstrap-desc' => 'Stoj framework [http://getbootstrap.com/ Bootstrap] we wikiju k dispoziciji.',
+);
+
 /** Spanish (español)
  * @author VegaDark
  */
