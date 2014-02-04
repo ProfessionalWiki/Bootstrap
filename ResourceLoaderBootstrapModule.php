@@ -25,6 +25,7 @@
 
 namespace Bootstrap;
 
+use lessc;
 use ResourceLoader;
 use ResourceLoaderContext;
 use ResourceLoaderFileModule;
@@ -96,7 +97,7 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 				wfDebug( "ext.bootstrap: Cache miss: Styles not found in cache.\n" );
 			}
 
-			$compiler = ResourceLoader::getLessCompiler();
+			$compiler = new lessc();
 
 			// prepare a temp file containing all the variables to load
 			// have to use a temp file for variables because inline variables do not overwrite @import'ed variables even if
