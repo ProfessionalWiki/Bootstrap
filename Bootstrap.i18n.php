@@ -194,6 +194,13 @@ $messages['ru'] = array(
 	'bootstrap-desc' => 'Добавляет поддержку фреймворка [http://getbootstrap.com/ Bootstrap] для проекта',
 );
 
+/** Scots (Scots)
+ * @author John Reid
+ */
+$messages['sco'] = array(
+	'bootstrap-desc' => 'Provides the [http://getbootstrap.com/ Bootstrap] framework in the wiki',
+);
+
 /** Swedish (svenska)
  * @author LittleGun
  */
