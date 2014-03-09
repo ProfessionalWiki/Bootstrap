@@ -39,6 +39,13 @@ $messages['be-tarask'] = array(
 	'bootstrap-desc' => 'Падтрымка фрэймворку [http://getbootstrap.com/ Bootstrap].',
 );
 
+/** Catalan (català)
+ * @author Alvaro Vidal-Abarca
+ */
+$messages['ca'] = array(
+	'bootstrap-desc' => "Proporciona l'entorn de desenvolupament [http://getbootstrap.com/ Bootstrap] a la viqui",
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */
