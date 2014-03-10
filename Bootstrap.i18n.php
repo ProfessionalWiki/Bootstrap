@@ -96,6 +96,13 @@ $messages['gl'] = array(
 	'bootstrap-desc' => 'Proporciona o contorno [http://getbootstrap.com/ Bootstrap] no wiki',
 );
 
+/** Hebrew (עברית)
+ * @author Yona b
+ */
+$messages['he'] = array(
+	'bootstrap-desc' => 'מספק את המסגרת [http://getbootstrap.com/ Bootstrap] בוויקי',
+);
+
 /** Upper Sorbian (hornjoserbsce)
  * @author Michawiki
  */
