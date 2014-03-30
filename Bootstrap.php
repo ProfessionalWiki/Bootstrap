@@ -45,7 +45,7 @@ if ( version_compare( $wgVersion, '1.22alpha', 'lt' ) ) {
 /**
  * The extension version
  */
-define( 'BS_VERSION', '0.2 alpha' );
+define( 'BS_VERSION', '0.3 alpha' );
 
 // register the extension
 $wgExtensionCredits['other'][] = array(
@@ -64,6 +64,7 @@ $dir = dirname( __FILE__ );
 $scriptPath = ( $wgExtensionAssetsPath === false ? $wgScriptPath . '/extensions' : $wgExtensionAssetsPath ) . '/Bootstrap';
 
 // register message files
+$wgMessagesDirs['Bootstrap'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['Bootstrap'] = $dir . '/Bootstrap.i18n.php';
 
 $wgAutoloadClasses['bootstrap\ResourceLoaderBootstrapModule'] = $dir . '/ResourceLoaderBootstrapModule.php';

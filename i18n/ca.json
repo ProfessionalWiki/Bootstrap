@@ -1,0 +1,8 @@
+{
+    "@metadata": {
+        "authors": [
+            "Alvaro Vidal-Abarca"
+        ]
+    },
+    "bootstrap-desc": "Proporciona l'entorn de desenvolupament [http://getbootstrap.com/ Bootstrap] a la viqui"
+}
