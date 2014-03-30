@@ -67,7 +67,7 @@ class Bootstrap {
 		// Components w/ JavaScript
 		'modals'               => array( 'styles' => 'modals', 'scripts' => 'bootstrap/js/modal.js' ),
 		'tooltip'              => array( 'styles' => 'tooltip', 'scripts' => 'bootstrap/js/tooltip.js' ),
-		'popovers'             => array( 'styles' => 'popovers', 'scripts' => 'bootstrap/js/popover.js', 'dependencies' => 'ext.bootstrap.tooltip' ),
+		'popovers'             => array( 'styles' => 'popovers', 'scripts' => 'bootstrap/js/popover.js', 'dependencies' => 'tooltip' ),
 		'carousel'             => array( 'styles' => 'carousel', 'scripts' => 'bootstrap/js/carousel.js' ),
 
 		// Utility classes
@@ -85,6 +85,7 @@ class Bootstrap {
 		'transition'           => array( 'scripts' => 'bootstrap/js/transition.js' ),
 
 	);
+
 	static private $coreModules = array( 'variables', 'mixins', 'normalize', 'print', 'scaffolding', 'type', 'code',
 										 'grid', 'tables', 'forms', 'buttons' );
 	static private $optionalModules = array( 'component-animations', 'glyphicons', 'dropdowns', 'button-groups',
@@ -93,6 +94,12 @@ class Bootstrap {
 											 'media', 'list-group', 'panels', 'wells', 'close', 'modals', 'tooltip',
 											 'popovers', 'carousel', 'utilities', 'responsive-utilities', 'affix',
 											 'alert', 'button', 'collapse', 'dropdown', 'scrollspy', 'tab', 'transition' );
+
+	private $mModuleDescriptions;
+
+	public function __construct() {
+		$this->mModuleDescriptions = self::$moduleDescriptions;
+	}
 
 	/**
 	 * Returns the Bootstrap singleton.
@@ -114,24 +121,6 @@ class Bootstrap {
 	 */
 	protected static function initializeBootstrap() {
 
-		global $wgResourceModules;
-
-		// register resource loader modules for JS components
-		foreach ( self::$moduleDescriptions as $module => $description ) {
-			if ( isset( $description[ 'scripts' ] ) ) {
-
-				$wgResourceModules[ 'ext.bootstrap.' . $module ] = array(
-					'localBasePath' => $wgResourceModules[ 'ext.bootstrap' ][ 'localBasePath' ],
-					'remoteExtPath' => 'Bootstrap',
-					'scripts'       => $description[ 'scripts' ],
-				);
-
-				if ( isset( $description[ 'dependencies' ] ) ) {
-					$wgResourceModules[ 'ext.bootstrap.' . $module ][ 'dependencies' ] = $description[ 'dependencies' ];
-				}
-			}
-		}
-
 		self::$bootstrap = new Bootstrap();
 
 		// add core Bootstrap modules
@@ -150,23 +139,38 @@ class Bootstrap {
 		foreach ( $modules as $module ) {
 
 			// if the module is known
-			if ( array_key_exists( $module, self::$moduleDescriptions ) ) {
+			if ( array_key_exists( $module, $this->mModuleDescriptions ) ) {
 
 				global $wgResourceModules;
 
 				// add less files to $wgResourceModules
-				if ( isset( self::$moduleDescriptions[ $module ][ 'styles' ] ) ) {
-					$wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ] = array_merge( $wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ], (array)self::$moduleDescriptions[ $module ][ 'styles' ] );
+				if ( isset( $this->mModuleDescriptions[ $module ][ 'styles' ] ) ) {
+					$wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ] = array_merge( $wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ], (array)$this->mModuleDescriptions[ $module ][ 'styles' ] );
 				}
 
 				// ensure loading of js files using dependencies
-				if ( isset( self::$moduleDescriptions[ $module ][ 'scripts' ] ) ) {
-					$wgResourceModules[ 'ext.bootstrap.scripts' ][ 'dependencies' ][ ] = 'ext.bootstrap.' . $module;
+				if ( isset( $this->mModuleDescriptions[ $module ][ 'scripts' ] ) ) {
+					$wgResourceModules[ 'ext.bootstrap.scripts' ][ 'scripts' ] = array_merge( $wgResourceModules[ 'ext.bootstrap.scripts' ][ 'scripts' ], (array)$this->mModuleDescriptions[ $module ][ 'scripts' ] );
 
 				}
 
-				// prevent adding this module again
-				unset( self::$moduleDescriptions[ $module ] );
+				if ( isset( $this->mModuleDescriptions[ $module ][ 'dependencies' ] ) ) {
+
+					// store dependencies before unsetting dependency information in the module descriptions
+					$dependencies = $this->mModuleDescriptions[ $module ][ 'dependencies' ];
+
+					// prevent adding this module again; this also prevents infinite recursion
+					unset( $this->mModuleDescriptions[ $module ] );
+
+					// add dependencies
+					$this->addBootstrapModule( $dependencies );
+
+				} else {
+
+					// prevent adding this module again
+					unset( $this->mModuleDescriptions[ $module ] );
+				}
+
 			}
 		}
 

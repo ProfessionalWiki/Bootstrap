@@ -85,7 +85,7 @@ $wgResourceModules['ext.bootstrap.styles'] = array(
 $wgResourceModules['ext.bootstrap.scripts'] = array(
 	'localBasePath' => $dir,
 	'remoteExtPath' => 'Bootstrap',
-	'dependencies' => array(),
+	'scripts' => array(),
 );
 
 $wgResourceModules[ 'ext.bootstrap' ] = array(
