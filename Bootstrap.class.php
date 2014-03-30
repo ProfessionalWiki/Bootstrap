@@ -156,12 +156,12 @@ class Bootstrap {
 
 				// add less files to $wgResourceModules
 				if ( isset( self::$moduleDescriptions[ $module ][ 'styles' ] ) ) {
-					$wgResourceModules[ 'ext.bootstrap' ][ 'styles' ] = array_merge( $wgResourceModules[ 'ext.bootstrap' ][ 'styles' ], (array)self::$moduleDescriptions[ $module ][ 'styles' ] );
+					$wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ] = array_merge( $wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ], (array)self::$moduleDescriptions[ $module ][ 'styles' ] );
 				}
 
 				// ensure loading of js files using dependencies
 				if ( isset( self::$moduleDescriptions[ $module ][ 'scripts' ] ) ) {
-					$wgResourceModules[ 'ext.bootstrap' ][ 'dependencies' ][ ] = 'ext.bootstrap.' . $module;
+					$wgResourceModules[ 'ext.bootstrap.scripts' ][ 'dependencies' ][ ] = 'ext.bootstrap.' . $module;
 
 				}
 
@@ -188,11 +188,11 @@ class Bootstrap {
 
 		global $wgResourceModules;
 
-		if ( !in_array( $path, $wgResourceModules[ 'ext.bootstrap' ][ 'paths' ] ) ) {
-			$wgResourceModules[ 'ext.bootstrap' ][ 'paths' ][ ] = $path;
+		if ( !in_array( $path, $wgResourceModules[ 'ext.bootstrap.styles' ][ 'paths' ] ) ) {
+			$wgResourceModules[ 'ext.bootstrap.styles' ][ 'paths' ][ ] = $path;
 		}
 
-		$wgResourceModules[ 'ext.bootstrap' ][ 'styles' ][ ] = $file;
+		$wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ][ ] = $file;
 	}
 
 	/**
@@ -210,7 +210,7 @@ class Bootstrap {
 	public function setLessVariables( $variables ) {
 
 		global $wgResourceModules;
-		$wgResourceModules[ 'ext.bootstrap' ][ 'variables' ] = array_merge( $wgResourceModules[ 'ext.bootstrap' ][ 'variables' ], $variables );
+		$wgResourceModules[ 'ext.bootstrap.styles' ][ 'variables' ] = array_merge( $wgResourceModules[ 'ext.bootstrap.styles' ][ 'variables' ], $variables );
 	}
 
 }

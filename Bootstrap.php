@@ -6,7 +6,7 @@
  * @see http://twitter.github.io/bootstrap
  *
  * @author Stephan Gambke
- * @version 0.1
+ * @version 0.2 alpha
  *
  * @defgroup Bootstrap Bootstrap
  */
@@ -45,7 +45,7 @@ if ( version_compare( $wgVersion, '1.22alpha', 'lt' ) ) {
 /**
  * The extension version
  */
-define( 'BS_VERSION', '0.1' );
+define( 'BS_VERSION', '0.2 alpha' );
 
 // register the extension
 $wgExtensionCredits['other'][] = array(
@@ -70,7 +70,7 @@ $wgAutoloadClasses['bootstrap\ResourceLoaderBootstrapModule'] = $dir . '/Resourc
 $wgAutoloadClasses['Bootstrap'] = $dir . '/Bootstrap.class.php';
 
 // register skeleton resource module with the Resource Loader
-$wgResourceModules['ext.bootstrap'] = array(
+$wgResourceModules['ext.bootstrap.styles'] = array(
 	'localBasePath' => $dir,
 	'remoteExtPath' => 'Bootstrap',
 	'class' => 'bootstrap\ResourceLoaderBootstrapModule',
@@ -80,6 +80,16 @@ $wgResourceModules['ext.bootstrap'] = array(
 	),
 	'paths' => array( $dir . '/bootstrap/less' ),
 	'dependencies' => array(),
+);
+
+$wgResourceModules['ext.bootstrap.scripts'] = array(
+	'localBasePath' => $dir,
+	'remoteExtPath' => 'Bootstrap',
+	'dependencies' => array(),
+);
+
+$wgResourceModules[ 'ext.bootstrap' ] = array(
+	'dependencies' => array( 'ext.bootstrap.styles', 'ext.bootstrap.scripts' ),
 );
 
 unset( $dir );
