@@ -86,14 +86,18 @@ class Bootstrap {
 
 	);
 
-	static private $coreModules = array( 'variables', 'mixins', 'normalize', 'print', 'scaffolding', 'type', 'code',
-										 'grid', 'tables', 'forms', 'buttons' );
-	static private $optionalModules = array( 'component-animations', 'glyphicons', 'dropdowns', 'button-groups',
-											 'input-groups', 'navs', 'navbar', 'breadcrumbs', 'pagination', 'pager',
-											 'labels', 'badges', 'jumbotron', 'thumbnails', 'alerts', 'progress-bars',
-											 'media', 'list-group', 'panels', 'wells', 'close', 'modals', 'tooltip',
-											 'popovers', 'carousel', 'utilities', 'responsive-utilities', 'affix',
-											 'alert', 'button', 'collapse', 'dropdown', 'scrollspy', 'tab', 'transition' );
+	static private $coreModules = array(
+		'variables', 'mixins', 'normalize', 'print', 'scaffolding', 'type', 'code', 'grid',
+		'tables', 'forms', 'buttons'
+	);
+
+	static private $optionalModules = array(
+		'component-animations', 'glyphicons', 'dropdowns', 'button-groups', 'input-groups', 'navs',
+		'navbar', 'breadcrumbs', 'pagination', 'pager', 'labels', 'badges', 'jumbotron',
+		'thumbnails', 'alerts', 'progress-bars', 'media', 'list-group', 'panels', 'wells', 'close',
+		'modals', 'tooltip', 'popovers', 'carousel', 'utilities', 'responsive-utilities', 'affix',
+		'alert', 'button', 'collapse', 'dropdown', 'scrollspy', 'tab', 'transition'
+	);
 
 	private $mModuleDescriptions;
 
@@ -143,32 +147,37 @@ class Bootstrap {
 
 				global $wgResourceModules;
 
+				$description = $this->mModuleDescriptions[ $module ];
+
+				// prevent adding this module again; this also prevents infinite recursion in case
+				// of dependency resolution
+				unset( $this->mModuleDescriptions[ $module ] );
+
+				// first add any dependencies recursively, so they are available when the styles and
+				// scripts of $module are loaded
+				if ( isset( $description[ 'dependencies' ] ) ) {
+					$this->addBootstrapModule( $description[ 'dependencies' ] );
+				}
+
 				// add less files to $wgResourceModules
-				if ( isset( $this->mModuleDescriptions[ $module ][ 'styles' ] ) ) {
-					$wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ] = array_merge( $wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ], (array)$this->mModuleDescriptions[ $module ][ 'styles' ] );
+				if ( isset( $description[ 'styles' ] ) ) {
+
+					$wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ] =
+						array_merge(
+							$wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ],
+							(array) $description[ 'styles' ]
+						);
 				}
 
-				// ensure loading of js files using dependencies
-				if ( isset( $this->mModuleDescriptions[ $module ][ 'scripts' ] ) ) {
-					$wgResourceModules[ 'ext.bootstrap.scripts' ][ 'scripts' ] = array_merge( $wgResourceModules[ 'ext.bootstrap.scripts' ][ 'scripts' ], (array)$this->mModuleDescriptions[ $module ][ 'scripts' ] );
+				// add script files to $wgResourceModules
+				if ( isset( $description[ 'scripts' ] ) ) {
 
-				}
+					$wgResourceModules[ 'ext.bootstrap.scripts' ][ 'scripts' ] =
+						array_merge(
+							$wgResourceModules[ 'ext.bootstrap.scripts' ][ 'scripts' ],
+							(array) $description[ 'scripts' ]
+						);
 
-				if ( isset( $this->mModuleDescriptions[ $module ][ 'dependencies' ] ) ) {
-
-					// store dependencies before unsetting dependency information in the module descriptions
-					$dependencies = $this->mModuleDescriptions[ $module ][ 'dependencies' ];
-
-					// prevent adding this module again; this also prevents infinite recursion
-					unset( $this->mModuleDescriptions[ $module ] );
-
-					// add dependencies
-					$this->addBootstrapModule( $dependencies );
-
-				} else {
-
-					// prevent adding this module again
-					unset( $this->mModuleDescriptions[ $module ] );
 				}
 
 			}
@@ -214,7 +223,9 @@ class Bootstrap {
 	public function setLessVariables( $variables ) {
 
 		global $wgResourceModules;
-		$wgResourceModules[ 'ext.bootstrap.styles' ][ 'variables' ] = array_merge( $wgResourceModules[ 'ext.bootstrap.styles' ][ 'variables' ], $variables );
+
+		$wgResourceModules[ 'ext.bootstrap.styles' ][ 'variables' ] =
+			array_merge( $wgResourceModules[ 'ext.bootstrap.styles' ][ 'variables' ], $variables );
 	}
 
 }
