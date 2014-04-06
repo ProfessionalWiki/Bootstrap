@@ -23,13 +23,15 @@
  * @ingroup   Bootstrap
  */
 
+namespace bootstrap;
+
 /**
  * Class managing the Bootstrap framework.
  */
-class Bootstrap {
+class BootstrapManager {
 
 
-	static private $bootstrap = null;
+	static private $bootstrapManagerSingleton = null;
 	static private $moduleDescriptions = array(
 		'variables'            => array( 'styles' => 'variables' ),
 		'mixins'               => array( 'styles' => 'mixins' ),
@@ -65,24 +67,24 @@ class Bootstrap {
 		'close'                => array( 'styles' => 'close' ),
 
 		// Components w/ JavaScript
-		'modals'               => array( 'styles' => 'modals', 'scripts' => 'bootstrap/js/modal.js' ),
-		'tooltip'              => array( 'styles' => 'tooltip', 'scripts' => 'bootstrap/js/tooltip.js' ),
-		'popovers'             => array( 'styles' => 'popovers', 'scripts' => 'bootstrap/js/popover.js', 'dependencies' => 'tooltip' ),
-		'carousel'             => array( 'styles' => 'carousel', 'scripts' => 'bootstrap/js/carousel.js' ),
+		'modals'               => array( 'styles' => 'modals', 'scripts' => 'modal' ),
+		'tooltip'              => array( 'styles' => 'tooltip', 'scripts' => 'tooltip' ),
+		'popovers'             => array( 'styles' => 'popovers', 'scripts' => 'popover', 'dependencies' => 'tooltip' ),
+		'carousel'             => array( 'styles' => 'carousel', 'scripts' => 'carousel' ),
 
 		// Utility classes
 		'utilities'            => array( 'styles' => 'utilities' ),
 		'responsive-utilities' => array( 'styles' => 'responsive-utilities' ),
 
 		// JS-only components
-		'affix'                => array( 'scripts' => 'bootstrap/js/affix.js' ),
-		'alert'                => array( 'scripts' => 'bootstrap/js/alert.js' ),
-		'button'               => array( 'scripts' => 'bootstrap/js/button.js' ),
-		'collapse'             => array( 'scripts' => 'bootstrap/js/collapse.js' ),
-		'dropdown'             => array( 'scripts' => 'bootstrap/js/dropdown.js' ),
-		'scrollspy'            => array( 'scripts' => 'bootstrap/js/scrollspy.js' ),
-		'tab'                  => array( 'scripts' => 'bootstrap/js/tab.js' ),
-		'transition'           => array( 'scripts' => 'bootstrap/js/transition.js' ),
+		'affix'                => array( 'scripts' => 'affix' ),
+		'alert'                => array( 'scripts' => 'alert' ),
+		'button'               => array( 'scripts' => 'button' ),
+		'collapse'             => array( 'scripts' => 'collapse' ),
+		'dropdown'             => array( 'scripts' => 'dropdown' ),
+		'scrollspy'            => array( 'scripts' => 'scrollspy' ),
+		'tab'                  => array( 'scripts' => 'tab' ),
+		'transition'           => array( 'scripts' => 'transition' ),
 
 	);
 
@@ -101,23 +103,23 @@ class Bootstrap {
 
 	private $mModuleDescriptions;
 
-	public function __construct() {
+	protected function __construct() {
 		$this->mModuleDescriptions = self::$moduleDescriptions;
 	}
 
 	/**
 	 * Returns the Bootstrap singleton.
 	 *
-	 * @return Bootstrap
+	 * @return BootstrapManager
 	 */
-	public static function getBootstrap() {
+	public static function getBootstrapManager() {
 
 		// if singleton was not yet created
-		if ( self::$bootstrap === null ) {
+		if ( self::$bootstrapManagerSingleton === null ) {
 			self::initializeBootstrap();
 		}
 
-		return self::$bootstrap;
+		return self::$bootstrapManagerSingleton;
 	}
 
 	/**
@@ -125,10 +127,10 @@ class Bootstrap {
 	 */
 	protected static function initializeBootstrap() {
 
-		self::$bootstrap = new Bootstrap();
+		self::$bootstrapManagerSingleton = new BootstrapManager();
 
 		// add core Bootstrap modules
-		self::$bootstrap->addBootstrapModule( self::$coreModules );
+		self::$bootstrapManagerSingleton->addBootstrapModule( self::$coreModules );
 	}
 
 	/**
@@ -138,14 +140,12 @@ class Bootstrap {
 	 */
 	public function addBootstrapModule( $modules ) {
 
-		$modules = (array)$modules;
+		$modules = (array) $modules;
 
 		foreach ( $modules as $module ) {
 
 			// if the module is known
-			if ( array_key_exists( $module, $this->mModuleDescriptions ) ) {
-
-				global $wgResourceModules;
+			if ( isset( $this->mModuleDescriptions[ $module ] ) ) {
 
 				$description = $this->mModuleDescriptions[ $module ];
 
@@ -159,30 +159,34 @@ class Bootstrap {
 					$this->addBootstrapModule( $description[ 'dependencies' ] );
 				}
 
-				// add less files to $wgResourceModules
-				if ( isset( $description[ 'styles' ] ) ) {
-
-					$wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ] =
-						array_merge(
-							$wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ],
-							(array) $description[ 'styles' ]
-						);
-				}
-
-				// add script files to $wgResourceModules
-				if ( isset( $description[ 'scripts' ] ) ) {
-
-					$wgResourceModules[ 'ext.bootstrap.scripts' ][ 'scripts' ] =
-						array_merge(
-							$wgResourceModules[ 'ext.bootstrap.scripts' ][ 'scripts' ],
-							(array) $description[ 'scripts' ]
-						);
-
-				}
+				$this->addFilesToGlobalResourceModules( 'styles', $description, '.less' );
+				$this->addFilesToGlobalResourceModules( 'scripts', $description, '.js' );
 
 			}
 		}
 
+	}
+
+	/**
+	 * @param string       $filetype 'styles'|'scripts'
+	 * @param array|string $description
+	 * @param              $fileExt
+	 *
+	 * @internal param $relativePath
+	 */
+	protected function addFilesToGlobalResourceModules ( $filetype, $description, $fileExt ) {
+
+		if ( isset( $description[ $filetype ] ) ) {
+
+			$path = $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ 'localBasePath' ];
+
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $filetype ] =
+				array_merge(
+					$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $filetype ],
+					array_map( function ( $filename ) use ( $fileExt ) { return $filename . $fileExt; }, (array) $description[ $filetype ])
+				);
+
+		}
 	}
 
 	/**
@@ -194,18 +198,15 @@ class Bootstrap {
 	}
 
 	/**
-	 * @param string $path
 	 * @param string $file
+	 * @param string $remotePath
+	 *
+	 * @internal param string $path
 	 */
-	public function addExternalModule( $path, $file ) {
+	public function addExternalModule( $file, $remotePath = '' ) {
 
 		global $wgResourceModules;
-
-		if ( !in_array( $path, $wgResourceModules[ 'ext.bootstrap.styles' ][ 'paths' ] ) ) {
-			$wgResourceModules[ 'ext.bootstrap.styles' ][ 'paths' ][ ] = $path;
-		}
-
-		$wgResourceModules[ 'ext.bootstrap.styles' ][ 'styles' ][ ] = $file;
+		$wgResourceModules[ 'ext.bootstrap.styles' ][ 'external styles' ][ $file ] = $remotePath;
 	}
 
 	/**
