@@ -178,8 +178,6 @@ class BootstrapManager {
 
 		if ( isset( $description[ $filetype ] ) ) {
 
-			$path = $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ 'localBasePath' ];
-
 			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $filetype ] =
 				array_merge(
 					$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $filetype ],

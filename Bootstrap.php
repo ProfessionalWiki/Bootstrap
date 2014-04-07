@@ -73,4 +73,22 @@ call_user_func( function () {
 
 	$GLOBALS[ 'wgHooks' ][ 'SetupAfterCache' ][ ] = 'bootstrap\Hooks::onSetupAfterCache';
 
+	// register skeleton resource module with the Resource Loader
+	// do not add paths, globals are not set yet
+	$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = array(
+		'class'          => 'bootstrap\ResourceLoaderBootstrapModule',
+		'styles'         => array(),
+		'variables'      => array(
+		),
+		'dependencies'   => array(),
+	);
+
+	$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] = array(
+		'scripts'        => array(),
+	);
+
+	$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap' ] = array(
+		'dependencies' => array( 'ext.bootstrap.styles', 'ext.bootstrap.scripts' ),
+	);
+
 } );

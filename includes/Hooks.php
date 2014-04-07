@@ -38,30 +38,24 @@ class Hooks {
 		$localBasePath = $GLOBALS[ 'IP' ] . '/vendor/twitter/bootstrap';
 		$remoteBasePath = $GLOBALS[ 'wgScriptPath' ] . '/vendor/twitter/bootstrap';
 
-		// register skeleton resource module with the Resource Loader
-		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = array(
-			'localBasePath'  => $localBasePath . '/less',
-			'remoteBasePath' => $remoteBasePath. '/less',
-			'class'          => 'bootstrap\ResourceLoaderBootstrapModule',
-			'styles'         => array(),
-			'variables'      => array(
-				'icon-font-path' => "\"$remoteBasePath/fonts/\"",
+		// add paths to resource modules if they are not there yet (e.g. set in LocalSettings.php)
+		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = array_replace_recursive( array(
+				'localBasePath'  => $localBasePath . '/less',
+				'remoteBasePath' => $remoteBasePath . '/less',
+				'variables'      => array(
+					'icon-font-path' => "\"$remoteBasePath/fonts/\"",
+				),
 			),
-			'dependencies'   => array(),
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ]
 		);
 
-		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] = array(
-			'localBasePath'  => $localBasePath . '/js',
-			'remoteBasePath' => $remoteBasePath. '/js',
-			'scripts'        => array(),
-		);
-
-		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap' ] = array(
-			'dependencies' => array( 'ext.bootstrap.styles', 'ext.bootstrap.scripts' ),
+		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] = array_replace_recursive( array(
+				'localBasePath'  => $localBasePath . '/js',
+				'remoteBasePath' => $remoteBasePath . '/js',
+			),
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ]
 		);
 
 		return true;
-
 	}
-
 }

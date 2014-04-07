@@ -86,10 +86,7 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 			$this->retrieveStylesFromCache( $context );
 
 			if ( $this->styleText === null ) {
-
-				$this->compileStyles();
-				$this->updateCache( $context );
-
+				$this->compileStyles( $context );
 			}
 		}
 
@@ -128,7 +125,14 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 
 	}
 
-	protected function compileStyles() {
+	protected function purgeCache( ResourceLoaderContext $context ) {
+
+		$cache = wfGetCache( CACHE_ANYTHING );
+		$cache->delete( $this->getCacheKey( $context ) );
+
+	}
+
+	protected function compileStyles( ResourceLoaderContext $context ) {
 
 		$parser = new \Less_Parser();
 		$remotePath = $this->getRemotePath( '' );
@@ -147,7 +151,11 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 
 			$this->styleText = $parser->getCss();
 
+			$this->updateCache( $context );
+
 		} catch ( \Exception $e ) {
+
+			$this->purgeCache( $context );
 			wfDebug( $e->getMessage() );
 			$this->styleText = '/* LESS compile error: ' . $e->getMessage() . '*/';
 		}
