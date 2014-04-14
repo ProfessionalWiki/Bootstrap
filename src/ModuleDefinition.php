@@ -1,7 +1,10 @@
 <?php
+
+namespace Bootstrap;
+
+use InvalidArgumentException;
+
 /**
- * File holding the Bootstrap class
- *
  * @copyright (C) 2013, Stephan Gambke
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
@@ -23,15 +26,29 @@
  * @ingroup   Bootstrap
  */
 
-namespace bootstrap;
+/**
+ * Interface describing module definitions
+ */
+interface ModuleDefinition {
+
+	/**
+	 * Returns a definition array
+	 *
+	 * @since  1.0
+	 *
+	 * @param string $key
+	 *
+	 * @return array
+	 */
+	public function get( $key );
+
+}
 
 /**
- * Class managing the Bootstrap framework.
+ * Class describing the V3 Bootstrap module definitions
  */
-class BootstrapManager {
+class V3ModuleDefinition implements ModuleDefinition {
 
-
-	static private $bootstrapManagerSingleton = null;
 	static private $moduleDescriptions = array(
 		'variables'            => array( 'styles' => 'variables' ),
 		'mixins'               => array( 'styles' => 'mixins' ),
@@ -101,130 +118,28 @@ class BootstrapManager {
 		'alert', 'button', 'collapse', 'dropdown', 'scrollspy', 'tab', 'transition'
 	);
 
-	private $mModuleDescriptions;
-
-	protected function __construct() {
-		$this->mModuleDescriptions = self::$moduleDescriptions;
-	}
-
 	/**
-	 * Returns the Bootstrap singleton.
+	 * @see ModuleDefinition::get
 	 *
-	 * @return BootstrapManager
+	 * @since  1.0
+	 *
+	 * @param string $key
+	 *
+	 * @return array
+	 * @throws InvalidArgumentException
 	 */
-	public static function getBootstrapManager() {
+	public function get( $key ) {
 
-		// if singleton was not yet created
-		if ( self::$bootstrapManagerSingleton === null ) {
-			self::initializeBootstrap();
+		switch ( $key ) {
+			case 'core':
+				return self::$coreModules;
+			case 'optional':
+				return self::$optionalModules;
+			case 'descriptions':
+				return self::$moduleDescriptions;
 		}
 
-		return self::$bootstrapManagerSingleton;
-	}
-
-	/**
-	 * sets up the Bootstrap singleton and does some initialization
-	 */
-	protected static function initializeBootstrap() {
-
-		self::$bootstrapManagerSingleton = new BootstrapManager();
-
-		// add core Bootstrap modules
-		self::$bootstrapManagerSingleton->addBootstrapModule( self::$coreModules );
-	}
-
-	/**
-	 * Adds the given Bootstrap module or modules.
-	 *
-	 * @param string|array(string) $modules
-	 */
-	public function addBootstrapModule( $modules ) {
-
-		$modules = (array) $modules;
-
-		foreach ( $modules as $module ) {
-
-			// if the module is known
-			if ( isset( $this->mModuleDescriptions[ $module ] ) ) {
-
-				$description = $this->mModuleDescriptions[ $module ];
-
-				// prevent adding this module again; this also prevents infinite recursion in case
-				// of dependency resolution
-				unset( $this->mModuleDescriptions[ $module ] );
-
-				// first add any dependencies recursively, so they are available when the styles and
-				// scripts of $module are loaded
-				if ( isset( $description[ 'dependencies' ] ) ) {
-					$this->addBootstrapModule( $description[ 'dependencies' ] );
-				}
-
-				$this->addFilesToGlobalResourceModules( 'styles', $description, '.less' );
-				$this->addFilesToGlobalResourceModules( 'scripts', $description, '.js' );
-
-			}
-		}
-
-	}
-
-	/**
-	 * @param string       $filetype 'styles'|'scripts'
-	 * @param array|string $description
-	 * @param              $fileExt
-	 *
-	 * @internal param $relativePath
-	 */
-	protected function addFilesToGlobalResourceModules ( $filetype, $description, $fileExt ) {
-
-		if ( isset( $description[ $filetype ] ) ) {
-
-			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $filetype ] =
-				array_merge(
-					$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $filetype ],
-					array_map( function ( $filename ) use ( $fileExt ) { return $filename . $fileExt; }, (array) $description[ $filetype ])
-				);
-
-		}
-	}
-
-	/**
-	 * Adds all bootstrap modules
-	 */
-	public function addAllBootstrapModules() {
-
-		$this->addBootstrapModule( self::$optionalModules );
-	}
-
-	/**
-	 * @param string $file
-	 * @param string $remotePath
-	 *
-	 * @internal param string $path
-	 */
-	public function addExternalModule( $file, $remotePath = '' ) {
-
-		global $wgResourceModules;
-		$wgResourceModules[ 'ext.bootstrap.styles' ][ 'external styles' ][ $file ] = $remotePath;
-	}
-
-	/**
-	 * @param string $key   the LESS variable name
-	 * @param string $value the value to assign to the variable
-	 */
-	public function setLessVariable( $key, $value ) {
-
-		$this->setLessVariables( array( $key => $value ) );
-	}
-
-	/**
-	 * @param $variables
-	 */
-	public function setLessVariables( $variables ) {
-
-		global $wgResourceModules;
-
-		$wgResourceModules[ 'ext.bootstrap.styles' ][ 'variables' ] =
-			array_merge( $wgResourceModules[ 'ext.bootstrap.styles' ][ 'variables' ], $variables );
+		throw new InvalidArgumentException( 'Expected a valid key' );
 	}
 
 }

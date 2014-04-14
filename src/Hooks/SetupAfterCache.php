@@ -1,4 +1,10 @@
 <?php
+
+namespace Bootstrap\Hooks;
+
+use RuntimeException;
+use InvalidArgumentException;
+
 /**
  * File holding the Hooks class
  *
@@ -23,22 +29,54 @@
  * @ingroup       Bootstrap
  */
 
-namespace bootstrap;
-
 /**
- * Class Hooks holds the Bootstrap extension hook handlers
+ * @see https://www.mediawiki.org/wiki/Manual:Hooks/SetupAfterCache
  *
  * @package bootstrap
+ * @license GNU GPL v3+
+ * @since 1.0
+ *
+ * @author mwjames
+ * @author Stephan Gambke
  */
-class Hooks {
+class SetupAfterCache {
 
+	protected $configuration = array();
 
-	public static function onSetupAfterCache() {
+	/**
+	 * @since  1.0
+	 *
+	 * @param array $configuration
+	 */
+	public function __construct( array $configuration ) {
+		$this->configuration = $configuration;
+	}
 
-		$localBasePath = $GLOBALS[ 'IP' ] . '/vendor/twitter/bootstrap';
-		$remoteBasePath = $GLOBALS[ 'wgScriptPath' ] . '/vendor/twitter/bootstrap';
+	/**
+	 * @since 1.0
+	 *
+	 * @throws InvalidArgumentException
+	 * @throws RuntimeException
+	 */
+	public function process() {
 
-		// add paths to resource modules if they are not there yet (e.g. set in LocalSettings.php)
+		if ( !$this->hasConfiguration( 'localBasePath' ) || !$this->hasConfiguration( 'localBasePath' ) ) {
+			throw new InvalidArgumentException( 'Expected a valid configuration' );
+		}
+
+		$this->registerBootstrapResourcePaths(
+			$this->isReadablePath( $this->configuration['localBasePath'] ),
+			$this->configuration[ 'remoteBasePath' ]
+		);
+
+		return true;
+	}
+
+	/**
+	 * Add paths to resource modules if they are not there yet (e.g. set in LocalSettings.php)
+	 */
+	protected function registerBootstrapResourcePaths( $localBasePath, $remoteBasePath ) {
+
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = array_replace_recursive( array(
 				'localBasePath'  => $localBasePath . '/less',
 				'remoteBasePath' => $remoteBasePath . '/less',
@@ -55,7 +93,21 @@ class Hooks {
 			),
 			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ]
 		);
-
-		return true;
 	}
+
+	protected function hasConfiguration( $id ) {
+		return isset( $this->configuration[ $id ] );
+	}
+
+	protected function isReadablePath( $localBasePath ) {
+
+		$localBasePath = str_replace( array( '\\', '/' ), DIRECTORY_SEPARATOR, $localBasePath );
+
+		if ( is_readable( $localBasePath ) ) {
+			return $localBasePath;
+		}
+
+		throw new RuntimeException( "Expected an accessible {$localBasePath} path" );
+	}
+
 }

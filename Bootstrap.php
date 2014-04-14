@@ -67,16 +67,27 @@ call_user_func( function () {
 	$GLOBALS[ 'wgExtensionMessagesFiles' ][ 'Bootstrap' ] = __DIR__ . '/Bootstrap.i18n.php';
 
 	// register classes
-	$GLOBALS[ 'wgAutoloadClasses' ][ 'bootstrap\ResourceLoaderBootstrapModule' ] = __DIR__ . '/includes/ResourceLoaderBootstrapModule.php';
-	$GLOBALS[ 'wgAutoloadClasses' ][ 'bootstrap\BootstrapManager' ] = __DIR__ . '/includes/BootstrapManager.php';
-	$GLOBALS[ 'wgAutoloadClasses' ][ 'bootstrap\Hooks' ] = __DIR__ . '/includes/Hooks.php';
+	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\ResourceLoaderBootstrapModule' ] = __DIR__ . '/src/ResourceLoaderBootstrapModule.php';
+	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\BootstrapManager' ] = __DIR__ . '/src/BootstrapManager.php';
+	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\Hooks\SetupAfterCache' ] = __DIR__ . '/src/Hooks/SetupAfterCache.php';
+	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\ModuleDefinition' ] = __DIR__ . '/src/ModuleDefinition.php';
+	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\V3ModuleDefinition' ] = __DIR__ . '/src/ModuleDefinition.php';
 
-	$GLOBALS[ 'wgHooks' ][ 'SetupAfterCache' ][ ] = 'bootstrap\Hooks::onSetupAfterCache';
+	$GLOBALS[ 'wgHooks' ][ 'SetupAfterCache' ][ ] = function() {
+
+		$configuration = array(
+			'localBasePath'  => $GLOBALS[ 'IP' ] . '/vendor/twitter/bootstrap',
+			'remoteBasePath' => $GLOBALS[ 'wgScriptPath' ] . '/vendor/twitter/bootstrap'
+		);
+
+		$setupAfterCache = new \Bootstrap\Hooks\SetupAfterCache( $configuration );
+		$setupAfterCache->process();
+	};
 
 	// register skeleton resource module with the Resource Loader
 	// do not add paths, globals are not set yet
 	$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = array(
-		'class'          => 'bootstrap\ResourceLoaderBootstrapModule',
+		'class'          => 'Bootstrap\ResourceLoaderBootstrapModule',
 		'styles'         => array(),
 		'variables'      => array(
 		),

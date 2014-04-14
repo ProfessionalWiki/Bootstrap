@@ -1,4 +1,15 @@
 <?php
+
+namespace Bootstrap;
+
+use Less_Parser;
+use ResourceLoader;
+use ResourceLoaderContext;
+use ResourceLoaderFileModule;
+use BagOStuff;
+
+use Exception;
+
 /**
  * File holding the ResourceLoaderBootstrapModule class
  *
@@ -23,13 +34,6 @@
  * @ingroup       Bootstrap
  */
 
-namespace bootstrap;
-
-use lessc;
-use ResourceLoader;
-use ResourceLoaderContext;
-use ResourceLoaderFileModule;
-
 /**
  * ResourceLoader module based on local JavaScript/LESS files.
  *
@@ -46,6 +50,9 @@ use ResourceLoaderFileModule;
  * @package Bootstrap
  */
 class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
+
+	/** @var BagOStuff */
+	protected $cache = null;
 
 	protected $variables = array();
 	protected $paths = array();
@@ -69,7 +76,6 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 		if ( isset( $options[ 'external styles' ] ) ) {
 			$this->extStyles = $options[ 'external styles' ];
 		}
-
 	}
 
 	/**
@@ -93,6 +99,33 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 		return array( 'all' => $this->styleText );
 	}
 
+	/**
+	 * @see ResourceLoaderFileModule::supportsURLLoading
+	 *
+	 * @since  1.0
+	 */
+	public function supportsURLLoading() {
+		return false;
+	}
+
+	/**
+	 * @since  1.0
+	 *
+	 * @param BagOStuff $cache
+	 */
+	public function setCache( BagOStuff $cache ) {
+		$this->cache = $cache;
+	}
+
+	protected function getCache() {
+
+		if ( $this->cache === null ) {
+			$this->cache = wfGetCache( CACHE_ANYTHING );
+		}
+
+		return $this->cache;
+	}
+
 	protected function getCacheKey( ResourceLoaderContext $context ) {
 		return wfMemcKey( 'ext', 'bootstrap', $context->getHash() );
 	}
@@ -100,60 +133,61 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 	protected function retrieveStylesFromCache( ResourceLoaderContext $context ) {
 
 		// Try for cache hit
-		$cache = wfGetCache( CACHE_ANYTHING );
-		$cacheResult = $cache->get( $this->getCacheKey( $context ) );
+		$cacheResult = $this->getCache()->get( $this->getCacheKey( $context ) );
 
 		if ( is_array( $cacheResult ) ) {
 
-			if ( $cacheResult[ 'storetime' ] >= filemtime( $GLOBALS[ 'IP' ] . '/LocalSettings.php' ) ) {
+			if ( $cacheResult[ 'storetime' ] >= $this->getLocalSettingsModificationTime() ) {
 
 				$this->styleText = $cacheResult[ 'styles' ];
 
-				wfDebug( "ext.bootstrap: Cache hit: Got styles from cache.\n" );
+				wfDebug( __METHOD__ . " ext.bootstrap: Cache hit: Got styles from cache.\n" );
 			} else {
-				wfDebug( "ext.bootstrap: Cache miss: Cache outdated, LocalSettings have changed.\n" );
+				wfDebug( __METHOD__ . " ext.bootstrap: Cache miss: Cache outdated, LocalSettings have changed.\n" );
 			}
 		} else {
-			wfDebug( "ext.bootstrap: Cache miss: Styles not found in cache.\n" );
+			wfDebug( __METHOD__ .  " ext.bootstrap: Cache miss: Styles not found in cache.\n" );
 		}
 	}
 
 	protected function updateCache( ResourceLoaderContext $context ) {
 
-		$cache = wfGetCache( CACHE_ANYTHING );
-		$cache->set( $this->getCacheKey( $context ), array( 'styles' => $this->styleText, 'storetime' => time() ) );
-
+		$this->getCache()->set(
+			$this->getCacheKey( $context ),
+			array( 'styles' => $this->styleText, 'storetime' => time() )
+		);
 	}
 
 	protected function purgeCache( ResourceLoaderContext $context ) {
+		$this->getCache()->delete( $this->getCacheKey( $context ) );
+	}
 
-		$cache = wfGetCache( CACHE_ANYTHING );
-		$cache->delete( $this->getCacheKey( $context ) );
-
+	protected function getLocalSettingsModificationTime() {
+		return filemtime( $GLOBALS[ 'IP' ] . '/LocalSettings.php' );
 	}
 
 	protected function compileStyles( ResourceLoaderContext $context ) {
 
-		$parser = new \Less_Parser();
+		$lessParser = new Less_Parser();
 		$remotePath = $this->getRemotePath( '' );
 
 		try {
 
 			foreach ( $this->styles as $style ) {
-				$parser->parseFile( $this->getLocalPath( $style ), $remotePath );
+				$lessParser->parseFile( $this->getLocalPath( $style ), $remotePath );
 			}
 
 			foreach ( $this->extStyles as $stylefile => $remotePath ) {
-				$parser->parseFile( $stylefile, $remotePath );
+				$lessParser->parseFile( $stylefile, $remotePath );
 			}
 
-			$parser->ModifyVars( $this->variables );
+			$lessParser->ModifyVars( $this->variables );
 
-			$this->styleText = $parser->getCss();
+			$this->styleText = $lessParser->getCss();
 
 			$this->updateCache( $context );
 
-		} catch ( \Exception $e ) {
+		} catch ( Exception $e ) {
 
 			$this->purgeCache( $context );
 			wfDebug( $e->getMessage() );
@@ -162,8 +196,4 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 
 	}
 
-	public function supportsURLLoading() {
-
-		return false;
-	}
 }
