@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Justincheng12345"
-        ]
-    },
-    "bootstrap-desc": "於維基內提供[http://getbootstrap.com/ Bootstrap]框架。"
+	"@metadata": {
+		"authors": [
+			"Justincheng12345"
+		]
+	},
+	"bootstrap-desc": "於維基內提供[http://getbootstrap.com/ Bootstrap]框架。"
 }

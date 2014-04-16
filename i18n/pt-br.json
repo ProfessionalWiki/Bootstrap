@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Cainamarques"
-        ]
-    },
-    "bootstrap-desc": "Disponibiliza o framework [http://getbootstrap.com/ Bootstrap]"
+	"@metadata": {
+		"authors": [
+			"Cainamarques"
+		]
+	},
+	"bootstrap-desc": "Disponibiliza o framework [http://getbootstrap.com/ Bootstrap]"
 }

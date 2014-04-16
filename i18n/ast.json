@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Xuacu"
-        ]
-    },
-    "bootstrap-desc": "Proporciona la estructura [http://getbootstrap.com/ Bootstrap] na wiki."
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"bootstrap-desc": "Proporciona la estructura [http://getbootstrap.com/ Bootstrap] na wiki."
 }

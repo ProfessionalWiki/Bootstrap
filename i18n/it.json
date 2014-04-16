@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Beta16"
-        ]
-    },
-    "bootstrap-desc": "Fornisce il framework [http://getbootstrap.com/ Bootstrap] nel wiki."
+	"@metadata": {
+		"authors": [
+			"Beta16"
+		]
+	},
+	"bootstrap-desc": "Fornisce il framework [http://getbootstrap.com/ Bootstrap] nel wiki."
 }

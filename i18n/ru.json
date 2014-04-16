@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Okras"
-        ]
-    },
-    "bootstrap-desc": "Добавляет поддержку фреймворка [http://getbootstrap.com/ Bootstrap] для проекта"
+	"@metadata": {
+		"authors": [
+			"Okras"
+		]
+	},
+	"bootstrap-desc": "Добавляет поддержку фреймворка [http://getbootstrap.com/ Bootstrap] для проекта"
 }

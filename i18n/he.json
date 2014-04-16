@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Yona b"
-        ]
-    },
-    "bootstrap-desc": "מספק את המסגרת [http://getbootstrap.com/ Bootstrap] בוויקי"
+	"@metadata": {
+		"authors": [
+			"Yona b"
+		]
+	},
+	"bootstrap-desc": "מספק את המסגרת [http://getbootstrap.com/ Bootstrap] בוויקי"
 }

@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Woytecr"
-        ]
-    },
-    "bootstrap-desc": "Dodaje framework [http://getbootstrap.com/ Bootstrap] do wiki"
+	"@metadata": {
+		"authors": [
+			"Woytecr"
+		]
+	},
+	"bootstrap-desc": "Dodaje framework [http://getbootstrap.com/ Bootstrap] do wiki"
 }

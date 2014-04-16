@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Toliño"
-        ]
-    },
-    "bootstrap-desc": "Proporciona o contorno [http://getbootstrap.com/ Bootstrap] no wiki"
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"bootstrap-desc": "Proporciona o contorno [http://getbootstrap.com/ Bootstrap] no wiki"
 }

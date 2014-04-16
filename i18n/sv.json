@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "LittleGun"
-        ]
-    },
-    "bootstrap-desc": "Tillhandahåller [http://getbootstrap.com/ Bootstrap-ramverket] i wikin"
+	"@metadata": {
+		"authors": [
+			"LittleGun"
+		]
+	},
+	"bootstrap-desc": "Tillhandahåller [http://getbootstrap.com/ Bootstrap-ramverket] i wikin"
 }

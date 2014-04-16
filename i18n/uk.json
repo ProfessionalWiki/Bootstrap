@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Ата"
-        ]
-    },
-    "bootstrap-desc": "Забезпечує у вікі структуру [http://getbootstrap.com/ Bootstrap]"
+	"@metadata": {
+		"authors": [
+			"Ата"
+		]
+	},
+	"bootstrap-desc": "Забезпечує у вікі структуру [http://getbootstrap.com/ Bootstrap]"
 }

@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Siebrand"
-        ]
-    },
-    "bootstrap-desc": "Geeft toegang tot het [http://getbootstrap.com/ Bootstrapframework] in de wiki"
+	"@metadata": {
+		"authors": [
+			"Siebrand"
+		]
+	},
+	"bootstrap-desc": "Geeft toegang tot het [http://getbootstrap.com/ Bootstrapframework] in de wiki"
 }

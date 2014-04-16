@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Anakmalaysia"
-        ]
-    },
-    "bootstrap-desc": "Menyediakan rangka [http://getbootstrap.com/ Bootstrap] dalam wiki."
+	"@metadata": {
+		"authors": [
+			"Anakmalaysia"
+		]
+	},
+	"bootstrap-desc": "Menyediakan rangka [http://getbootstrap.com/ Bootstrap] dalam wiki."
 }
