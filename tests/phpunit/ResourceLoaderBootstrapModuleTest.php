@@ -7,7 +7,7 @@ use Bootstrap\ResourceLoaderBootstrapModule;
 use HashBagOStuff;
 
 /**
- * @covers \Bootstrap\ResourceLoaderBootstrapModule
+ * @uses \Bootstrap\ResourceLoaderBootstrapModule
  *
  * @ingroup Test
  *

@@ -5,7 +5,7 @@ namespace Bootstrap\Tests\Hooks;
 use Bootstrap\Hooks\SetupAfterCache;
 
 /**
- * @covers \Bootstrap\Hooks\SetupAfterCache
+ * @uses \Bootstrap\Hooks\SetupAfterCache
  *
  * @ingroup Test
  *
@@ -23,7 +23,7 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->localBasePath = $GLOBALS[ 'IP' ] . '/vendor/twitter/bootstrap';
+		$this->localBootstrapVendorPath = $GLOBALS[ 'IP' ] . '/vendor/twitter/bootstrap';
 	}
 
 	public function testCanConstruct() {
@@ -39,7 +39,7 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 	public function testProcessWithAccessibilityOnBootstrapVendorPath() {
 
 		$configuration = array(
-			'localBasePath'  => $this->localBasePath,
+			'localBasePath'  => $this->localBootstrapVendorPath,
 			'remoteBasePath' => ''
 		);
 
@@ -51,20 +51,26 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 	public function testProcessWithAccessibilityOnAddedLocalResourcePaths() {
 
 		$configuration = array(
-			'localBasePath'  => $this->localBasePath,
+			'localBasePath'  => $this->localBootstrapVendorPath,
 			'remoteBasePath' => ''
 		);
 
 		$instance = new SetupAfterCache( $configuration );
 		$instance->process();
 
-		$this->assertTrue( is_readable( $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ]['localBasePath'] ) );
-		$this->assertTrue( is_readable( $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ]['localBasePath'] ) );
+		$this->assertThatPathIsReadable(
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ]['localBasePath']
+		);
+
+		$this->assertThatPathIsReadable(
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ]['localBasePath']
+		);
 	}
 
-	public function testProcessOnInvalidConfigurationThrowsException() {
-
-		$configuration = array();
+	/**
+	 * @dataProvider invalidConfigurationProvider
+	 */
+	public function testProcessOnInvalidConfigurationThrowsException( $configuration ) {
 
 		$instance = new SetupAfterCache( $configuration );
 
@@ -83,6 +89,33 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 		$this->setExpectedException( 'RuntimeException' );
 		$instance->process();
+	}
+
+	public function invalidConfigurationProvider() {
+
+		$provider = array();
+
+		$provider[] = array(
+			array()
+		);
+
+		$provider[] = array(
+			array(
+				'localBasePath' => 'Foo'
+			)
+		);
+
+		$provider[] = array(
+			array(
+				'remoteBasePath' => 'Foo'
+			)
+		);
+
+		return $provider;
+	}
+
+	protected function assertThatPathIsReadable( $path ) {
+		$this->assertTrue( is_readable( $path ) );
 	}
 
 }

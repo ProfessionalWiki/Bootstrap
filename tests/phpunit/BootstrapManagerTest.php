@@ -3,10 +3,9 @@
 namespace Bootstrap\Tests;
 
 use Bootstrap\BootstrapManager;
-use Bootstrap\V3ModuleDefinition;
 
 /**
- * @covers \Bootstrap\BootstrapManager
+ * @uses \Bootstrap\BootstrapManager
  *
  * @ingroup Test
  *
@@ -40,19 +39,20 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 
 		$GLOBALS['wgResourceModules'][ 'ext.bootstrap.scripts' ] = array(
 			'dependencies'    => array(),
-			'scripts'          => array()
+			'scripts'         => array()
 		);
 	}
 
 	protected function tearDown() {
-		parent::tearDown();
 		$GLOBALS['wgResourceModules'] = $this->wgResourceModules;
 		BootstrapManager::clear();
+
+		parent::tearDown();
 	}
 
 	public function testCanConstruct() {
 
-		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\ModuleDefinition' )
+		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
 			->disableOriginalConstructor()
 			->setMethods( array( 'get' ) )
 			->getMock();
@@ -66,6 +66,8 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 			new BootstrapManager( $moduleDefinition )
 		);
 
+		BootstrapManager::clear();
+
 		$this->assertInstanceOf(
 			'\Bootstrap\BootstrapManager',
 			BootstrapManager::getInstance()
@@ -76,13 +78,35 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 
 		$this->assertEmpty( $this->getGlobalResourceModuleBootstrapStyles() );
 
-		$instance = new BootstrapManager( new V3ModuleDefinition );
+		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
+			->disableOriginalConstructor()
+			->setMethods( array( 'get' ) )
+			->getMock();
+
+		$moduleDefinition->expects( $this->at( 0 ) )
+			->method( 'get' )
+			->with( $this->stringContains( 'descriptions' ) )
+			->will( $this->returnValue( array( 'variables' => array( 'styles' => 'variables' ) ) ) );
+
+		$moduleDefinition->expects( $this->at( 1 ) )
+			->method( 'get' )
+			->with( $this->stringContains( 'core' ) )
+			->will( $this->returnValue( array( 'variables' ) ) );
+
+		$moduleDefinition->expects( $this->at( 2 ) )
+			->method( 'get' )
+			->with( $this->stringContains( 'optional' ) )
+			->will( $this->returnValue( array( 'foo' ) ) );
+
+		$instance = new BootstrapManager( $moduleDefinition );
+		$instance->addAllBootstrapModules();
+
 		$this->assertNotEmpty( $this->getGlobalResourceModuleBootstrapStyles() );
 	}
 
 	public function testSetLessVariables() {
 
-		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\ModuleDefinition' )
+		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
 			->disableOriginalConstructor()
 			->setMethods( array( 'get' ) )
 			->getMock();
@@ -95,8 +119,35 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 		$instance->setLessVariables( array( 'foo' => 'bar') );
 		$instance->setLessVariable( 'ichi', 'ni' );
 
-		$this->assertArrayHasKey( 'foo', $this->getGlobalResourceModuleBootstrapVariables() );
-		$this->assertArrayHasKey( 'ichi', $this->getGlobalResourceModuleBootstrapVariables() );
+		$this->assertArrayHasKey(
+			'foo',
+			$this->getGlobalResourceModuleBootstrapVariables()
+		);
+
+		$this->assertArrayHasKey(
+			'ichi',
+			$this->getGlobalResourceModuleBootstrapVariables()
+		);
+	}
+
+	public function testAddExternalModule() {
+
+		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
+			->disableOriginalConstructor()
+			->setMethods( array( 'get' ) )
+			->getMock();
+
+		$moduleDefinition->expects( $this->atLeastOnce() )
+			->method( 'get' )
+			->will( $this->returnValue( array() ) );
+
+		$instance = new BootstrapManager( $moduleDefinition );
+		$instance->addExternalModule( 'ExternalFooModule', 'ExternalRemoteBarPath' );
+
+		$this->assertArrayHasKey(
+			'ExternalFooModule',
+			$this->getGlobalResourceModuleBootstrapExternalStyles()
+		);
 	}
 
 	private function getGlobalResourceModuleBootstrapStyles() {
@@ -105,6 +156,10 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 
 	private function getGlobalResourceModuleBootstrapVariables() {
 		return $GLOBALS['wgResourceModules'][ 'ext.bootstrap.styles' ]['variables'];
+	}
+
+	private function getGlobalResourceModuleBootstrapExternalStyles() {
+		return $GLOBALS['wgResourceModules'][ 'ext.bootstrap.styles' ]['external styles'];
 	}
 
 }

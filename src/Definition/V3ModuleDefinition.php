@@ -1,6 +1,6 @@
 <?php
 
-namespace Bootstrap;
+namespace Bootstrap\Definition;
 
 use InvalidArgumentException;
 
@@ -25,24 +25,6 @@ use InvalidArgumentException;
  * @file
  * @ingroup   Bootstrap
  */
-
-/**
- * Interface describing module definitions
- */
-interface ModuleDefinition {
-
-	/**
-	 * Returns a definition array
-	 *
-	 * @since  1.0
-	 *
-	 * @param string $key
-	 *
-	 * @return array
-	 */
-	public function get( $key );
-
-}
 
 /**
  * Class describing the V3 Bootstrap module definitions

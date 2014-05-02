@@ -1,11 +1,12 @@
 <?php
 
-namespace Bootstrap\Tests;
+namespace Bootstrap\Tests\Definition;
 
-use Bootstrap\V3ModuleDefinition;
+use Bootstrap\Definition\V3ModuleDefinition;
+use Bootstrap\BootstrapManager;
 
 /**
- * @covers \Bootstrap\V3ModuleDefinition
+ * @uses \Bootstrap\Definition\V3ModuleDefinition
  *
  * @ingroup Test
  *
@@ -22,7 +23,7 @@ class V3ModuleDefinitionTest extends \PHPUnit_Framework_TestCase {
 	public function testCanConstruct() {
 
 		$this->assertInstanceOf(
-			'\Bootstrap\ModuleDefinition',
+			'\Bootstrap\Definition\ModuleDefinition',
 			new V3ModuleDefinition()
 		);
 	}
@@ -32,14 +33,25 @@ class V3ModuleDefinitionTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGet( $key ) {
 
-		$instance = new V3ModuleDefinition;
+		$instance = new V3ModuleDefinition();
 
-		$this->assertInternalType( 'array', $instance->get( $key ) );
+		$this->assertInternalType(
+			'array',
+			$instance->get( $key )
+		);
+	}
+
+	public function testBootstrapManagerIntegration() {
+
+		$instance = new BootstrapManager( new V3ModuleDefinition() );
+		$instance->addAllBootstrapModules();
+
+		$this->assertTrue( true );
 	}
 
 	public function testGetOnInvalidKeyThrowsException() {
 
-		$instance = new V3ModuleDefinition;
+		$instance = new V3ModuleDefinition();
 
 		$this->setExpectedException( 'InvalidArgumentException' );
 		$instance->get( 'Foo' );

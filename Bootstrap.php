@@ -33,11 +33,10 @@
  *
  * @file
  * @ingroup       Bootstrap
+ *
+ * @codeCoverageIgnore
  */
-
-
 call_user_func( function () {
-
 
 	if ( !defined( 'MEDIAWIKI' ) ) {
 		die( 'This file is part of the MediaWiki extension Bootstrap, it is not a valid entry point.' );
@@ -68,10 +67,10 @@ call_user_func( function () {
 
 	// register classes
 	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\ResourceLoaderBootstrapModule' ] = __DIR__ . '/src/ResourceLoaderBootstrapModule.php';
-	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\BootstrapManager' ] = __DIR__ . '/src/BootstrapManager.php';
+	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\BootstrapManager' ]      = __DIR__ . '/src/BootstrapManager.php';
 	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\Hooks\SetupAfterCache' ] = __DIR__ . '/src/Hooks/SetupAfterCache.php';
-	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\ModuleDefinition' ] = __DIR__ . '/src/ModuleDefinition.php';
-	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\V3ModuleDefinition' ] = __DIR__ . '/src/ModuleDefinition.php';
+	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\Definition\ModuleDefinition' ]   = __DIR__ . '/src/Definition/ModuleDefinition.php';
+	$GLOBALS[ 'wgAutoloadClasses' ][ 'Bootstrap\Definition\V3ModuleDefinition' ] = __DIR__ . '/src/Definition/V3ModuleDefinition.php';
 
 	$GLOBALS[ 'wgHooks' ][ 'SetupAfterCache' ][ ] = function() {
 
@@ -89,8 +88,7 @@ call_user_func( function () {
 	$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = array(
 		'class'          => 'Bootstrap\ResourceLoaderBootstrapModule',
 		'styles'         => array(),
-		'variables'      => array(
-		),
+		'variables'      => array(),
 		'dependencies'   => array(),
 	);
 

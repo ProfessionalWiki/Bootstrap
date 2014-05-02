@@ -2,6 +2,9 @@
 
 namespace Bootstrap;
 
+use Bootstrap\Definition\V3ModuleDefinition;
+use Bootstrap\Definition\ModuleDefinition;
+
 /**
  * File holding the Bootstrap class
  *
@@ -122,9 +125,11 @@ class BootstrapManager {
 			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $filetype ] =
 				array_merge(
 					$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $filetype ],
-					array_map( function ( $filename ) use ( $fileExt ) { return $filename . $fileExt; }, (array) $description[ $filetype ])
+					array_map(
+						function ( $filename ) use ( $fileExt ) { return $filename . $fileExt; },
+						(array) $description[ $filetype ]
+					)
 				);
-
 		}
 	}
 
@@ -134,7 +139,6 @@ class BootstrapManager {
 	 * @since  1.0
 	 */
 	public function addAllBootstrapModules() {
-
 		$this->addBootstrapModule( $this->moduleDefinition->get( 'optional' ) );
 	}
 
@@ -147,9 +151,7 @@ class BootstrapManager {
 	 * @internal param string $path
 	 */
 	public function addExternalModule( $file, $remotePath = '' ) {
-
-		global $wgResourceModules;
-		$wgResourceModules[ 'ext.bootstrap.styles' ][ 'external styles' ][ $file ] = $remotePath;
+		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'external styles' ][ $file ] = $remotePath;
 	}
 
 	/**
@@ -159,7 +161,6 @@ class BootstrapManager {
 	 * @param string $value the value to assign to the variable
 	 */
 	public function setLessVariable( $key, $value ) {
-
 		$this->setLessVariables( array( $key => $value ) );
 	}
 
@@ -169,11 +170,11 @@ class BootstrapManager {
 	 * @param $variables
 	 */
 	public function setLessVariables( $variables ) {
-
-		global $wgResourceModules;
-
-		$wgResourceModules[ 'ext.bootstrap.styles' ][ 'variables' ] =
-			array_merge( $wgResourceModules[ 'ext.bootstrap.styles' ][ 'variables' ], $variables );
+		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'variables' ] =
+			array_merge(
+				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'variables' ],
+				$variables
+			);
 	}
 
 	protected function initCoreModules() {

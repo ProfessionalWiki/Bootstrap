@@ -60,7 +60,7 @@ class SetupAfterCache {
 	 */
 	public function process() {
 
-		if ( !$this->hasConfiguration( 'localBasePath' ) || !$this->hasConfiguration( 'localBasePath' ) ) {
+		if ( !$this->hasConfiguration( 'localBasePath' ) || !$this->hasConfiguration( 'remoteBasePath' ) ) {
 			throw new InvalidArgumentException( 'Expected a valid configuration' );
 		}
 
