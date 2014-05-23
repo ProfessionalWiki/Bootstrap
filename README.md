@@ -24,8 +24,17 @@ The recommended way to install this skin is by using [Composer][composer]. Just 
 
 ## Tests
 
-The extension provides unit tests that covers core-functionality normally run by a continues integration platform. Tests can also be executed manually using the [PHPUnit][mw-testing] configuration file found in the root directory.
+This extension provides unit tests that can be run by a continues integration platform or manually by executing the `mw-phpunit-runner.php` script or [`phpunit`][mw-testing] together with the PHPUnit configuration file found in the root directory.
+
+```sh
+php mw-phpunit-runner.php [options]
+```
+
+## License
+
+[GNU General Public License 3.0][license].
 
 [mw-bootstrap]: https://www.mediawiki.org/wiki/Extension:Bootstrap
 [mw-testing]: https://www.mediawiki.org/wiki/Manual:PHP_unit_testing
 [composer]: https://getcomposer.org/
+[license]: https://www.gnu.org/copyleft/gpl.html
