@@ -42,20 +42,20 @@ call_user_func( function () {
 		die( 'This file is part of the MediaWiki extension Bootstrap, it is not a valid entry point.' );
 	}
 
-	if ( version_compare( $GLOBALS[ 'wgVersion' ], '1.22alpha', 'lt' ) ) {
+	if ( version_compare( $GLOBALS[ 'wgVersion' ], '1.22', 'lt' ) ) {
 		die( '<b>Error:</b> This version of <a href="https://www.mediawiki.org/wiki/Extension:Bootstrap">Bootstrap</a> is only compatible with MediaWiki 1.22 or above. You need to upgrade MediaWiki first.' );
 	}
 
 	/**
 	 * The extension version
 	 */
-	define( 'BS_VERSION', '1.0-alpha' );
+	define( 'BS_VERSION', '1.0' );
 
 	// register the extension
 	$GLOBALS[ 'wgExtensionCredits' ][ 'other' ][ ] = array(
 		'path'           => __FILE__,
 		'name'           => 'Bootstrap',
-		'author'         => '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]',
+		'author' => array( '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]', 'James Hong Kong' ),
 		'url'            => 'https://www.mediawiki.org/wiki/Extension:Bootstrap',
 		'descriptionmsg' => 'bootstrap-desc',
 		'version'        => BS_VERSION,
