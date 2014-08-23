@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"VegaDark"
+			"VegaDark",
+			"Macofe"
 		]
 	},
-	"bootstrap-desc": "Proporciona la estructura [http://getbootstrap.com/ Bootstrap] en el wiki."
+	"bootstrap-desc": "Proporciona la estructura [http://getbootstrap.com/ Bootstrap] en el wiki"
 }
