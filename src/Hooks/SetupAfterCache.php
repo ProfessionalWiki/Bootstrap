@@ -64,6 +64,8 @@ class SetupAfterCache {
 			throw new InvalidArgumentException( 'Expected a valid configuration' );
 		}
 
+		$this->removeLegacyLessCompilerFromComposerAutoloader();
+
 		$this->registerBootstrapResourcePaths(
 			$this->isReadablePath( $this->configuration['localBasePath'] ),
 			$this->configuration[ 'remoteBasePath' ]
@@ -93,6 +95,30 @@ class SetupAfterCache {
 			),
 			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ]
 		);
+	}
+
+	/**
+	 * Remove lessc adapter of the less.php compiler from Composer autoloader
+	 *
+	 * MediaWiki core uses the lessc compiler from http://leafo.net/lessphp .
+	 * This compiler requires non-standard Less files which are incompatible
+	 * with the compiler used by the Bootstrap extension. It is therefore
+	 * necessary to ensure that MW will load its own lessc compiler class
+	 * and not the adapter class provided by the Less compiler used by the
+	 * Bootstrap extension or else it will not be able to compile its broken
+	 * Less files.
+	 */
+	protected function removeLegacyLessCompilerFromComposerAutoloader() {
+
+		$autoloadFunctions = spl_autoload_functions();
+
+		foreach ( $autoloadFunctions as $autoloadFunction ) {
+			if ( is_a( $autoloadFunction[ 0 ], '\Composer\Autoload\ClassLoader' ) ) {
+				$autoloadFunction[ 0 ]->addClassMap( array( 'lessc' => null ) );
+				break;
+			}
+		}
+
 	}
 
 	protected function hasConfiguration( $id ) {
