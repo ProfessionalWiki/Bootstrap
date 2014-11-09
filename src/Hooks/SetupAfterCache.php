@@ -76,6 +76,8 @@ class SetupAfterCache {
 
 	/**
 	 * Add paths to resource modules if they are not there yet (e.g. set in LocalSettings.php)
+	 * @param string $localBasePath
+	 * @param string $remoteBasePath
 	 */
 	protected function registerBootstrapResourcePaths( $localBasePath, $remoteBasePath ) {
 
@@ -121,10 +123,19 @@ class SetupAfterCache {
 
 	}
 
+	/**
+	 * @param string $id
+	 * @return bool
+	 */
 	protected function hasConfiguration( $id ) {
 		return isset( $this->configuration[ $id ] );
 	}
 
+	/**
+	 * @param string $localBasePath
+	 * @return string
+	 * @throws RuntimeException
+	 */
 	protected function isReadablePath( $localBasePath ) {
 
 		$localBasePath = str_replace( array( '\\', '/' ), DIRECTORY_SEPARATOR, $localBasePath );

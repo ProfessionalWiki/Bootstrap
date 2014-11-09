@@ -20,10 +20,11 @@ use Bootstrap\Hooks\SetupAfterCache;
 class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	protected $localBasePath = null;
+	protected $localBootstrapVendorPath = null;
 
 	protected function setUp() {
 		parent::setUp();
-		$this->localBootstrapVendorPath = $GLOBALS[ 'IP' ] . '/vendor/twitter/bootstrap';
+		$this->localBootstrapVendorPath = __DIR__ . '/../../../../../vendor/twitter/bootstrap';
 	}
 
 	public function testCanConstruct() {
