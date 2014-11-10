@@ -80,7 +80,7 @@ class BootstrapManager {
 	 *
 	 * @since  1.0
 	 *
-	 * @param string|array(string) $modules
+	 * @param string|string[] $modules
 	 */
 	public function addBootstrapModule( $modules ) {
 
