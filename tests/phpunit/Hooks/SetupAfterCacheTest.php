@@ -41,7 +41,8 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 		$configuration = array(
 			'localBasePath'  => $this->localBootstrapVendorPath,
-			'remoteBasePath' => ''
+			'remoteBasePath' => '',
+			'IP' => 'someIP',
 		);
 
 		$instance = new SetupAfterCache( $configuration );
@@ -49,11 +50,37 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue( $instance->process() );
 	}
 
+	public function testProcess_setsDefaultCacheTriggers() {
+
+		$configuration = array(
+			'localBasePath'  => $this->localBootstrapVendorPath,
+			'remoteBasePath' => '',
+			'IP' => 'someIP',
+		);
+
+		$this->resetGlobals();
+
+		$instance = new SetupAfterCache( $configuration );
+
+		$this->assertTrue( $instance->process() );
+
+		$this->assertEquals(
+			'someIP/LocalSettings.php',
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cachetriggers' ][ 'LocalSettings.php' ]
+		);
+
+		$this->assertEquals(
+			'someIP/composer.lock',
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cachetriggers' ][ 'composer.lock' ]
+		);
+	}
+
 	public function testProcessWithAccessibilityOnAddedLocalResourcePaths() {
 
 		$configuration = array(
 			'localBasePath'  => $this->localBootstrapVendorPath,
-			'remoteBasePath' => ''
+			'remoteBasePath' => '',
+			'IP' => 'someIP',
 		);
 
 		$instance = new SetupAfterCache( $configuration );
@@ -83,7 +110,8 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 		$configuration = array(
 			'localBasePath'  => 'Foo',
-			'remoteBasePath' => ''
+			'remoteBasePath' => '',
+			'IP' => 'someIP',
 		);
 
 		$instance = new SetupAfterCache( $configuration );
@@ -117,6 +145,19 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	protected function assertThatPathIsReadable( $path ) {
 		$this->assertTrue( is_readable( $path ) );
+	}
+
+	private function resetGlobals() {
+		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = array (
+			'class'         => 'Bootstrap\ResourceLoaderBootstrapModule',
+			'styles'        => array (),
+			'variables'     => array (),
+			'dependencies'  => array (),
+			'cachetriggers' => array (
+				'LocalSettings.php' => null,
+				'composer.lock'     => null,
+			),
+		);
 	}
 
 }

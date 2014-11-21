@@ -49,7 +49,7 @@ call_user_func( function () {
 	/**
 	 * The extension version
 	 */
-	define( 'BS_VERSION', '1.0.2-alpha' );
+	define( 'BS_VERSION', '1.1-alpha' );
 
 	// register the extension
 	$GLOBALS[ 'wgExtensionCredits' ][ 'other' ][ ] = array(
@@ -77,6 +77,7 @@ call_user_func( function () {
 		$configuration = array();
 		$configuration[ 'localBasePath' ] = str_replace( DIRECTORY_SEPARATOR . 'extensions' . DIRECTORY_SEPARATOR . 'Bootstrap', '/vendor/twitter/bootstrap', __DIR__ );
 		$configuration[ 'remoteBasePath' ] = str_replace( $GLOBALS[ 'IP' ], $GLOBALS[ 'wgScriptPath' ], $configuration[ 'localBasePath' ] );
+		$configuration[ 'IP' ] = $GLOBALS[ 'IP' ];
 
 		$setupAfterCache = new \Bootstrap\Hooks\SetupAfterCache( $configuration );
 		$setupAfterCache->process();
@@ -89,6 +90,10 @@ call_user_func( function () {
 		'styles'         => array(),
 		'variables'      => array(),
 		'dependencies'   => array(),
+		'cachetriggers'   => array(
+			'LocalSettings.php' => null,
+			'composer.lock'     => null,
+		),
 	);
 
 	$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] = array(

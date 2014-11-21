@@ -60,9 +60,7 @@ class SetupAfterCache {
 	 */
 	public function process() {
 
-		if ( !$this->hasConfiguration( 'localBasePath' ) || !$this->hasConfiguration( 'remoteBasePath' ) ) {
-			throw new InvalidArgumentException( 'Expected a valid configuration' );
-		}
+		$this->assertAcceptableConfiguration();
 
 		$this->removeLegacyLessCompilerFromComposerAutoloader();
 
@@ -70,6 +68,8 @@ class SetupAfterCache {
 			$this->isReadablePath( $this->configuration['localBasePath'] ),
 			$this->configuration[ 'remoteBasePath' ]
 		);
+
+		$this->registerCacheTriggers();
 
 		return true;
 	}
@@ -145,6 +145,36 @@ class SetupAfterCache {
 		}
 
 		throw new RuntimeException( "Expected an accessible {$localBasePath} path" );
+	}
+
+	protected function registerCacheTriggers() {
+
+		$defaultRecacheTriggers = array(
+			'LocalSettings.php' => $this->configuration[ 'IP' ] . '/LocalSettings.php',
+			'composer.lock' => $this->configuration[ 'IP' ] . '/composer.lock',
+		);
+
+		foreach ( $defaultRecacheTriggers as $key => $filename ) {
+			if ( array_key_exists( $key, $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cachetriggers' ] ) &&
+				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cachetriggers' ][ $key ] === null ) {
+				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cachetriggers' ][ $key ] = $filename;
+			}
+		}
+	}
+
+	public function assertAcceptableConfiguration() {
+
+		$configElements = array(
+			'localBasePath' => 'Local base path to Bootstrap modules not found.',
+			'remoteBasePath' => 'Remote base path to Bootstrap modules not found.',
+			'IP' => 'Full path to working directory ($IP) not found.',
+		);
+
+		foreach ( $configElements as $key => $errorMessage ) {
+			if ( !$this->hasConfiguration( $key ) ) {
+				throw new InvalidArgumentException( $errorMessage );
+			}
+		}
 	}
 
 }

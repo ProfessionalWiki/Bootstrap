@@ -130,6 +130,32 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testAddCacheTriggerFiles() {
+
+		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
+			->disableOriginalConstructor()
+			->setMethods( array( 'get' ) )
+			->getMock();
+
+		$moduleDefinition->expects( $this->atLeastOnce() )
+			->method( 'get' )
+			->will( $this->returnValue( array() ) );
+
+		$instance = new BootstrapManager( $moduleDefinition );
+		$instance-> addCacheTriggerFile( array( 'foo' => 'bar') );
+		$instance-> addCacheTriggerFile( 'ichi' );
+
+		$triggers = $this->getGlobalResourceModuleBootstrapCacheTriggers();
+
+		$this->assertTrue(
+			isset( $triggers[ 'foo' ] ) && $triggers[ 'foo' ] === 'bar'
+		);
+
+		$this->assertTrue(
+			array_search( 'ichi', $triggers ) !== false
+		);
+	}
+
 	public function testAddExternalModule() {
 
 		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
@@ -160,6 +186,10 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 
 	private function getGlobalResourceModuleBootstrapExternalStyles() {
 		return $GLOBALS['wgResourceModules'][ 'ext.bootstrap.styles' ]['external styles'];
+	}
+
+	private function getGlobalResourceModuleBootstrapCacheTriggers() {
+		return $GLOBALS['wgResourceModules'][ 'ext.bootstrap.styles' ]['cachetriggers'];
 	}
 
 }

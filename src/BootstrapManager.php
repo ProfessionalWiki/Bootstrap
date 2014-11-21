@@ -113,23 +113,22 @@ class BootstrapManager {
 
 	/**
 	 * @param string       $filetype 'styles'|'scripts'
-	 * @param array|string $description
+	 * @param mixed[]      $description
 	 * @param              $fileExt
-	 *
-	 * @internal param $relativePath
 	 */
 	protected function addFilesToGlobalResourceModules ( $filetype, $description, $fileExt ) {
 
 		if ( isset( $description[ $filetype ] ) ) {
 
-			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $filetype ] =
-				array_merge(
-					$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $filetype ],
-					array_map(
-						function ( $filename ) use ( $fileExt ) { return $filename . $fileExt; },
-						(array) $description[ $filetype ]
-					)
-				);
+			$files = array_map(
+				function ( $filename ) use ( $fileExt ) {
+					return $filename . $fileExt;
+				},
+				(array) $description[ $filetype ]
+			);
+
+			$this->adjustArrayElementOfResourceModuleDescription( $filetype, $files, $filetype );
+
 		}
 	}
 
@@ -151,7 +150,7 @@ class BootstrapManager {
 	 * @internal param string $path
 	 */
 	public function addExternalModule( $file, $remotePath = '' ) {
-		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'external styles' ][ $file ] = $remotePath;
+		$this->adjustArrayElementOfResourceModuleDescription( 'external styles', array( $file => $remotePath ) );
 	}
 
 	/**
@@ -167,14 +166,18 @@ class BootstrapManager {
 	/**
 	 * @since  1.0
 	 *
-	 * @param $variables
+	 * @param mixed[] $variables
 	 */
 	public function setLessVariables( $variables ) {
-		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'variables' ] =
-			array_merge(
-				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'variables' ],
-				$variables
-			);
+		$this->adjustArrayElementOfResourceModuleDescription( 'variables', $variables );
+	}
+
+	/**
+	 * @since 1.1
+	 * @param string|string[] $files
+	 */
+	public function addCacheTriggerFile( $files ){
+		$this->adjustArrayElementOfResourceModuleDescription( 'cachetriggers', $files );
 	}
 
 	protected function initCoreModules() {
@@ -182,4 +185,21 @@ class BootstrapManager {
 		$this->addBootstrapModule( $this->moduleDefinition->get( 'core' ) );
 	}
 
+	/**
+	 * @param string $key
+	 * @param mixed  $value
+	 * @param string $filetype 'styles'|'scripts'
+	 */
+	protected function adjustArrayElementOfResourceModuleDescription( $key, $value, $filetype = 'styles' ) {
+
+		if (!isset($GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ])) {
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] = $value;
+		} else {
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] =
+				array_merge(
+					$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ],
+					(array) $value
+				);
+		}
+	}
 }

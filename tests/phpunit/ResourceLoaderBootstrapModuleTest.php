@@ -84,4 +84,8 @@ class ResourceLoaderBootstrapModuleTest extends \PHPUnit_Framework_TestCase {
 		$this->assertContains( 'LESS compile error', $result['all'] );
 	}
 
+	public function testSupportsURLLoading() {
+		$instance = new ResourceLoaderBootstrapModule();
+		$this->assertFalse( $instance->supportsURLLoading() );
+	}
 }

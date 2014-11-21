@@ -3,7 +3,6 @@
 namespace Bootstrap;
 
 use Less_Parser;
-use ResourceLoader;
 use ResourceLoaderContext;
 use ResourceLoaderFileModule;
 use BagOStuff;
@@ -57,6 +56,7 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 	protected $variables = array();
 	protected $paths = array();
 	protected $extStyles = array();
+	protected $cacheTriggers = array();
 
 	protected $styleText = null;
 
@@ -65,17 +65,7 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
 
-		if ( isset( $options[ 'variables' ] ) ) {
-			$this->variables = $options[ 'variables' ];
-		}
-
-		if ( isset( $options[ 'paths' ] ) ) {
-			$this->paths = $options[ 'paths' ];
-		}
-
-		if ( isset( $options[ 'external styles' ] ) ) {
-			$this->extStyles = $options[ 'external styles' ];
-		}
+		$this->applyOptions( $options );
 	}
 
 	/**
@@ -137,14 +127,13 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 
 		if ( is_array( $cacheResult ) ) {
 
-			if ( $cacheResult[ 'storetime' ] >= $this->getLocalSettingsModificationTime() ) {
-
-				$this->styleText = $cacheResult[ 'styles' ];
-
-				wfDebug( __METHOD__ . " ext.bootstrap: Cache hit: Got styles from cache.\n" );
+			if ( $this->isCacheOutdated( $cacheResult[ 'storetime' ] ) ) {
+				wfDebug( __METHOD__ . " ext.bootstrap: Cache miss: Cache outdated.\n" );
 			} else {
-				wfDebug( __METHOD__ . " ext.bootstrap: Cache miss: Cache outdated, LocalSettings have changed.\n" );
+				$this->styleText = $cacheResult[ 'styles' ];
+				wfDebug( __METHOD__ . " ext.bootstrap: Cache hit: Got styles from cache.\n" );
 			}
+
 		} else {
 			wfDebug( __METHOD__ .  " ext.bootstrap: Cache miss: Styles not found in cache.\n" );
 		}
@@ -160,10 +149,6 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 
 	protected function purgeCache( ResourceLoaderContext $context ) {
 		$this->getCache()->delete( $this->getCacheKey( $context ) );
-	}
-
-	protected function getLocalSettingsModificationTime() {
-		return filemtime( $GLOBALS[ 'IP' ] . '/LocalSettings.php' );
 	}
 
 	protected function compileStyles( ResourceLoaderContext $context ) {
@@ -194,6 +179,40 @@ class ResourceLoaderBootstrapModule extends ResourceLoaderFileModule {
 			$this->styleText = '/* LESS compile error: ' . $e->getMessage() . '*/';
 		}
 
+	}
+
+	/**
+	 * @param mixed[] $options
+	 */
+	protected function applyOptions( $options ) {
+		$mapConfigToLocalVar = array (
+			'variables'       => 'variables',
+			'paths'           => 'paths',
+			'external styles' => 'extStyles',
+			'cachetriggers'   => 'cacheTriggers',
+		);
+
+		foreach ( $mapConfigToLocalVar as $config => $local ) {
+			if ( isset( $options[ $config ] ) ) {
+				$this->$local = $options[ $config ];
+			}
+		}
+	}
+
+	/**
+	 * @param int $cacheStoreTime
+	 *
+	 * @return bool
+	 */
+	protected function isCacheOutdated( $cacheStoreTime ) {
+
+		foreach ( $this->cacheTriggers as $triggerFile ) {
+			if ( $triggerFile !== null && $cacheStoreTime < filemtime( $triggerFile ) ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 }
