@@ -27,7 +27,7 @@ front-end framework to skins and extensions.
 See the [Bootstrap extension documentation](docs).
 
 It may also be worthwhile to have a look at the [Bootstrap site on
-MediaWiki][mw-bootstrap] and the related [talk page][mw-bootstrap-talk]   
+MediaWiki][mw-bootstrap] and the related [talk page][mw-bootstrap-talk]
 
 ## License
 
