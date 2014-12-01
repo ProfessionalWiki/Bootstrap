@@ -1,5 +1,14 @@
 ## Release Notes
 
+### Bootstrap 1.1.1
+
+Released on 01-Dec-2014
+
+Fixes:
+* Fix removing of lessc compiler class from autoloader:
+  This led to a server error on MW from 1.25 onwards when it was trying to
+  compile one of its own less files.
+
 ### Bootstrap 1.1
 
 Released on 22-Nov-2014
