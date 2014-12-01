@@ -115,8 +115,16 @@ class SetupAfterCache {
 		$autoloadFunctions = spl_autoload_functions();
 
 		foreach ( $autoloadFunctions as $autoloadFunction ) {
-			if ( is_a( $autoloadFunction[ 0 ], '\Composer\Autoload\ClassLoader' ) ) {
-				$autoloadFunction[ 0 ]->addClassMap( array( 'lessc' => null ) );
+
+			$classLoader = $autoloadFunction[ 0 ];
+
+			if ( is_a( $classLoader, '\Composer\Autoload\ClassLoader' ) ) {
+
+				$classMap = $classLoader->getClassMap();
+
+				if ( !is_array( $classMap ) || !array_key_exists( 'lessc', $classMap ) ) {
+					$classLoader->addClassMap( array( 'lessc' => null ) );
+				}
 				break;
 			}
 		}
