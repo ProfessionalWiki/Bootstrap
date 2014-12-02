@@ -122,7 +122,10 @@ class SetupAfterCache {
 
 				$classMap = $classLoader->getClassMap();
 
-				if ( !is_array( $classMap ) || !array_key_exists( 'lessc', $classMap ) ) {
+				if ( !is_array( $classMap ) ||
+					!array_key_exists( 'lessc', $classMap ) ||
+					strpos( $classMap[ 'lessc' ], '/less.php/less.php/lessc.inc.php') !== false ) {
+
 					$classLoader->addClassMap( array( 'lessc' => null ) );
 				}
 				break;
