@@ -116,6 +116,10 @@ class SetupAfterCache {
 
 		foreach ( $autoloadFunctions as $autoloadFunction ) {
 
+			if ( is_object( $autoloadFunction ) && ( $autoloadFunction instanceof Closure ) ) {
+				continue;
+			}
+
 			$classLoader = $autoloadFunction[ 0 ];
 
 			if ( is_a( $classLoader, '\Composer\Autoload\ClassLoader' ) ) {
