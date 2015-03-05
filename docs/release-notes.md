@@ -1,5 +1,19 @@
 ## Release Notes
 
+### Bootstrap 1.1.3
+
+Released on 03-Mar-2015
+
+Fixes:
+* Fix error: Cannot use object of type Closure as array in SetupAfterCache.php
+
+### Bootstrap 1.1.2
+
+Released on 02-Dec-2014
+
+Fixes:
+* Fix removing of Less compiler class from autoloader
+
 ### Bootstrap 1.1.1
 
 Released on 01-Dec-2014
