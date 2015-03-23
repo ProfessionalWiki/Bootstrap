@@ -1,4 +1,8 @@
 {
-	"@metadata": [],
-	"bootstrap-desc": "{{desc|name=Bootstrap|url=http://www.mediawiki.org/wiki/Extension:Bootstrap}}"
+	"@metadata": {
+		"authors": [
+			"Umherirrender"
+		]
+	},
+	"bootstrap-desc": "{{desc|name=Bootstrap|url=https://www.mediawiki.org/wiki/Extension:Bootstrap}}"
 }
