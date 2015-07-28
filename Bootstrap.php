@@ -14,7 +14,7 @@
 /**
  * The main file of the Bootstrap extension
  *
- * @copyright (C) 2013 - 2014, Stephan Gambke
+ * @copyright (C) 2013 - 2015, Stephan Gambke
  * @license       http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
@@ -88,6 +88,7 @@ call_user_func( function () {
 	// do not add paths, globals are not set yet
 	$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = array(
 		'class'          => 'Bootstrap\ResourceLoaderBootstrapModule',
+		'position'       => 'top',
 		'styles'         => array(),
 		'variables'      => array(),
 		'dependencies'   => array(),
