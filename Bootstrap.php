@@ -14,7 +14,7 @@
 /**
  * The main file of the Bootstrap extension
  *
- * @copyright (C) 2013 - 2015, Stephan Gambke
+ * @copyright (C) 2013 - 2016, Stephan Gambke
  * @license       http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
@@ -49,7 +49,7 @@ call_user_func( function () {
 	/**
 	 * The extension version
 	 */
-	define( 'BS_VERSION', '1.1.3' );
+	define( 'BS_VERSION', '1.1.4-alpha' );
 
 	// register the extension
 	$GLOBALS[ 'wgExtensionCredits' ][ 'other' ][ ] = array(
