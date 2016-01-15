@@ -1,5 +1,13 @@
 ## Release Notes
 
+### Bootstrap 1.1.4
+
+Released on 15-Jan-2016
+
+Fixes:
+* Fix missing position for Bootstrap Styles Resource Loader module
+* Switch less compiler to the one MW core uses
+
 ### Bootstrap 1.1.3
 
 Released on 03-Mar-2015
