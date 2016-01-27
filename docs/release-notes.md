@@ -1,5 +1,12 @@
 ## Release Notes
 
+### Bootstrap 1.1.5
+
+Released on 27-Jan-2016
+
+Fixes:
+* Use standard MW config vars to find the twitter/bootstrap directory
+
 ### Bootstrap 1.1.4
 
 Released on 15-Jan-2016
