@@ -3,10 +3,10 @@
  * An extension providing the Bootstrap library to other extensions
  *
  * @see      https://www.mediawiki.org/wiki/Extension:Bootstrap
- * @see      http://twitter.github.io/bootstrap
+ * @see      https://getbootstrap.com/
  *
  * @author   Stephan Gambke
- * @version  1.0-alpha
+ * @version  1.1.5
  *
  * @defgroup Bootstrap Bootstrap
  */
@@ -15,7 +15,7 @@
  * The main file of the Bootstrap extension
  *
  * @copyright (C) 2013 - 2016, Stephan Gambke
- * @license       http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @license       https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
  * The Bootstrap extension is free software: you can redistribute it and/or
@@ -29,7 +29,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * @file
  * @ingroup       Bootstrap
@@ -55,11 +55,11 @@ call_user_func( function () {
 	$GLOBALS[ 'wgExtensionCredits' ][ 'other' ][ ] = array(
 		'path'           => __FILE__,
 		'name'           => 'Bootstrap',
-		'author' => array( '[http://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]', 'James Hong Kong' ),
+		'author' => array( '[https://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]', 'James Hong Kong' ),
 		'url'            => 'https://www.mediawiki.org/wiki/Extension:Bootstrap',
 		'descriptionmsg' => 'bootstrap-desc',
 		'version'        => BS_VERSION,
-		'license-name'   => 'GPLv3+',
+		'license-name'   => 'GPL-3.0+',
 	);
 
 	// register message files
