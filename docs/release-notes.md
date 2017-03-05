@@ -1,5 +1,15 @@
 ## Release Notes
 
+### Bootstrap 1.2
+
+Released on 05-Mar-2017
+
+Fixes:
+* Do not use oyejorge/less.php 1.7.0.13, it's incompatible with PHP 5.3
+
+Other changes:
+* Change required package: twitter/bootstrap -> twbs/bootstrap
+
 ### Bootstrap 1.1.5
 
 Released on 27-Jan-2016
