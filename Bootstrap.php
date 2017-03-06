@@ -6,7 +6,6 @@
  * @see      https://getbootstrap.com/
  *
  * @author   Stephan Gambke
- * @version  1.1.5
  *
  * @defgroup Bootstrap Bootstrap
  */
@@ -49,7 +48,7 @@ call_user_func( function () {
 	/**
 	 * The extension version
 	 */
-	define( 'BS_VERSION', '1.2-alpha' );
+	define( 'BS_VERSION', '1.2.1' );
 
 	// register the extension
 	$GLOBALS[ 'wgExtensionCredits' ][ 'other' ][ ] = array(

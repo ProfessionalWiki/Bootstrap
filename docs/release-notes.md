@@ -1,5 +1,12 @@
 ## Release Notes
 
+### Bootstrap 1.2.1
+
+Released on 06-Mar-2017
+
+Fixes:
+* Correct version number reported on Special:Version
+
 ### Bootstrap 1.2
 
 Released on 05-Mar-2017
