@@ -28,6 +28,7 @@
 	"require"    : {
 		"php"                : ">=5.3.0",
 		"composer/installers": "1.*,>=1.0.1",
+		"oomphinc/composer-installers-extender": "^1.1",
 		"oyejorge/less.php"  : "~1.0,>=1.7.0.9,!=1.7.0.13",
 		"twbs/bootstrap"  : "~3.0"
 	},
@@ -40,8 +41,9 @@
 		"branch-alias": {
 			"dev-master": "1.1.x-dev"
 		},
+		"installer-types": ["library"],
 		"installer-paths": {
-			"resources/{$name}": ["twbs/bootstrap"]
+			"resources/{$vendor}/{$name}": ["twbs/bootstrap"]
 		}
 	}
 }
