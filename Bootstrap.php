@@ -13,7 +13,7 @@
 /**
  * The main file of the Bootstrap extension
  *
- * @copyright (C) 2013 - 2017, Stephan Gambke
+ * @copyright (C) 2013 - 2016, Stephan Gambke
  * @license       https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
@@ -48,7 +48,7 @@ call_user_func( function () {
 	/**
 	 * The extension version
 	 */
-	define( 'BS_VERSION', '1.2.2' );
+	define( 'BS_VERSION', '1.2.1' );
 
 	// register the extension
 	$GLOBALS[ 'wgExtensionCredits' ][ 'other' ][ ] = array(
@@ -76,8 +76,8 @@ call_user_func( function () {
 
 		$configuration = array();
 		$configuration[ 'IP' ] = $GLOBALS[ 'IP' ];
-		$configuration[ 'remoteBasePath' ] = $GLOBALS[ 'wgExtensionAssetsPath' ] . '/Bootstrap/resources/twbs/bootstrap';
-		$configuration[ 'localBasePath' ] = str_replace( $GLOBALS[ 'wgScriptPath' ], $GLOBALS[ 'IP' ], $GLOBALS[ 'wgExtensionAssetsPath' ] ) . '/Bootstrap/resources/twbs/bootstrap';
+		$configuration[ 'localBasePath' ] = $GLOBALS[ 'IP' ] . '/vendor/twbs/bootstrap';
+		$configuration[ 'remoteBasePath' ] = $GLOBALS[ 'wgScriptPath' ] . '/vendor/twbs/bootstrap';
 
 		$setupAfterCache = new \Bootstrap\Hooks\SetupAfterCache( $configuration );
 		$setupAfterCache->process();

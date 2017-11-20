@@ -24,7 +24,7 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	protected function setUp() {
 		parent::setUp();
-		$this->localBootstrapVendorPath = __DIR__ . '/../../../resources/twbs/bootstrap';
+		$this->localBootstrapVendorPath = __DIR__ . '/../../../../../vendor/twbs/bootstrap';
 	}
 
 	public function testCanConstruct() {
