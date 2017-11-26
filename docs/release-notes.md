@@ -2,7 +2,7 @@
 
 ### Bootstrap 1.2.2
 
-Released on ????
+Released on 26-Nov-2017
 
 Fixes:
 *  Unbreak the extension when vendor/ is blocked<br>
