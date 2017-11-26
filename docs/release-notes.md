@@ -1,5 +1,13 @@
 ## Release Notes
 
+### Bootstrap 1.2.2
+
+Released on ????
+
+Fixes:
+*  Unbreak the extension when vendor/ is blocked<br>
+   (concerns MediaWiki 1.27.4/1.28.3/1.29.2/1.30 and up, see https://phabricator.wikimedia.org/T180231)
+
 ### Bootstrap 1.2.1
 
 Released on 06-Mar-2017

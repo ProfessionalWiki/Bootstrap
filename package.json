@@ -1,11 +1,14 @@
 {
-  "scripts": {
-    "test": "grunt test"
-  },
-  "devDependencies": {
-    "grunt": "0.4.5",
-    "grunt-cli": "0.1.13",
-    "grunt-banana-checker": "0.4.0",
-    "grunt-jsonlint": "1.0.7"
-  }
+	"name": "mediawiki-bootstrap",
+	"author": "Stephan Gambke",
+	"license": "GPL-2.0+",
+	"scripts": {
+		"preinstall": "if [ -d resources/bootstrap ]; then rm -r resources/bootstrap; fi",
+		"install": "cp -R node_modules/bootstrap resources/bootstrap"
+	},
+	"dependencies": {
+	},
+	"devDependencies": {
+		"bootstrap": "3.x"
+	}
 }
