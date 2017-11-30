@@ -1,5 +1,13 @@
 ## Release Notes
 
+### Bootstrap 1.2.3
+
+Released on 30-Nov-2017
+
+Fixes:
+* Use correct local base path when is `$wgScriptPath` empty, i.e. when MW is
+  installed at the root level of the domain.
+
 ### Bootstrap 1.2.2
 
 Released on 26-Nov-2017
