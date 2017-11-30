@@ -77,8 +77,7 @@ call_user_func( function () {
 		$configuration = array();
 		$configuration[ 'IP' ] = $GLOBALS[ 'IP' ];
 		$configuration[ 'remoteBasePath' ] = $GLOBALS[ 'wgExtensionAssetsPath' ] . '/Bootstrap/resources/bootstrap';
-		$configuration[ 'localBasePath' ] = str_replace( $GLOBALS[ 'wgScriptPath' ], $GLOBALS[ 'IP' ], $GLOBALS[ 'wgExtensionAssetsPath' ] ) . '/Bootstrap/resources/bootstrap';
-
+		$configuration[ 'localBasePath' ] = preg_replace( '/^' . preg_quote( $GLOBALS[ 'wgScriptPath' ] . '/', '/' ) . '/', $GLOBALS[ 'IP' ] . '/', $GLOBALS[ 'wgExtensionAssetsPath' ] ) . '/Bootstrap/resources/bootstrap';
 		$setupAfterCache = new \Bootstrap\Hooks\SetupAfterCache( $configuration );
 		$setupAfterCache->process();
 	};
