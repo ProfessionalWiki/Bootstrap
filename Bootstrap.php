@@ -77,7 +77,13 @@ call_user_func( function () {
 		$configuration = array();
 		$configuration[ 'IP' ] = $GLOBALS[ 'IP' ];
 		$configuration[ 'remoteBasePath' ] = $GLOBALS[ 'wgExtensionAssetsPath' ] . '/Bootstrap/resources/bootstrap';
-		$configuration[ 'localBasePath' ] = preg_replace( '/^' . preg_quote( $GLOBALS[ 'wgScriptPath' ] . '/', '/' ) . '/', $GLOBALS[ 'IP' ] . '/', $GLOBALS[ 'wgExtensionAssetsPath' ] ) . '/Bootstrap/resources/bootstrap';
+
+		if ( isset( $GLOBALS[ 'wgExtensionDirectory' ] ) ) { // MW >= 1.25
+			$configuration[ 'localBasePath' ] = $GLOBALS[ 'wgExtensionDirectory' ] . '/Bootstrap/resources/bootstrap';
+		} else {
+			$configuration[ 'localBasePath' ] = __DIR__ . '/resources/bootstrap';
+		}
+
 		$setupAfterCache = new \Bootstrap\Hooks\SetupAfterCache( $configuration );
 		$setupAfterCache->process();
 	};
