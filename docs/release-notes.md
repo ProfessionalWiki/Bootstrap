@@ -1,5 +1,12 @@
 ## Release Notes
 
+### Bootstrap 1.2.4
+
+Released on 29-Apr-2018
+
+Fixes:
+* Set local base path from `$wgExtensionsDirectory`
+
 ### Bootstrap 1.2.3
 
 Released on 30-Nov-2017
