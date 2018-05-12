@@ -1,4 +1,27 @@
 <?php
+/**
+ * File holding the BootstrapManagerTest class
+ *
+ * @copyright (C) 2013-2018, Stephan Gambke
+ * @license       http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ *
+ * This file is part of the MediaWiki extension Bootstrap.
+ * The Bootstrap extension is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * The Bootstrap extension is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @file
+ * @ingroup Bootstrap
+ */
 
 namespace Bootstrap\Tests;
 
@@ -8,11 +31,11 @@ use Bootstrap\BootstrapManager;
  * @uses \Bootstrap\BootstrapManager
  *
  * @ingroup Test
+ * @ingroup Bootstrap
  *
  * @group extension-bootstrap
  * @group mediawiki-databaseless
  *
- * @license GNU GPL v3+
  * @since 1.0
  *
  * @author mwjames
@@ -27,20 +50,20 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 
 		// Preset with empty default values to verify the initialization status
 		// during invocation
-		$GLOBALS['wgResourceModules'][ 'ext.bootstrap.styles' ] = array(
+		$GLOBALS['wgResourceModules'][ 'ext.bootstrap.styles' ] = [
 			'localBasePath'   => '',
 			'remoteBasePath'  => '',
 			'class'           => '',
-			'dependencies'    => array(),
-			'styles'          => array(),
-			'variables'       => array(),
-			'external styles' => array()
-		);
+			'dependencies'    => [],
+			'styles'          => [],
+			'variables'       => [],
+			'external styles' => []
+		];
 
-		$GLOBALS['wgResourceModules'][ 'ext.bootstrap.scripts' ] = array(
-			'dependencies'    => array(),
-			'scripts'         => array()
-		);
+		$GLOBALS['wgResourceModules'][ 'ext.bootstrap.scripts' ] = [
+			'dependencies'    => [],
+			'scripts'         => []
+		];
 	}
 
 	protected function tearDown() {
@@ -54,12 +77,12 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 
 		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'get' ) )
+			->setMethods( [ 'get' ] )
 			->getMock();
 
 		$moduleDefinition->expects( $this->atLeastOnce() )
 			->method( 'get' )
-			->will( $this->returnValue( array() ) );
+			->will( $this->returnValue( [] ) );
 
 		$this->assertInstanceOf(
 			'\Bootstrap\BootstrapManager',
@@ -80,23 +103,23 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 
 		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'get' ) )
+			->setMethods( [ 'get' ] )
 			->getMock();
 
 		$moduleDefinition->expects( $this->at( 0 ) )
 			->method( 'get' )
 			->with( $this->stringContains( 'descriptions' ) )
-			->will( $this->returnValue( array( 'variables' => array( 'styles' => 'variables' ) ) ) );
+			->will( $this->returnValue( [ 'variables' => [ 'styles' => 'variables' ] ] ) );
 
 		$moduleDefinition->expects( $this->at( 1 ) )
 			->method( 'get' )
 			->with( $this->stringContains( 'core' ) )
-			->will( $this->returnValue( array( 'variables' ) ) );
+			->will( $this->returnValue( [ 'variables' ] ) );
 
 		$moduleDefinition->expects( $this->at( 2 ) )
 			->method( 'get' )
 			->with( $this->stringContains( 'optional' ) )
-			->will( $this->returnValue( array( 'foo' ) ) );
+			->will( $this->returnValue( [ 'foo' ] ) );
 
 		$instance = new BootstrapManager( $moduleDefinition );
 		$instance->addAllBootstrapModules();
@@ -108,16 +131,16 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 
 		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'get' ) )
+			->setMethods( [ 'get' ] )
 			->getMock();
 
 		$moduleDefinition->expects( $this->atLeastOnce() )
 			->method( 'get' )
-			->will( $this->returnValue( array() ) );
+			->will( $this->returnValue( [] ) );
 
 		$instance = new BootstrapManager( $moduleDefinition );
-		$instance->setLessVariables( array( 'foo' => 'bar') );
-		$instance->setLessVariable( 'ichi', 'ni' );
+		$instance->setScssVariables( [ 'foo' => 'bar' ] );
+		$instance->setScssVariable( 'ichi', 'ni' );
 
 		$this->assertArrayHasKey(
 			'foo',
@@ -134,15 +157,15 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 
 		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'get' ) )
+			->setMethods( [ 'get' ] )
 			->getMock();
 
 		$moduleDefinition->expects( $this->atLeastOnce() )
 			->method( 'get' )
-			->will( $this->returnValue( array() ) );
+			->will( $this->returnValue( [] ) );
 
 		$instance = new BootstrapManager( $moduleDefinition );
-		$instance-> addCacheTriggerFile( array( 'foo' => 'bar') );
+		$instance-> addCacheTriggerFile( [ 'foo' => 'bar' ] );
 		$instance-> addCacheTriggerFile( 'ichi' );
 
 		$triggers = $this->getGlobalResourceModuleBootstrapCacheTriggers();
@@ -160,12 +183,12 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 
 		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
 			->disableOriginalConstructor()
-			->setMethods( array( 'get' ) )
+			->setMethods( [ 'get' ] )
 			->getMock();
 
 		$moduleDefinition->expects( $this->atLeastOnce() )
 			->method( 'get' )
-			->will( $this->returnValue( array() ) );
+			->will( $this->returnValue( [] ) );
 
 		$instance = new BootstrapManager( $moduleDefinition );
 		$instance->addExternalModule( 'ExternalFooModule', 'ExternalRemoteBarPath' );

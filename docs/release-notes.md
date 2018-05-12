@@ -1,5 +1,14 @@
 ## Release Notes
 
+### Bootstrap 2.0
+
+Released on TBD
+
+Changes:
+* Use Bootstrap 4
+* Depends on MW 1.27+, PHP 5.6+
+* Enable tarball releases
+
 ### Bootstrap 1.2.4
 
 Released on 29-Apr-2018

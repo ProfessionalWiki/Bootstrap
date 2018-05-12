@@ -1,14 +1,8 @@
 <?php
-
-namespace Bootstrap;
-
-use Bootstrap\Definition\V3ModuleDefinition;
-use Bootstrap\Definition\ModuleDefinition;
-
 /**
- * File holding the Bootstrap class
+ * File holding the BootstrapManager class
  *
- * @copyright (C) 2013, Stephan Gambke
+ * @copyright (C) 2013-2018, Stephan Gambke
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
@@ -29,8 +23,16 @@ use Bootstrap\Definition\ModuleDefinition;
  * @ingroup   Bootstrap
  */
 
+namespace Bootstrap;
+
+use Bootstrap\Definition\V4ModuleDefinition;
+use Bootstrap\Definition\ModuleDefinition;
+
 /**
  * Class managing the Bootstrap framework.
+ *
+ * @since 1.0
+ * @ingroup   Bootstrap
  */
 class BootstrapManager {
 
@@ -62,7 +64,7 @@ class BootstrapManager {
 	public static function getInstance() {
 
 		if ( self::$instance === null ) {
-			self::$instance = new self( new V3ModuleDefinition );
+			self::$instance = new self( new V4ModuleDefinition );
 		}
 
 		return self::$instance;
@@ -103,7 +105,7 @@ class BootstrapManager {
 					$this->addBootstrapModule( $description[ 'dependencies' ] );
 				}
 
-				$this->addFilesToGlobalResourceModules( 'styles', $description, '.less' );
+				$this->addFilesToGlobalResourceModules( 'styles', $description, '' );
 				$this->addFilesToGlobalResourceModules( 'scripts', $description, '.js' );
 
 			}
@@ -150,25 +152,25 @@ class BootstrapManager {
 	 * @internal param string $path
 	 */
 	public function addExternalModule( $file, $remotePath = '' ) {
-		$this->adjustArrayElementOfResourceModuleDescription( 'external styles', array( $file => $remotePath ) );
+		$this->adjustArrayElementOfResourceModuleDescription( 'external styles', [ $file => $remotePath ] );
 	}
 
 	/**
-	 * @since  1.0
+	 * @since  2.0
 	 *
-	 * @param string $key   the LESS variable name
+	 * @param string $key   the SCSS variable name
 	 * @param string $value the value to assign to the variable
 	 */
-	public function setLessVariable( $key, $value ) {
-		$this->setLessVariables( array( $key => $value ) );
+	public function setScssVariable( $key, $value ) {
+		$this->setScssVariables( [ $key => $value ] );
 	}
 
 	/**
-	 * @since  1.0
+	 * @since  2.0
 	 *
 	 * @param mixed[] $variables
 	 */
-	public function setLessVariables( $variables ) {
+	public function setScssVariables( $variables ) {
 		$this->adjustArrayElementOfResourceModuleDescription( 'variables', $variables );
 	}
 

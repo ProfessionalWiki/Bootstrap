@@ -1,40 +1,45 @@
 {
-	"name"       : "mediawiki/bootstrap",
-	"type"       : "mediawiki-extension",
+	"name": "mediawiki/bootstrap",
+	"type": "mediawiki-extension",
 	"description": "Provides the Twitter Bootstrap3 web front-end framework to MediaWiki skins and extensions",
-	"keywords"   : [
+	"keywords": [
 		"wiki",
 		"MediaWiki",
 		"extension",
 		"Twitter",
 		"Bootstrap"
 	],
-	"homepage"   : "https://www.mediawiki.org/wiki/Extension:Bootstrap",
-	"license"    : "GPL-3.0+",
-	"authors"    : [
+	"homepage": "https://www.mediawiki.org/wiki/Extension:Bootstrap",
+	"readme": "README.md",
+	"license": "GPL-3.0-or-later",
+	"authors": [
 		{
-			"name" : "Stephan Gambke",
+			"name": "Stephan Gambke",
 			"email": "s7eph4n@gmail.com",
-			"role" : "Developer"
+			"role": "Developer"
 		}
 	],
-	"support"    : {
-		"wiki"  : "https://www.mediawiki.org/wiki/Extension:Bootstrap",
-		"forum" : "https://www.mediawiki.org/wiki/Extension_talk:Bootstrap",
-		"source": "https://git.wikimedia.org/tree/mediawiki%2Fextensions%2FBootstrap",
-		"issues": "https://www.mediawiki.org/wiki/Extension_talk:Bootstrap",
-		"irc"   : "irc://irc.freenode.org/mediawiki"
+	"support": {
+		"issues": "https://github.com/cmln/mw-bootstrap/issues",
+		"forum": "https://www.mediawiki.org/wiki/Extension_talk:Bootstrap",
+		"wiki": "https://www.mediawiki.org/wiki/Extension:Bootstrap",
+		"irc": "irc://irc.freenode.org/mediawiki",
+		"source": "https://github.com/cmln/mw-bootstrap",
+		"docs": "https://github.com/cmln/mw-bootstrap/tree/latest/docs",
+		"rss": "https://github.com/cmln/mw-bootstrap/releases.atom"
 	},
-	"require"    : {
-		"php"                : ">=5.3.0",
-		"composer/installers": "1.*,>=1.0.1"
+	"require": {
+		"php": ">=5.6",
+		"composer/installers": "~1.0.1",
+		"mediawiki/scss": "~1.0"
 	},
-	"autoload"   : {
-		"files": [
-			"Bootstrap.php"
-		]
+	"autoload": {
+		"psr-4": {
+			"Bootstrap\\": "src/",
+			"Bootstrap\\Tests\\" : "tests/phpunit/"
+		}
 	},
-	"extra"      : {
+	"extra": {
 		"branch-alias": {
 			"dev-master": "1.x-dev"
 		}

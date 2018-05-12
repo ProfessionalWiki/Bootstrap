@@ -7,8 +7,8 @@
 		"install": "cp -R node_modules/bootstrap resources/bootstrap"
 	},
 	"dependencies": {
+		"bootstrap": "^4.1",
+		"popper.js": "^1.14.3"
 	},
-	"devDependencies": {
-		"bootstrap": "3.x"
-	}
+	"devDependencies": {}
 }
