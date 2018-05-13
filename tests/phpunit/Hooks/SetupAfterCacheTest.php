@@ -52,7 +52,7 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testCanConstruct() {
 
-		$configuration = array();
+		$configuration = [];
 
 		$this->assertInstanceOf(
 			'\Bootstrap\Hooks\SetupAfterCache',
@@ -62,11 +62,11 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testProcessWithAccessibilityOnBootstrapVendorPath() {
 
-		$configuration = array(
+		$configuration = [
 			'localBasePath'  => $this->localBootstrapVendorPath,
 			'remoteBasePath' => '',
 			'IP' => 'someIP',
-		);
+		];
 
 		$instance = new SetupAfterCache( $configuration );
 
@@ -75,11 +75,11 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testProcess_setsDefaultCacheTriggers() {
 
-		$configuration = array(
+		$configuration = [
 			'localBasePath'  => $this->localBootstrapVendorPath,
 			'remoteBasePath' => '',
 			'IP' => 'someIP',
-		);
+		];
 
 		$this->resetGlobals();
 
@@ -100,11 +100,11 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testProcessWithAccessibilityOnAddedLocalResourcePaths() {
 
-		$configuration = array(
+		$configuration = [
 			'localBasePath'  => $this->localBootstrapVendorPath,
 			'remoteBasePath' => '',
 			'IP' => 'someIP',
-		);
+		];
 
 		$instance = new SetupAfterCache( $configuration );
 		$instance->process();
@@ -131,11 +131,11 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testProcessOnInvalidLocalPathThrowsException() {
 
-		$configuration = array(
+		$configuration = [
 			'localBasePath'  => 'Foo',
 			'remoteBasePath' => '',
 			'IP' => 'someIP',
-		);
+		];
 
 		$instance = new SetupAfterCache( $configuration );
 
@@ -145,23 +145,10 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function invalidConfigurationProvider() {
 
-		$provider = array();
-
-		$provider[] = array(
-			array()
-		);
-
-		$provider[] = array(
-			array(
-				'localBasePath' => 'Foo'
-			)
-		);
-
-		$provider[] = array(
-			array(
-				'remoteBasePath' => 'Foo'
-			)
-		);
+		$provider = [];
+		$provider[] = [ [] ];
+		$provider[] = [ [ 'localBasePath' => 'Foo' ] ];
+		$provider[] = [ [ 'remoteBasePath' => 'Foo' ] ];
 
 		return $provider;
 	}
@@ -171,16 +158,16 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	private function resetGlobals() {
-		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = array (
+		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = [
 			'class'         => 'SCSS\ResourceLoaderSCSSModule',
-			'styles'        => array (),
-			'variables'     => array (),
-			'dependencies'  => array (),
-			'cachetriggers' => array (
+			'styles'        => [],
+			'variables'     => [],
+			'dependencies'  => [],
+			'cachetriggers' => [
 				'LocalSettings.php' => null,
 				'composer.lock'     => null,
-			),
-		);
+			],
+		];
 	}
 
 }

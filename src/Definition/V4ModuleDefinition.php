@@ -75,6 +75,7 @@ class V4ModuleDefinition implements ModuleDefinition {
 		'scrollspy'         => [ 'scripts' => 'scrollspy', 'dependencies' => [ 'popper', 'js-util' ] ],
 		'tab'               => [ 'scripts' => 'tab', 'dependencies' => [ 'list-group' ] ],
 		'js-util'           => [ 'scripts' => 'util' ],
+		'popper'            => [ 'scripts' => 'popper' ],
 
 		'bs-core'   => [ 'dependencies' => [ 'variables', 'mixins' ] ],
 		'bs-reboot' => [ 'dependencies' => [ 'bs-core', 'reboot' ] ],

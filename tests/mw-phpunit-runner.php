@@ -23,7 +23,7 @@ function isReadablePath( $path ) {
 
 function addArguments( $args ) {
 
-	$arguments = array();
+	$arguments = [];
 
 	for ( $arg = reset( $args ); $arg !== false; $arg = next( $args ) ) {
 

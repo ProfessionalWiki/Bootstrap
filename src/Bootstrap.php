@@ -35,6 +35,7 @@
  */
 
 namespace Bootstrap;
+use Bootstrap\Hooks\SetupAfterCache;
 
 /**
  * Class Bootstrap
@@ -44,21 +45,21 @@ namespace Bootstrap;
  */
 class Bootstrap {
 
+	/**
+	 * @throws \Exception
+	 */
 	public static function init() {
+
+		\ExtensionRegistryHelper\ExtensionRegistryHelper::singleton()->loadExtensionRecursive( 'Scss' );
 
 		$GLOBALS[ 'wgHooks' ][ 'SetupAfterCache' ][] = function () {
 
 			$configuration = [];
 			$configuration[ 'IP' ] = $GLOBALS[ 'IP' ];
 			$configuration[ 'remoteBasePath' ] = $GLOBALS[ 'wgExtensionAssetsPath' ] . '/Bootstrap/resources/bootstrap';
+			$configuration[ 'localBasePath' ] = $GLOBALS[ 'wgExtensionDirectory' ] . '/Bootstrap/resources/bootstrap';
 
-			if ( isset( $GLOBALS[ 'wgExtensionDirectory' ] ) ) { // MW >= 1.25
-				$configuration[ 'localBasePath' ] = $GLOBALS[ 'wgExtensionDirectory' ] . '/Bootstrap/resources/bootstrap';
-			} else {
-				$configuration[ 'localBasePath' ] = __DIR__ . '/resources/bootstrap';
-			}
-
-			$setupAfterCache = new \Bootstrap\Hooks\SetupAfterCache( $configuration );
+			$setupAfterCache = new SetupAfterCache( $configuration );
 			$setupAfterCache->process();
 		};
 

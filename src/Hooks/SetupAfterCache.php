@@ -95,8 +95,8 @@ class SetupAfterCache {
 
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] = array_replace_recursive(
 			[
-				'localBasePath'  => $localBasePath . '/js/dist',
-				'remoteBasePath' => $remoteBasePath . '/js/dist',
+				'localBasePath'  => $localBasePath . '/js',
+				'remoteBasePath' => $remoteBasePath . '/js',
 			],
 			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ]
 		);
