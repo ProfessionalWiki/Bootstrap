@@ -191,7 +191,7 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 			->will( $this->returnValue( [] ) );
 
 		$instance = new BootstrapManager( $moduleDefinition );
-		$instance->addExternalModule( 'ExternalFooModule', 'ExternalRemoteBarPath' );
+		$instance->addStyleFile( 'ExternalFooModule', 'ExternalRemoteBarPath' );
 
 		$this->assertArrayHasKey(
 			'ExternalFooModule',

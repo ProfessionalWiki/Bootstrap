@@ -42,7 +42,7 @@ class BootstrapManager {
 	/** @var BootstrapManager */
 	private static $instance = null;
 
-	private $mModuleDescriptions;
+	private $moduleDescriptions;
 
 	/**
 	 * @since  1.0
@@ -51,7 +51,7 @@ class BootstrapManager {
 	 */
 	public function __construct( ModuleDefinition $moduleDefinition ) {
 		$this->moduleDefinition = $moduleDefinition;
-		$this->initCoreModules();
+		$this->moduleDescriptions = $this->moduleDefinition->get( 'descriptions' );
 	}
 
 	/**
@@ -91,13 +91,13 @@ class BootstrapManager {
 		foreach ( $modules as $module ) {
 
 			// if the module is known
-			if ( isset( $this->mModuleDescriptions[ $module ] ) ) {
+			if ( isset( $this->moduleDescriptions[ $module ] ) ) {
 
-				$description = $this->mModuleDescriptions[ $module ];
+				$description = $this->moduleDescriptions[ $module ];
 
 				// prevent adding this module again; this also prevents infinite recursion in case
 				// of dependency resolution
-				unset( $this->mModuleDescriptions[ $module ] );
+				unset( $this->moduleDescriptions[ $module ] );
 
 				// first add any dependencies recursively, so they are available when the styles and
 				// scripts of $module are loaded
@@ -105,8 +105,8 @@ class BootstrapManager {
 					$this->addBootstrapModule( $description[ 'dependencies' ] );
 				}
 
-				$this->addFilesToGlobalResourceModules( 'styles', $description, '' );
-				$this->addFilesToGlobalResourceModules( 'scripts', $description, '.js' );
+				$this->addFilesToGlobalResourceModules( 'styles', $description );
+				$this->addFilesToGlobalResourceModules( 'scripts', $description );
 
 			}
 		}
@@ -116,22 +116,23 @@ class BootstrapManager {
 	/**
 	 * @param string       $filetype 'styles'|'scripts'
 	 * @param mixed[]      $description
-	 * @param              $fileExt
 	 */
-	protected function addFilesToGlobalResourceModules ( $filetype, $description, $fileExt ) {
+	protected function addFilesToGlobalResourceModules ( $filetype, $description ) {
 
 		if ( isset( $description[ $filetype ] ) ) {
 
-			$files = array_map(
-				function ( $filename ) use ( $fileExt ) {
-					return $filename . $fileExt;
-				},
-				(array) $description[ $filetype ]
-			);
-
-			$this->adjustArrayElementOfResourceModuleDescription( $filetype, $files, $filetype );
+			$this->adjustArrayElementOfResourceModuleDescription( $filetype, $description[ $filetype ], $filetype );
 
 		}
+	}
+
+	/**
+	 * Adds core bootstrap modules
+	 *
+	 * @since  2.0
+	 */
+	public function addCoreBootstrapModules() {
+		$this->addBootstrapModule( $this->moduleDefinition->get( 'core' ) );
 	}
 
 	/**
@@ -146,13 +147,13 @@ class BootstrapManager {
 	/**
 	 * @since  1.0
 	 *
-	 * @param string $file
-	 * @param string $remotePath
+	 * @param string $path
+	 * @param string $position
 	 *
 	 * @internal param string $path
 	 */
-	public function addExternalModule( $file, $remotePath = '' ) {
-		$this->adjustArrayElementOfResourceModuleDescription( 'external styles', [ $file => $remotePath ] );
+	public function addStyleFile( $path, $position = 'main' ) {
+		$this->adjustArrayElementOfResourceModuleDescription( 'styles', [ $path => [ 'position' => $position ] ] );
 	}
 
 	/**
@@ -182,11 +183,6 @@ class BootstrapManager {
 		$this->adjustArrayElementOfResourceModuleDescription( 'cachetriggers', $files );
 	}
 
-	protected function initCoreModules() {
-		$this->mModuleDescriptions = $this->moduleDefinition->get( 'descriptions' );
-		$this->addBootstrapModule( $this->moduleDefinition->get( 'core' ) );
-	}
-
 	/**
 	 * @param string $key
 	 * @param mixed  $value
@@ -195,13 +191,13 @@ class BootstrapManager {
 	protected function adjustArrayElementOfResourceModuleDescription( $key, $value, $filetype = 'styles' ) {
 
 		if (!isset($GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ])) {
-			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] = $value;
-		} else {
-			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] =
-				array_merge(
-					$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ],
-					(array) $value
-				);
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] = [];
 		}
+
+		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] =
+			array_merge(
+				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ],
+				(array) $value
+			);
 	}
 }
