@@ -48,7 +48,7 @@ call_user_func( function () {
 	/**
 	 * The extension version
 	 */
-	define( 'BS_VERSION', '1.2.3' );
+	define( 'BS_VERSION', '1.3.0' );
 
 	// register the extension
 	$GLOBALS[ 'wgExtensionCredits' ][ 'other' ][ ] = array(

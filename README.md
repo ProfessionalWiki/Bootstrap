@@ -9,17 +9,15 @@ front-end framework to skins and extensions.
 ## Requirements
 
 - PHP 5.3.2 or later
-- MediaWiki 1.22 or later
+- MediaWiki 1.27 or later
 - [Composer][composer]
 
 ## Installation
 
 1. On a command line go to your MediaWiki installation directory
-2. If necessary (on MediaWiki up to 1.23) copy the file `composer.json.example`
-   to `composer.json`
-3. With Composer installed, run
+2. With Composer installed, run
    `composer require "mediawiki/bootstrap:~1.0"`
-4. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
+3. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
    extension is successfully installed.
 
 ## Documentation
