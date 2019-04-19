@@ -63,28 +63,5 @@ class Bootstrap {
 			$setupAfterCache = new SetupAfterCache( $configuration );
 			$setupAfterCache->process();
 		};
-
-		// register skeleton resource module with the Resource Loader
-		// do not add paths, globals are not set yet
-		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = [
-			'class' => 'SCSS\\ResourceLoaderSCSSModule',
-			'position' => 'top',
-			'styles' => [],
-			'variables' => [],
-			'dependencies' => [],
-			'cachetriggers' => [
-				'LocalSettings.php' => null,
-				'composer.lock' => null,
-			],
-		];
-
-		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] = [
-			'scripts' => [],
-		];
-
-		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap' ] = [
-			'dependencies' => [ 'ext.bootstrap.styles', 'ext.bootstrap.scripts' ],
-		];
-
 	}
 }

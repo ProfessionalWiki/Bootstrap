@@ -2,7 +2,7 @@
 /**
  * File holding the SetupAfterCache class
  *
- * @copyright (C) 2013-2018, Stephan Gambke
+ * @copyright (C) 2013-2019, Stephan Gambke
  * @license http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
@@ -66,7 +66,7 @@ class SetupAfterCache {
 
 		$this->assertAcceptableConfiguration();
 
-		$this->registerBootstrapResourcePaths(
+		$this->registerResourceLoaderModules(
 			$this->isReadablePath( $this->configuration['localBasePath'] ),
 			$this->configuration[ 'remoteBasePath' ]
 		);
@@ -82,24 +82,37 @@ class SetupAfterCache {
 	 * @param string $localBasePath
 	 * @param string $remoteBasePath
 	 */
-	protected function registerBootstrapResourcePaths( $localBasePath, $remoteBasePath ) {
+	protected function registerResourceLoaderModules( $localBasePath, $remoteBasePath ) {
 
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = array_replace_recursive(
 			[
 				'localBasePath' => $localBasePath . '/scss',
 				'remoteBasePath' => $remoteBasePath . '/scss',
+				'class' => 'SCSS\\ResourceLoaderSCSSModule',
+				'position' => 'top',
+				'styles' => [],
 				'variables' => [],
+				'dependencies' => [],
+				'cachetriggers' => [
+					'LocalSettings.php' => null,
+					'composer.lock' => null,
+				],
 			],
-			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ]
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ]??[]
 		);
 
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] = array_replace_recursive(
 			[
 				'localBasePath'  => $localBasePath . '/js',
 				'remoteBasePath' => $remoteBasePath . '/js',
+				'scripts' => [],
 			],
-			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ]
+			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ]??[]
 		);
+
+		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap' ] = [
+			'dependencies' => [ 'ext.bootstrap.styles', 'ext.bootstrap.scripts' ],
+		];
 	}
 
 	/**

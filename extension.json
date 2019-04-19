@@ -17,13 +17,6 @@
 		"remoteExtPath": "Bootstrap"
 	},
 	"ResourceModules": {
-		"ext.bootstrap": {
-			"scripts": [],
-			"styles": [],
-			"messages": [],
-			"dependencies": [],
-			"position": "bottom"
-		}
 	},
 	"MessagesDirs": {
 		"Bootstrap": "i18n"
@@ -33,7 +26,6 @@
 
 	},
 	"config": {
-
 	},
 	"callback": "\\Bootstrap\\Bootstrap::init",
 	"load_composer_autoloader": true,
