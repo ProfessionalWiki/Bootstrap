@@ -3,8 +3,10 @@
 [![Packagist download count](https://poser.pugx.org/mediawiki/bootstrap/d/total.png)](https://packagist.org/packages/mediawiki/bootstrap)
 [![Dependency Status](https://www.versioneye.com/php/mediawiki:bootstrap/badge.png)](https://www.versioneye.com/php/mediawiki:bootstrap)
 
-The [Bootstrap extension][mw-bootstrap] provides Twitter's Bootstrap web
-front-end framework to skins and extensions.
+The [Bootstrap extension][mw-bootstrap] provides the
+[Bootstrap web front-end framework][bootstrap] to skins and extensions.
+
+Currently Bootstrap 4.3.1 is provided.
 
 ## Requirements
 
@@ -33,7 +35,7 @@ MediaWiki][mw-bootstrap] and the related [talk page][mw-bootstrap-talk]
 You can use the Bootstrap extension under the [GNU General Public License,
 version 3][license] (or any later version).
 
-
+[bootstrap]: https://getbootstrap.com
 [mw-bootstrap]: https://www.mediawiki.org/wiki/Extension:Bootstrap
 [mw-bootstrap-talk]: https://www.mediawiki.org/wiki/Extension_Talk:Bootstrap
 [mw-testing]: https://www.mediawiki.org/wiki/Manual:PHP_unit_testing
