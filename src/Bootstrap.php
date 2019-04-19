@@ -13,7 +13,7 @@
 /**
  * The main file of the Bootstrap extension
  *
- * @copyright (C) 2013 - 2018, Stephan Gambke
+ * @copyright (C) 2013 - 2019, Stephan Gambke
  * @license       https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
@@ -36,6 +36,7 @@
 
 namespace Bootstrap;
 use Bootstrap\Hooks\SetupAfterCache;
+use ExtensionRegistryHelper\ExtensionRegistryHelper;
 
 /**
  * Class Bootstrap
@@ -50,7 +51,7 @@ class Bootstrap {
 	 */
 	public static function init() {
 
-		\ExtensionRegistryHelper\ExtensionRegistryHelper::singleton()->loadExtensionRecursive( 'Scss' );
+		ExtensionRegistryHelper::singleton()->loadExtensionRecursive( 'Scss' );
 
 		$GLOBALS[ 'wgHooks' ][ 'SetupAfterCache' ][] = function () {
 
