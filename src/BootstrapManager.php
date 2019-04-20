@@ -180,7 +180,7 @@ class BootstrapManager {
 	 * @param string|string[] $files
 	 */
 	public function addCacheTriggerFile( $files ){
-		$this->adjustArrayElementOfResourceModuleDescription( 'cachetriggers', $files );
+		$this->adjustArrayElementOfResourceModuleDescription( 'cacheTriggers', $files );
 	}
 
 	/**

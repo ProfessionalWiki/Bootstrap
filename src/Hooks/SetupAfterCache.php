@@ -93,7 +93,7 @@ class SetupAfterCache {
 				'styles' => [],
 				'variables' => [],
 				'dependencies' => [],
-				'cachetriggers' => [
+				'cacheTriggers' => [
 					'LocalSettings.php' => null,
 					'composer.lock' => null,
 				],
@@ -147,9 +147,9 @@ class SetupAfterCache {
 		];
 
 		foreach ( $defaultRecacheTriggers as $key => $filename ) {
-			if ( array_key_exists( $key, $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cachetriggers' ] ) &&
-				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cachetriggers' ][ $key ] === null ) {
-				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cachetriggers' ][ $key ] = $filename;
+			if ( array_key_exists( $key, $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cacheTriggers' ] ) &&
+				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cacheTriggers' ][ $key ] === null ) {
+				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cacheTriggers' ][ $key ] = $filename;
 			}
 		}
 	}
