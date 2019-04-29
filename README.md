@@ -14,11 +14,12 @@ Currently Bootstrap 4.3.1 is provided.
 - [Composer][composer]
 
 ## Installation
-1. In the MediaWiki installation directory, add `"mediawiki/bootstrap":"~2.0"` to the
-   `require` section in the file `composer.local.json`.
+1. In the MediaWiki installation directory, add `"mediawiki/bootstrap":"~4.0"`
+   to the `require` section in the file `composer.local.json`.
    
 2. Still in the MediaWiki installation directory, from a command line run<br>
    `composer update "mediawiki/bootstrap"`.
+
 3. Load the extension by adding the following line to `LocalSettings.php`:
 
    ```php
@@ -27,6 +28,9 @@ Currently Bootstrap 4.3.1 is provided.
 
 4. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
    extension is successfully installed.
+
+**Remark:** It is _NOT_ necessary to install or load any extensions this extensions
+depends on.
 
 ## Documentation
 
