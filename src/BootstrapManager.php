@@ -2,7 +2,7 @@
 /**
  * File holding the BootstrapManager class
  *
- * @copyright (C) 2013-2018, Stephan Gambke
+ * @copyright 2013 - 2019, Stephan Gambke
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
@@ -110,7 +110,6 @@ class BootstrapManager {
 
 			}
 		}
-
 	}
 
 	/**

@@ -37,7 +37,7 @@ use Bootstrap\BootstrapManager;
  * @group extension-bootstrap
  * @group mediawiki-databaseless
  *
- * @since 2.0
+ * @since 4.0
  *
  * @author mwjames
  */

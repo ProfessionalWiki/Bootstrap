@@ -2,8 +2,8 @@
 /**
  * File holding the SetupAfterCache class
  *
- * @copyright (C) 2013-2019, Stephan Gambke
- * @license http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @copyright 2013 - 2019, Stephan Gambke
+ * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
  * The Bootstrap extension is free software: you can redistribute it and/or
@@ -98,7 +98,7 @@ class SetupAfterCache {
 					'composer.lock' => null,
 				],
 			],
-			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ]??[]
+			array_keys( $GLOBALS[ 'wgResourceModules' ], 'ext.bootstrap.styles' ) ? $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] : []
 		);
 
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] = array_replace_recursive(
@@ -107,7 +107,7 @@ class SetupAfterCache {
 				'remoteBasePath' => $remoteBasePath . '/js',
 				'scripts' => [],
 			],
-			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ]??[]
+			array_keys( $GLOBALS[ 'wgResourceModules' ], 'ext.bootstrap.scripts' ) ? $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] : []
 		);
 
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap' ] = [

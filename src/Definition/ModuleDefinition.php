@@ -1,9 +1,6 @@
 <?php
-
-namespace Bootstrap\Definition;
-
 /**
- * @copyright (C) 2013, Stephan Gambke
+ * @copyright 2013 - 2019, Stephan Gambke
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
@@ -24,6 +21,8 @@ namespace Bootstrap\Definition;
  * @ingroup   Bootstrap
  */
 
+namespace Bootstrap\Definition;
+
 /**
  * Interface describing module definitions
  */
@@ -35,7 +34,6 @@ interface ModuleDefinition {
 	 * @since  1.0
 	 *
 	 * @param string $key
-	 *
 	 * @return array
 	 */
 	public function get( $key );

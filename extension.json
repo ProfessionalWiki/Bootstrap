@@ -5,7 +5,7 @@
 		"[https://www.mediawiki.org/wiki/User:F.trott Stephan Gambke]",
 		"James Hong Kong"
 	],
-	"version": "2.0-dev",
+	"version": "4.0",
 	"url": "https://www.mediawiki.org/wiki/Extension:Bootstrap",
 	"descriptionmsg": "bootstrap-desc",
 	"license-name": "GPL-3.0-or-later",
@@ -20,12 +20,6 @@
 	},
 	"MessagesDirs": {
 		"Bootstrap": "i18n"
-	},
-	"@Hooks": "Is it really a good idea to specify static hook handlers here? Can this be done in PHP code?",
-	"Hooks": {
-
-	},
-	"config": {
 	},
 	"callback": "\\Bootstrap\\Bootstrap::init",
 	"load_composer_autoloader": true,

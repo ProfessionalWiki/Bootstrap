@@ -1,13 +1,20 @@
 ## Release Notes
 
-### Bootstrap 2.0
+### Bootstrap 4.0
 
-Released on TBD
+Released on 29-Apr-2019
 
 Changes:
 * Use Bootstrap 4
 * Depends on MW 1.27+, PHP 5.6+
-* Enable tarball releases
+
+### Bootstrap 1.3.0
+
+Released on 15-Jan-2019
+
+* Drop dependency on oyejorge/less.php compiler, just depend on the one used by
+  MediaWiki core instead 
+* Raise minimum MW version to 1.27+
 
 ### Bootstrap 1.2.4
 

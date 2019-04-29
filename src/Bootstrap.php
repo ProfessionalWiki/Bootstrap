@@ -13,8 +13,8 @@
 /**
  * The main file of the Bootstrap extension
  *
- * @copyright (C) 2013 - 2019, Stephan Gambke
- * @license       https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @copyright 2013 - 2019, Stephan Gambke
+ * @license   https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
  *
  * This file is part of the MediaWiki extension Bootstrap.
  * The Bootstrap extension is free software: you can redistribute it and/or
@@ -35,6 +35,7 @@
  */
 
 namespace Bootstrap;
+
 use Bootstrap\Hooks\SetupAfterCache;
 use ExtensionRegistryHelper\ExtensionRegistryHelper;
 
