@@ -1,7 +1,7 @@
 {
 	"name": "mediawiki/bootstrap",
 	"type": "mediawiki-extension",
-	"description": "Provides the Twitter Bootstrap3 web front-end framework to MediaWiki skins and extensions",
+	"description": "Provides the Bootstrap 4 web front-end framework to MediaWiki skins and extensions",
 	"keywords": [
 		"wiki",
 		"MediaWiki",
@@ -15,7 +15,7 @@
 	"authors": [
 		{
 			"name": "Stephan Gambke",
-			"email": "s7eph4n@gmail.com",
+			"email": "s7eph4n@protonmail.com",
 			"role": "Developer"
 		}
 	],
@@ -31,6 +31,7 @@
 	"require": {
 		"php": ">=5.6",
 		"composer/installers": "^1.0.1",
+		"mediawiki/mediawiki": ">=1.27.0",
 		"mediawiki/mw-extension-registry-helper": "^1.0",
 		"mediawiki/scss": "^1.0"
 	},
@@ -42,7 +43,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "1.x-dev"
+			"dev-master": "4.x-dev"
 		}
 	}
 }

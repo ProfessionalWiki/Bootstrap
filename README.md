@@ -1,7 +1,6 @@
 # Bootstrap extension
 [![Latest Stable Version](https://poser.pugx.org/mediawiki/bootstrap/version.png)](https://packagist.org/packages/mediawiki/bootstrap)
-[![Packagist download count](https://poser.pugx.org/mediawiki/bootstrap/d/total.png)](https://packagist.org/packages/mediawiki/bootstrap)
-[![Dependency Status](https://www.versioneye.com/php/mediawiki:bootstrap/badge.png)](https://www.versioneye.com/php/mediawiki:bootstrap)
+[![License](https://poser.pugx.org/mediawiki/bootstrap/license)](https://packagist.org/packages/mediawiki/bootstrap)
 
 The [Bootstrap extension][mw-bootstrap] provides the
 [Bootstrap web front-end framework][bootstrap] to skins and extensions.
@@ -15,12 +14,18 @@ Currently Bootstrap 4.3.1 is provided.
 - [Composer][composer]
 
 ## Installation
+1. In the MediaWiki installation directory, add `"mediawiki/bootstrap":"~2.0"` to the
+   `require` section in the file `composer.local.json`.
+   
+2. Still in the MediaWiki installation directory, from a command line run<br>
+   `composer update "mediawiki/bootstrap"`.
+3. Load the extension by adding the following line to `LocalSettings.php`:
 
-1. On a command line go to your MediaWiki installation directory
+   ```php
+   wfLoadExtension( 'Bootstrap' );
+   ``` 
 
-2. With Composer installed, run
-   `composer require "mediawiki/bootstrap:~1.0"`
-3. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
+4. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
    extension is successfully installed.
 
 ## Documentation
