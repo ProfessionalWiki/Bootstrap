@@ -128,7 +128,7 @@ class BootstrapManager {
 	/**
 	 * Adds core bootstrap modules
 	 *
-	 * @since  2.0
+	 * @since  4.0
 	 */
 	public function addCoreBootstrapModules() {
 		$this->addBootstrapModule( $this->moduleDefinition->get( 'core' ) );
@@ -156,7 +156,7 @@ class BootstrapManager {
 	}
 
 	/**
-	 * @since  2.0
+	 * @since  4.0
 	 *
 	 * @param string $key   the SCSS variable name
 	 * @param string $value the value to assign to the variable
@@ -166,7 +166,7 @@ class BootstrapManager {
 	}
 
 	/**
-	 * @since  2.0
+	 * @since  4.0
 	 *
 	 * @param mixed[] $variables
 	 */
