@@ -27,6 +27,7 @@ namespace Bootstrap\Hooks;
 
 use RuntimeException;
 use InvalidArgumentException;
+use SCSS\ResourceLoaderSCSSModule;
 
 /**
  * Handler for the SetupAfterCache hook.
@@ -88,7 +89,7 @@ class SetupAfterCache {
 			[
 				'localBasePath' => $localBasePath . '/scss',
 				'remoteBasePath' => $remoteBasePath . '/scss',
-				'class' => 'SCSS\\ResourceLoaderSCSSModule',
+				'class' => ResourceLoaderSCSSModule::class,
 				'position' => 'top',
 				'styles' => [],
 				'variables' => [],
