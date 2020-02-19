@@ -99,7 +99,7 @@ class SetupAfterCache {
 					'composer.lock' => null,
 				],
 			],
-			array_keys( $GLOBALS[ 'wgResourceModules' ], 'ext.bootstrap.styles' ) ? $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] : []
+			array_key_exists( 'ext.bootstrap.styles', $GLOBALS[ 'wgResourceModules' ] ) ? $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] : []
 		);
 
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] = array_replace_recursive(
@@ -108,7 +108,7 @@ class SetupAfterCache {
 				'remoteBasePath' => $remoteBasePath . '/js',
 				'scripts' => [],
 			],
-			array_keys( $GLOBALS[ 'wgResourceModules' ], 'ext.bootstrap.scripts' ) ? $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] : []
+			array_key_exists( 'ext.bootstrap.scripts', $GLOBALS[ 'wgResourceModules' ] ) ? $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] : []
 		);
 
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap' ] = [
