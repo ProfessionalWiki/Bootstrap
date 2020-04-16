@@ -41,6 +41,12 @@ See the [Bootstrap extension documentation](docs).
 It may also be worthwhile to have a look at the [Bootstrap site on
 MediaWiki][mw-bootstrap] and the related [talk page][mw-bootstrap-talk]
 
+## Professional Support
+
+Chameleon is maintined by [Professional.Wiki](https://professional.wiki).
+You can [contract us][contact-form] to help you with installation or customization of Chameleon.
+We also do development work.
+
 ## License
 
 You can use the Bootstrap extension under the [GNU General Public License,
@@ -52,3 +58,4 @@ version 3][license] (or any later version).
 [mw-testing]: https://www.mediawiki.org/wiki/Manual:PHP_unit_testing
 [composer]: https://getcomposer.org/
 [license]: https://www.gnu.org/copyleft/gpl.html
+[contact-form]: https://professional.wiki/en/contact
