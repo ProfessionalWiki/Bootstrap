@@ -1,6 +1,6 @@
 # Bootstrap extension
 
-[![Build Status](https://scrutinizer-ci.com/g/ProfessionalWiki/mw-bootstrap/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ProfessionalWiki/mw-bootstrap/build-status/master)
+[![Build Status](https://scrutinizer-ci.com/g/ProfessionalWiki/Bootstrap/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ProfessionalWiki/Bootstrap/build-status/master)
 [![Latest Stable Version](https://poser.pugx.org/mediawiki/bootstrap/version.png)](https://packagist.org/packages/mediawiki/bootstrap)
 [![License](https://poser.pugx.org/mediawiki/bootstrap/license)](https://packagist.org/packages/mediawiki/bootstrap)
 
