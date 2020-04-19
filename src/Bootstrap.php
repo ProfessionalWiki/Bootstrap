@@ -37,7 +37,6 @@
 namespace Bootstrap;
 
 use Bootstrap\Hooks\SetupAfterCache;
-use ExtensionRegistryHelper\ExtensionRegistryHelper;
 
 /**
  * Class Bootstrap
@@ -51,8 +50,6 @@ class Bootstrap {
 	 * @throws \Exception
 	 */
 	public static function init() {
-
-		ExtensionRegistryHelper::singleton()->loadExtensionRecursive( 'Scss' );
 
 		$GLOBALS[ 'wgHooks' ][ 'SetupAfterCache' ][] = function () {
 
