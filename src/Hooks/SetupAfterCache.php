@@ -27,7 +27,7 @@ namespace Bootstrap\Hooks;
 
 use RuntimeException;
 use InvalidArgumentException;
-use SCSS\ResourceLoaderSCSSModule;
+use Bootstrap\ResourceLoaderSCSSModule;
 
 /**
  * Handler for the SetupAfterCache hook.

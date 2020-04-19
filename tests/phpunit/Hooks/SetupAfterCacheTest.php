@@ -159,7 +159,7 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	private function resetGlobals() {
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ] = [
-			'class'         => 'SCSS\ResourceLoaderSCSSModule',
+			'class'         => 'Bootstrap\ResourceLoaderSCSSModule',
 			'styles'        => [],
 			'variables'     => [],
 			'dependencies'  => [],
