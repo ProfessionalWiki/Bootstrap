@@ -76,7 +76,7 @@ class V4ModuleDefinitionTest extends \PHPUnit_Framework_TestCase {
 
 		$instance = new V4ModuleDefinition();
 
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->expectException( \InvalidArgumentException::class );
 		$instance->get( 'Foo' );
 	}
 

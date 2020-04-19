@@ -97,36 +97,6 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testLoadStylesFromModuleDefinition() {
-
-		$this->assertEmpty( $this->getGlobalResourceModuleBootstrapStyles() );
-
-		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
-			->disableOriginalConstructor()
-			->setMethods( [ 'get' ] )
-			->getMock();
-
-		$moduleDefinition->expects( $this->at( 0 ) )
-			->method( 'get' )
-			->with( $this->stringContains( 'descriptions' ) )
-			->will( $this->returnValue( [ 'variables' => [ 'styles' => 'variables' ] ] ) );
-
-		$moduleDefinition->expects( $this->at( 1 ) )
-			->method( 'get' )
-			->with( $this->stringContains( 'core' ) )
-			->will( $this->returnValue( [ 'variables' ] ) );
-
-		$moduleDefinition->expects( $this->at( 2 ) )
-			->method( 'get' )
-			->with( $this->stringContains( 'optional' ) )
-			->will( $this->returnValue( [ 'foo' ] ) );
-
-		$instance = new BootstrapManager( $moduleDefinition );
-		$instance->addAllBootstrapModules();
-
-		$this->assertNotEmpty( $this->getGlobalResourceModuleBootstrapStyles() );
-	}
-
 	public function testSetLessVariables() {
 
 		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
@@ -153,66 +123,8 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testAddCacheTriggerFiles() {
-
-		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
-			->disableOriginalConstructor()
-			->setMethods( [ 'get' ] )
-			->getMock();
-
-		$moduleDefinition->expects( $this->atLeastOnce() )
-			->method( 'get' )
-			->will( $this->returnValue( [] ) );
-
-		$instance = new BootstrapManager( $moduleDefinition );
-		$instance-> addCacheTriggerFile( [ 'foo' => 'bar' ] );
-		$instance-> addCacheTriggerFile( 'ichi' );
-
-		$triggers = $this->getGlobalResourceModuleBootstrapCacheTriggers();
-
-		$this->assertTrue(
-			isset( $triggers[ 'foo' ] ) && $triggers[ 'foo' ] === 'bar'
-		);
-
-		$this->assertTrue(
-			array_search( 'ichi', $triggers ) !== false
-		);
-	}
-
-	public function testAddExternalModule() {
-
-		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
-			->disableOriginalConstructor()
-			->setMethods( [ 'get' ] )
-			->getMock();
-
-		$moduleDefinition->expects( $this->atLeastOnce() )
-			->method( 'get' )
-			->will( $this->returnValue( [] ) );
-
-		$instance = new BootstrapManager( $moduleDefinition );
-		$instance->addStyleFile( 'ExternalFooModule', 'ExternalRemoteBarPath' );
-
-		$this->assertArrayHasKey(
-			'ExternalFooModule',
-			$this->getGlobalResourceModuleBootstrapExternalStyles()
-		);
-	}
-
-	private function getGlobalResourceModuleBootstrapStyles() {
-		return $GLOBALS['wgResourceModules'][ 'ext.bootstrap.styles' ]['styles'];
-	}
-
 	private function getGlobalResourceModuleBootstrapVariables() {
 		return $GLOBALS['wgResourceModules'][ 'ext.bootstrap.styles' ]['variables'];
-	}
-
-	private function getGlobalResourceModuleBootstrapExternalStyles() {
-		return $GLOBALS['wgResourceModules'][ 'ext.bootstrap.styles' ]['external styles'];
-	}
-
-	private function getGlobalResourceModuleBootstrapCacheTriggers() {
-		return $GLOBALS['wgResourceModules'][ 'ext.bootstrap.styles' ]['cachetriggers'];
 	}
 
 }

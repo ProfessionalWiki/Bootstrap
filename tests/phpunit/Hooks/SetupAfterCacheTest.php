@@ -73,31 +73,6 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue( $instance->process() );
 	}
 
-	public function testProcess_setsDefaultCacheTriggers() {
-
-		$configuration = [
-			'localBasePath'  => $this->localBootstrapVendorPath,
-			'remoteBasePath' => '',
-			'IP' => 'someIP',
-		];
-
-		$this->resetGlobals();
-
-		$instance = new SetupAfterCache( $configuration );
-
-		$this->assertTrue( $instance->process() );
-
-		$this->assertEquals(
-			'someIP/LocalSettings.php',
-			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cachetriggers' ][ 'LocalSettings.php' ]
-		);
-
-		$this->assertEquals(
-			'someIP/composer.lock',
-			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.styles' ][ 'cachetriggers' ][ 'composer.lock' ]
-		);
-	}
-
 	public function testProcessWithAccessibilityOnAddedLocalResourcePaths() {
 
 		$configuration = [
@@ -125,7 +100,7 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 		$instance = new SetupAfterCache( $configuration );
 
-		$this->setExpectedException( 'InvalidArgumentException' );
+		$this->expectException( \InvalidArgumentException::class );
 		$instance->process();
 	}
 
@@ -139,7 +114,7 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 		$instance = new SetupAfterCache( $configuration );
 
-		$this->setExpectedException( 'RuntimeException' );
+		$this->expectException( \RuntimeException::class );
 		$instance->process();
 	}
 
