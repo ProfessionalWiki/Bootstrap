@@ -4,7 +4,7 @@
 
 Under development
 
-* 
+* fixed an issue where - when bootstrap extension was used w/o chameleon - neither bootstrap style sheets nor javascript resources where loaded by resource loader
 
 ### MediaWiki Bootstrap 4.0
 
