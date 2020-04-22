@@ -43,7 +43,7 @@ MediaWiki][mw-bootstrap] and the related [talk page][mw-bootstrap-talk]
 
 ## Professional Support
 
-The Bootstrap extension is maintined by [Professional.Wiki](https://professional.wiki).
+The Bootstrap extension is maintained by [Professional.Wiki](https://professional.wiki).
 You can [contract us][contact-form] to help you with installation or customization of Bootstrap.
 We also do development work.
 
