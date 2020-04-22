@@ -7,7 +7,7 @@
 The [Bootstrap extension][mw-bootstrap] provides the
 [Bootstrap web front-end framework][bootstrap] to skins and extensions.
 
-Currently Bootstrap 4.3.1 is provided.
+This version of the extension provides Bootstrap 4.3.1.
 
 ## Requirements
 

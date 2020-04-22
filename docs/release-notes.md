@@ -2,9 +2,9 @@
 
 ### MediaWiki Bootstrap 4.1
 
-Under development
+Released on 21-Apr-2020
 
-* fixed an issue where - when bootstrap extension was used w/o chameleon - neither bootstrap style sheets nor javascript resources where loaded by resource loader
+* Fixed loading of style sheets and JS files when using the extension without the Chameleon skin
 
 ### MediaWiki Bootstrap 4.0
 
