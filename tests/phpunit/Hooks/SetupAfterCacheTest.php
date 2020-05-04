@@ -23,9 +23,9 @@
  * @ingroup Bootstrap
  */
 
-namespace Bootstrap\Tests\Hooks;
+namespace MediaWiki\Extensions\Bootstrap\Tests\Hooks;
 
-use Bootstrap\Hooks\SetupAfterCache;
+use MediaWiki\Extensions\Bootstrap\Hooks\SetupAfterCache;
 
 /**
  * @uses \Bootstrap\Hooks\SetupAfterCache

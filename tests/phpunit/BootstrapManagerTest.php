@@ -23,9 +23,9 @@
  * @ingroup Bootstrap
  */
 
-namespace Bootstrap\Tests;
+namespace MediaWiki\Extensions\Bootstrap\Tests;
 
-use Bootstrap\BootstrapManager;
+use MediaWiki\Extensions\Bootstrap\BootstrapManager;
 
 /**
  * @uses \Bootstrap\BootstrapManager

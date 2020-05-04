@@ -34,9 +34,9 @@
  * @ingroup       Bootstrap
  */
 
-namespace Bootstrap;
+namespace MediaWiki\Extensions\Bootstrap;
 
-use Bootstrap\Hooks\SetupAfterCache;
+use MediaWiki\Extensions\Bootstrap\Hooks\SetupAfterCache;
 
 /**
  * Class Bootstrap

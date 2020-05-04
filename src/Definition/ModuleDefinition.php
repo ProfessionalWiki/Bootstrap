@@ -21,7 +21,7 @@
  * @ingroup   Bootstrap
  */
 
-namespace Bootstrap\Definition;
+namespace MediaWiki\Extensions\Bootstrap\Definition;
 
 /**
  * Interface describing module definitions

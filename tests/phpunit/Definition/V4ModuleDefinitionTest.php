@@ -23,10 +23,10 @@
  * @ingroup Bootstrap
  */
 
-namespace Bootstrap\Tests\Definition;
+namespace MediaWiki\Extensions\Bootstrap\Tests\Definition;
 
-use Bootstrap\Definition\V4ModuleDefinition;
-use Bootstrap\BootstrapManager;
+use MediaWiki\Extensions\Bootstrap\Definition\V4ModuleDefinition;
+use MediaWiki\Extensions\Bootstrap\BootstrapManager;
 
 /**
  * @uses \Bootstrap\Definition\V4ModuleDefinition

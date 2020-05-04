@@ -23,10 +23,10 @@
  * @ingroup   Bootstrap
  */
 
-namespace Bootstrap;
+namespace MediaWiki\Extensions\Bootstrap;
 
-use Bootstrap\Definition\V4ModuleDefinition;
-use Bootstrap\Definition\ModuleDefinition;
+use MediaWiki\Extensions\Bootstrap\Definition\V4ModuleDefinition;
+use MediaWiki\Extensions\Bootstrap\Definition\ModuleDefinition;
 
 /**
  * Class managing the Bootstrap framework.

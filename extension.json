@@ -13,6 +13,10 @@
 	"requires": {
 		"MediaWiki": ">= 1.27.0"
 	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extensions\\Bootstrap\\": "src/",
+		"MediaWiki\\Extensions\\Bootstrap\\Tests\\": "tests/phpunit/"
+	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
 		"remoteExtPath": "Bootstrap"
@@ -22,7 +26,7 @@
 	"MessagesDirs": {
 		"Bootstrap": "i18n"
 	},
-	"callback": "\\Bootstrap\\Bootstrap::init",
+	"callback": "\\MediaWiki\\Extensions\\Bootstrap\\Bootstrap::init",
 	"load_composer_autoloader": true,
 	"manifest_version": 2
 }

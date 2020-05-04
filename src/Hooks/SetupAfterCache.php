@@ -23,7 +23,7 @@
  * @ingroup Bootstrap
  */
 
-namespace Bootstrap\Hooks;
+namespace MediaWiki\Extensions\Bootstrap\Hooks;
 
 use RuntimeException;
 use InvalidArgumentException;
