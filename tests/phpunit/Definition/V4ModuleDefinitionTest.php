@@ -3,7 +3,7 @@
  * File holding the V4ModuleDefinitionTest class
  *
  * @copyright (C) 2013-2018, Stephan Gambke
- * @license       http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @license       GPL-3.0-or-later
  *
  * This file is part of the MediaWiki extension Bootstrap.
  * The Bootstrap extension is free software: you can redistribute it and/or
@@ -25,8 +25,8 @@
 
 namespace Bootstrap\Tests\Definition;
 
-use Bootstrap\Definition\V4ModuleDefinition;
 use Bootstrap\BootstrapManager;
+use Bootstrap\Definition\V4ModuleDefinition;
 
 /**
  * @uses \Bootstrap\Definition\V4ModuleDefinition
@@ -41,10 +41,12 @@ use Bootstrap\BootstrapManager;
  *
  * @author mwjames
  */
-class V4ModuleDefinitionTest extends \PHPUnit_Framework_TestCase {
+class V4ModuleDefinitionTest extends \PHPUnit\Framework\TestCase {
 
+	/**
+	 * @covers V4ModuleDefinition
+	 */
 	public function testCanConstruct() {
-
 		$this->assertInstanceOf(
 			'\Bootstrap\Definition\ModuleDefinition',
 			new V4ModuleDefinition()
@@ -53,27 +55,31 @@ class V4ModuleDefinitionTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider keyProvider
+	 * @covers V4ModuleDefinition
 	 */
 	public function testGet( $key ) {
-
 		$instance = new V4ModuleDefinition();
 
-		$this->assertInternalType(
-			'array',
+		$this->assertIsArray(
+
 			$instance->get( $key )
 		);
 	}
 
+	/**
+	 * @covers V4ModuleDefinition
+	 */
 	public function testBootstrapManagerIntegration() {
-
 		$instance = new BootstrapManager( new V4ModuleDefinition() );
 		$instance->addAllBootstrapModules();
 
 		$this->assertTrue( true );
 	}
 
+	/**
+	 * @covers V4ModuleDefinition
+	 */
 	public function testGetOnInvalidKeyThrowsException() {
-
 		$instance = new V4ModuleDefinition();
 
 		$this->expectException( \InvalidArgumentException::class );
@@ -81,7 +87,6 @@ class V4ModuleDefinitionTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function keyProvider() {
-
 		$provider = [
 			[ 'core' ],
 			[ 'optional' ],

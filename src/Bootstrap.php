@@ -14,7 +14,7 @@
  * The main file of the Bootstrap extension
  *
  * @copyright 2013 - 2019, Stephan Gambke
- * @license   https://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @license   GPL-3.0-or-later
  *
  * This file is part of the MediaWiki extension Bootstrap.
  * The Bootstrap extension is free software: you can redistribute it and/or
@@ -50,13 +50,13 @@ class Bootstrap {
 	 * @throws \Exception
 	 */
 	public static function init() {
-
 		$GLOBALS[ 'wgHooks' ][ 'SetupAfterCache' ][] = function () {
-
 			$configuration = [];
 			$configuration[ 'IP' ] = $GLOBALS[ 'IP' ];
-			$configuration[ 'remoteBasePath' ] = $GLOBALS[ 'wgExtensionAssetsPath' ] . '/Bootstrap/resources/bootstrap';
-			$configuration[ 'localBasePath' ] = $GLOBALS[ 'wgExtensionDirectory' ] . '/Bootstrap/resources/bootstrap';
+			$configuration[ 'remoteBasePath' ] =
+				$GLOBALS[ 'wgExtensionAssetsPath' ] . '/Bootstrap/resources/bootstrap';
+			$configuration[ 'localBasePath' ] =
+				$GLOBALS[ 'wgExtensionDirectory' ] . '/Bootstrap/resources/bootstrap';
 
 			$setupAfterCache = new SetupAfterCache( $configuration );
 			$setupAfterCache->process();

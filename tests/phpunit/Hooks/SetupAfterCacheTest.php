@@ -3,7 +3,7 @@
  * File holding the SetupAfterCacheTest class
  *
  * @copyright (C) 2013-2018, Stephan Gambke
- * @license       http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @license       GPL-3.0-or-later
  *
  * This file is part of the MediaWiki extension Bootstrap.
  * The Bootstrap extension is free software: you can redistribute it and/or
@@ -40,18 +40,20 @@ use Bootstrap\Hooks\SetupAfterCache;
  *
  * @author mwjames
  */
-class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
+class SetupAfterCacheTest extends \PHPUnit\Framework\TestCase {
 
 	protected $localBasePath = null;
 	protected $localBootstrapVendorPath = null;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->localBootstrapVendorPath = __DIR__ . '/../../../resources/bootstrap';
 	}
 
+	/**
+	 * @covers \Bootstrap\Hooks\SetupAfterCache
+	 */
 	public function testCanConstruct() {
-
 		$configuration = [];
 
 		$this->assertInstanceOf(
@@ -60,8 +62,10 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * @covers \Bootstrap\Hooks\SetupAfterCache
+	 */
 	public function testProcessWithAccessibilityOnBootstrapVendorPath() {
-
 		$configuration = [
 			'localBasePath'  => $this->localBootstrapVendorPath,
 			'remoteBasePath' => '',
@@ -73,8 +77,10 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue( $instance->process() );
 	}
 
+	/**
+	 * @covers \Bootstrap\Hooks\SetupAfterCache
+	 */
 	public function testProcessWithAccessibilityOnAddedLocalResourcePaths() {
-
 		$configuration = [
 			'localBasePath'  => $this->localBootstrapVendorPath,
 			'remoteBasePath' => '',
@@ -95,17 +101,19 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * @dataProvider invalidConfigurationProvider
+	 * @covers \Bootstrap\Hooks\SetupAfterCache
 	 */
 	public function testProcessOnInvalidConfigurationThrowsException( $configuration ) {
-
 		$instance = new SetupAfterCache( $configuration );
 
 		$this->expectException( \InvalidArgumentException::class );
 		$instance->process();
 	}
 
+	/**
+	 * @covers \Bootstrap\Hooks\SetupAfterCache
+	 */
 	public function testProcessOnInvalidLocalPathThrowsException() {
-
 		$configuration = [
 			'localBasePath'  => 'Foo',
 			'remoteBasePath' => '',
@@ -119,7 +127,6 @@ class SetupAfterCacheTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function invalidConfigurationProvider() {
-
 		$provider = [];
 		$provider[] = [ [] ];
 		$provider[] = [ [ 'localBasePath' => 'Foo' ] ];
