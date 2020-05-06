@@ -3,7 +3,7 @@
  * File holding the BootstrapManagerTest class
  *
  * @copyright (C) 2013-2018, Stephan Gambke
- * @license       http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @license       GPL-3.0-or-later
  *
  * This file is part of the MediaWiki extension Bootstrap.
  * The Bootstrap extension is free software: you can redistribute it and/or
@@ -40,11 +40,11 @@ use Bootstrap\BootstrapManager;
  *
  * @author mwjames
  */
-class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
+class BootstrapManagerTest extends \PHPUnit\Framework\TestCase {
 
 	protected $wgResourceModules = null;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->wgResourceModules = $GLOBALS['wgResourceModules'];
 
@@ -66,15 +66,17 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 		];
 	}
 
-	protected function tearDown() {
+	protected function tearDown() : void {
 		$GLOBALS['wgResourceModules'] = $this->wgResourceModules;
 		BootstrapManager::clear();
 
 		parent::tearDown();
 	}
 
+	/**
+	 * @covers \Bootstrap\BootstrapManager
+	 */
 	public function testCanConstruct() {
-
 		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
 			->disableOriginalConstructor()
 			->setMethods( [ 'get' ] )
@@ -97,8 +99,10 @@ class BootstrapManagerTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * @covers \Bootstrap\BootstrapManager
+	 */
 	public function testSetLessVariables() {
-
 		$moduleDefinition = $this->getMockBuilder( '\Bootstrap\Definition\ModuleDefinition' )
 			->disableOriginalConstructor()
 			->setMethods( [ 'get' ] )

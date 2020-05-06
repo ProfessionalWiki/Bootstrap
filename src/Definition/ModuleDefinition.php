@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright 2013 - 2019, Stephan Gambke
- * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @license   GPL-3.0-or-later
  *
  * This file is part of the MediaWiki extension Bootstrap.
  * The Bootstrap extension is free software: you can redistribute it and/or

@@ -6,6 +6,7 @@
  * php mw-phpunit-runner.php [options]
  */
 
+// @codingStandardsIgnoreFile
 if ( php_sapi_name() !== 'cli' ) {
 	die( 'Not an entry point' );
 }
@@ -13,7 +14,6 @@ if ( php_sapi_name() !== 'cli' ) {
 print( "\nMediaWiki phpunit runnner ... \n" );
 
 function isReadablePath( $path ) {
-
 	if ( is_readable( $path ) ) {
 		return $path;
 	}
@@ -22,7 +22,6 @@ function isReadablePath( $path ) {
 }
 
 function addArguments( $args ) {
-
 	$arguments = [];
 
 	for ( $arg = reset( $args ); $arg !== false; $arg = next( $args ) ) {

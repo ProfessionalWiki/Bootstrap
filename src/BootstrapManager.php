@@ -3,7 +3,7 @@
  * File holding the BootstrapManager class
  *
  * @copyright 2013 - 2019, Stephan Gambke
- * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @license   GPL-3.0-or-later
  *
  * This file is part of the MediaWiki extension Bootstrap.
  * The Bootstrap extension is free software: you can redistribute it and/or
@@ -25,8 +25,8 @@
 
 namespace Bootstrap;
 
-use Bootstrap\Definition\V4ModuleDefinition;
 use Bootstrap\Definition\ModuleDefinition;
+use Bootstrap\Definition\V4ModuleDefinition;
 
 /**
  * Class managing the Bootstrap framework.
@@ -62,7 +62,6 @@ class BootstrapManager {
 	 * @return BootstrapManager
 	 */
 	public static function getInstance() {
-
 		if ( self::$instance === null ) {
 			self::$instance = new self( new V4ModuleDefinition );
 		}
@@ -85,8 +84,7 @@ class BootstrapManager {
 	 * @param string|string[] $modules
 	 */
 	public function addBootstrapModule( $modules ) {
-
-		$modules = (array) $modules;
+		$modules = (array)$modules;
 
 		foreach ( $modules as $module ) {
 
@@ -113,14 +111,14 @@ class BootstrapManager {
 	}
 
 	/**
-	 * @param string       $filetype 'styles'|'scripts'
-	 * @param mixed[]      $description
+	 * @param string $filetype 'styles'|'scripts'
+	 * @param mixed[] $description
 	 */
-	protected function addFilesToGlobalResourceModules ( $filetype, $description ) {
-
+	protected function addFilesToGlobalResourceModules( $filetype, $description ) {
 		if ( isset( $description[ $filetype ] ) ) {
 
-			$this->adjustArrayElementOfResourceModuleDescription( $filetype, $description[ $filetype ], $filetype );
+			$this->adjustArrayElementOfResourceModuleDescription( $filetype,
+				$description[ $filetype ], $filetype );
 
 		}
 	}
@@ -152,13 +150,14 @@ class BootstrapManager {
 	 * @internal param string $path
 	 */
 	public function addStyleFile( $path, $position = 'main' ) {
-		$this->adjustArrayElementOfResourceModuleDescription( 'styles', [ $path => [ 'position' => $position ] ] );
+		$this->adjustArrayElementOfResourceModuleDescription( 'styles',
+			[ $path => [ 'position' => $position ] ] );
 	}
 
 	/**
 	 * @since  4.0
 	 *
-	 * @param string $key   the SCSS variable name
+	 * @param string $key the SCSS variable name
 	 * @param string $value the value to assign to the variable
 	 */
 	public function setScssVariable( $key, $value ) {
@@ -178,25 +177,25 @@ class BootstrapManager {
 	 * @since 1.1
 	 * @param string|string[] $files
 	 */
-	public function addCacheTriggerFile( $files ){
+	public function addCacheTriggerFile( $files ) {
 		$this->adjustArrayElementOfResourceModuleDescription( 'cacheTriggers', $files );
 	}
 
 	/**
 	 * @param string $key
-	 * @param mixed  $value
+	 * @param mixed $value
 	 * @param string $filetype 'styles'|'scripts'
 	 */
-	protected function adjustArrayElementOfResourceModuleDescription( $key, $value, $filetype = 'styles' ) {
-
-		if (!isset($GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ])) {
+	protected function adjustArrayElementOfResourceModuleDescription( $key, $value,
+		$filetype = 'styles' ) {
+		if ( !isset( $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] ) ) {
 			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] = [];
 		}
 
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] =
 			array_merge(
 				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ],
-				(array) $value
+				(array)$value
 			);
 	}
 }

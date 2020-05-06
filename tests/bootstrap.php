@@ -1,5 +1,6 @@
 <?php
 
+// @codingStandardsIgnoreFile
 if ( php_sapi_name() !== 'cli' ) {
 	die( 'Not an entry point' );
 }
@@ -14,7 +15,6 @@ function registerAutoloaderPath( $identifier, $path ) {
 }
 
 function runTestAutoLoader() {
-
 	$mwVendorPath = __DIR__ . '/../../../vendor/autoload.php';
 	$localVendorPath = __DIR__ . '/../vendor/autoload.php';
 

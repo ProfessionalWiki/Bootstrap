@@ -1,7 +1,7 @@
 <?php
 /**
  * @copyright 2013 - 2019, Stephan Gambke
- * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License, version 3 (or later)
+ * @license   GPL-3.0-or-later
  *
  * This file is part of the MediaWiki extension Bootstrap.
  * The Bootstrap extension is free software: you can redistribute it and/or
@@ -33,9 +33,10 @@ use InvalidArgumentException;
  */
 class V4ModuleDefinition implements ModuleDefinition {
 
-	static private $moduleDescriptions = [
+	private static $moduleDescriptions = [
 		'functions'         => [ 'styles' => [ 'functions' => [ 'position' => 'functions' ] ] ],
-		'variables'         => [ 'styles' => [ 'variables' => [ 'position' => 'variables' ] ], 'dependencies' => 'functions' ],
+		'variables'         => [ 'styles' =>
+			[ 'variables' => [ 'position' => 'variables' ] ], 'dependencies' => 'functions' ],
 		'mixins'            => [ 'styles' => 'mixins' ],
 		'root'              => [ 'styles' => 'root' ],
 		'reboot'            => [ 'styles' => 'reboot' ],
@@ -47,7 +48,8 @@ class V4ModuleDefinition implements ModuleDefinition {
 		'forms'             => [ 'styles' => 'forms' ],
 		'buttons'           => [ 'styles' => 'buttons' ],
 		'transitions'       => [ 'styles' => 'transitions' ],
-		'dropdown'          => [ 'styles' => 'dropdown', 'scripts' => 'dropdown.js', 'dependencies' => [ 'popper', 'js-util' ] ],
+		'dropdown'          => [ 'styles' =>
+			'dropdown', 'scripts' => 'dropdown.js', 'dependencies' => [ 'popper', 'js-util' ] ],
 		'button-group'      => [ 'styles' => 'button-group', 'dependencies' => [ 'buttons' ] ],
 		'input-group'       => [ 'styles' => 'input-group', 'dependencies' => [ 'forms' ] ],
 		'custom-forms'      => [ 'styles' => 'custom-forms' ],
@@ -63,11 +65,14 @@ class V4ModuleDefinition implements ModuleDefinition {
 		'media'             => [ 'styles' => 'media' ],
 		'list-group'        => [ 'styles' => 'list-group' ],
 		'close'             => [ 'styles' => 'close' ],
-		'toasts'            => [ 'styles' => 'toasts', 'scripts' => 'toast.js', 'dependencies' => 'js-util' ],
+		'toasts'            => [ 'styles' =>
+			'toasts', 'scripts' => 'toast.js', 'dependencies' => 'js-util' ],
 		'modal'             => [ 'styles' => 'modal', 'scripts' => 'modal.js' ],
 		'tooltip'           => [ 'styles' => 'tooltip', 'dependencies' => [ 'popper', 'js-util' ] ],
-		'popover'           => [ 'styles' => 'popover', 'dependencies' => [ 'popper', 'tooltip', 'js-util' ] ],
-		'carousel'          => [ 'styles' => 'carousel', 'scripts' => 'carousel.js', 'dependencies' => 'js-util' ],
+		'popover'           => [ 'styles' =>
+			'popover', 'dependencies' => [ 'popper', 'tooltip', 'js-util' ] ],
+		'carousel'          => [ 'styles' =>
+			'carousel', 'scripts' => 'carousel.js', 'dependencies' => 'js-util' ],
 		'spinners'          => [ 'styles' => 'spinners' ],
 		'utilities'         => [ 'styles' => 'utilities' ],
 		'print'             => [ 'styles' => 'print' ],
@@ -98,14 +103,13 @@ class V4ModuleDefinition implements ModuleDefinition {
 			'dismissable-alert', 'collapse', 'scrollspy', 'tab', 'js-util',
 		] ],
 
-
 		// TODO: Add each SCSS util separately?
 		// TODO: Add each SCSS mixin module separately?
 
 	];
 
-	static private $coreModules = [	'bs-core' ];
-	static private $optionalModules = [ 'bs-all' ];
+	private static $coreModules = [ 'bs-core' ];
+	private static $optionalModules = [ 'bs-all' ];
 
 	/**
 	 * @see ModuleDefinition::get
@@ -118,7 +122,6 @@ class V4ModuleDefinition implements ModuleDefinition {
 	 * @throws InvalidArgumentException
 	 */
 	public function get( $key ) {
-
 		switch ( $key ) {
 			case 'core':
 				return self::$coreModules;

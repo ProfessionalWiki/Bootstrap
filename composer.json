@@ -39,6 +39,15 @@
 		"composer/installers": "^1.0.1",
 		"mediawiki/scss": "~2.0"
 	},
+	"require-dev": {
+		"mediawiki/mediawiki-codesniffer": "30.0.0"
+	},
+	"scripts": {
+		"test": [
+			"phpcs -p -s"
+		],
+		"fix": "phpcbf"
+	},
 	"extra": {
 		"branch-alias": {
 			"dev-master": "4.x-dev"
