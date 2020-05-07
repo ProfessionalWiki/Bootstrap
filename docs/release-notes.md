@@ -1,5 +1,11 @@
 ## Release Notes
 
+### MediaWiki Bootstrap 4.2.0
+
+Released on May 7, 2020.
+
+* Added support for installation without Composer (thanks @cicalese)
+
 ### MediaWiki Bootstrap 4.1.0
 
 Released on April 21, 2020.
