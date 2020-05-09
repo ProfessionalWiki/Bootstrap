@@ -56,7 +56,9 @@ class SetupAfterCache {
 	/**
 	 * Process the hook
 	 *
+	 * @codingStandardsIgnoreStart
 	 * @callgraph
+	 * @codingStandardsIgnoreEnd
 	 *
 	 * @since 1.0
 	 *
