@@ -56,8 +56,6 @@ class SetupAfterCache {
 	/**
 	 * Process the hook
 	 *
-	 * @callgraph
-	 *
 	 * @since 1.0
 	 *
 	 * @throws InvalidArgumentException
