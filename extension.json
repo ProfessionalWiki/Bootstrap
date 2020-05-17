@@ -21,8 +21,6 @@
 		"localBasePath": "",
 		"remoteExtPath": "Bootstrap"
 	},
-	"ResourceModules": {
-	},
 	"MessagesDirs": {
 		"Bootstrap": "i18n"
 	},
