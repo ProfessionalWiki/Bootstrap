@@ -14,7 +14,9 @@
 		"MediaWiki": ">= 1.35.0"
 	},
 	"AutoloadNamespaces": {
-		"Bootstrap\\": "src/",
+		"Bootstrap\\": "src/"
+	},
+	"TestAutoloadNamespaces": {
 		"Bootstrap\\Tests\\": "tests/phpunit/"
 	},
 	"ResourceFileModulePaths": {
