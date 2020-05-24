@@ -71,6 +71,7 @@ class BootstrapManager {
 
 	/**
 	 * @since  1.0
+	 * @suppress PhanTypeMismatchProperty
 	 */
 	public static function clear() {
 		self::$instance = null;
