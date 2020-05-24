@@ -36,10 +36,10 @@ use Bootstrap\Definition\V4ModuleDefinition;
  */
 class BootstrapManager {
 
-	/** @var ModuleDefinition */
+	/** @var ModuleDefinition|null */
 	protected $moduleDefinition = null;
 
-	/** @var BootstrapManager */
+	/** @var BootstrapManager|null */
 	private static $instance = null;
 
 	private $moduleDescriptions;
@@ -71,7 +71,6 @@ class BootstrapManager {
 
 	/**
 	 * @since  1.0
-	 * @suppress PhanTypeMismatchProperty
 	 */
 	public static function clear() {
 		self::$instance = null;
