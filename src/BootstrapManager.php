@@ -36,10 +36,10 @@ use Bootstrap\Definition\V4ModuleDefinition;
  */
 class BootstrapManager {
 
-	/** @var ModuleDefinition */
+	/** @var ModuleDefinition|null */
 	protected $moduleDefinition = null;
 
-	/** @var BootstrapManager */
+	/** @var BootstrapManager|null */
 	private static $instance = null;
 
 	private $moduleDescriptions;
