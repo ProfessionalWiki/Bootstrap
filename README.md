@@ -38,6 +38,7 @@ the [SCSS library][scss] before you enable Bootstrap.
    ```php
    wfLoadExtension( 'Bootstrap' );
    ``` 
+
 4. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
    extension is successfully installed.
 
