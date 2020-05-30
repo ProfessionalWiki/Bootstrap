@@ -46,24 +46,22 @@ depends on.
 
 ### Installation without Composer
 
-1. Install and enable the [Bootstrap][bootstrap] extension.
-
-2. [Download][download] Bootstrap and place the file(s) in a directory called Bootstrap in your
+1. [Download][download] Bootstrap and place the file(s) in a directory called Bootstrap in your
     skins/ folder. 
 
-3. In the MediaWiki installation directory, add `"extensions/Bootstrap/composer.json`
+2. In the MediaWiki installation directory, add `"extensions/Bootstrap/composer.json`
    to the `include` section of the `merge-plugin` section in the file `composer.local.json`.
 
-4. Still in the MediaWiki installation directory, from a command line run<br>
+3. Still in the MediaWiki installation directory, from a command line run<br>
    `composer update --no-dev -o`.
 
-5. Add the following code at the bottom of your LocalSettings.php:
+4. Add the following code at the bottom of your LocalSettings.php:
 
 ```php
 wfLoadExtension( 'Bootstrap' );
 ```
 
-6. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the skin
+5. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the skin
    is successfully installed.
 
 ## Documentation
@@ -87,7 +85,7 @@ version 3][license] (or any later version).
 [bootstrap]: https://getbootstrap.com
 [mw-bootstrap]: https://www.mediawiki.org/wiki/Extension:Bootstrap
 [mw-bootstrap-talk]: https://www.mediawiki.org/wiki/Extension_Talk:Bootstrap
-[mw-testing]: https://www.mediawiki.org/wiki/Manual:PHP_unit_testing
+[download]: https://github.com/ProfessionalWiki/Bootstrap/archive/master.zip
 [scss]: https://github.com/professionalwiki/SCSS
 [composer]: https://getcomposer.org/
 [license]: https://www.gnu.org/copyleft/gpl.html
