@@ -16,36 +16,41 @@ This version of the extension provides Bootstrap 4.3.1.
 
 ## Installation
 
-There are two methods for installing Bootstrap: with or without [Composer][composer].
+There are two methods for installing Bootstrap. You can select the method that best fits your
+environment.
 
-If you install Bootstrap with Composer, further required software packages will be installed
+### Method 1
+
+If you install Bootstrap with [Composer](composer), further required software packages will be installed
 automatically. In this case, it is *not* necessary to install any dependencies. Composer will
 take care of that.
 
-If you install Bootstrap without Composer, you will still need to use Composer to install
-the [SCSS library][scss] before you enable Bootstrap.
+1. On a command line go to your MediaWiki installation directory and run these two commands
 
-### Installation with Composer
+```
+COMPOSER=composer.local.json composer require --no-update mediawiki/bootstrap:~4.0
 
-1. In the MediaWiki installation directory, add `"mediawiki/bootstrap":"~4.0"`
-   to the `require` section in the file `composer.local.json`.
-   
-2. Still in the MediaWiki installation directory, from a command line run<br>
-   `composer update "mediawiki/bootstrap"`.
+composer update mediawiki/bootstrap --no-dev -o
+```
 
-3. Load the extension by adding the following line to `LocalSettings.php`:
+Then, open `LocalSettings.php` in an editor, and add the following lines:
+
+2. Load the extension by adding the following line to `LocalSettings.php`:
 
    ```php
    wfLoadExtension( 'Bootstrap' );
    ``` 
 
-4. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
+3. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
    extension is successfully installed.
 
 **Remark:** It is _NOT_ necessary to install or load any extensions this extensions
 depends on.
 
-### Installation without Composer
+### Method 2
+
+If you install Bootstrap without Composer, you will still need to use Composer to install
+the [SCSS library][scss] before you enable Bootstrap.
 
 1. [Download][download] Bootstrap and place the file(s) in a directory called Bootstrap in your
     extensions/ folder. 
