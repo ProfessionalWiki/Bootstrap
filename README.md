@@ -47,7 +47,7 @@ depends on.
 ### Installation without Composer
 
 1. [Download][download] Bootstrap and place the file(s) in a directory called Bootstrap in your
-    skins/ folder. 
+    extensions/ folder. 
 
 2. In the MediaWiki installation directory, add `"extensions/Bootstrap/composer.json`
    to the `include` section of the `merge-plugin` section in the file `composer.local.json`.
@@ -61,7 +61,7 @@ depends on.
 wfLoadExtension( 'Bootstrap' );
 ```
 
-5. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the skin
+5. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the extension
    is successfully installed.
 
 ## Documentation
