@@ -31,7 +31,7 @@ the [SCSS library][scss] before you enable Bootstrap.
    to the `require` section in the file `composer.local.json`.
    
 2. Still in the MediaWiki installation directory, from a command line run<br>
-   `composer update "mediawiki/bootstrap --no-dev -o"`.
+   `composer update "mediawiki/bootstrap"`.
 
 3. Load the extension by adding the following line to `LocalSettings.php`:
 
@@ -65,7 +65,7 @@ depends on.
 ```
 
 3. Still in the MediaWiki installation directory, from a command line run<br>
-   `composer update --no-dev -o`.
+   `composer update`.
 
 4. Add the following code at the bottom of your LocalSettings.php:
 
