@@ -50,7 +50,19 @@ depends on.
     extensions/ folder. 
 
 2. In the MediaWiki installation directory, add `"extensions/Bootstrap/composer.json`
-   to the `include` section of the `merge-plugin` section in the file `composer.local.json`.
+   to the `extra/merge-plugin/include` section in the file `composer.local.json`.
+   For example,
+```
+{
+	"extra": {
+		"merge-plugin": {
+			"include": [
+				"extensions/Bootstrap/composer.json"
+			]
+		}
+	}
+}
+```
 
 3. Still in the MediaWiki installation directory, from a command line run<br>
    `composer update --no-dev -o`.
