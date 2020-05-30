@@ -40,7 +40,7 @@ use Bootstrap\Hooks\SetupAfterCache;
  *
  * @author mwjames
  */
-class SetupAfterCacheTest extends \PHPUnit\Framework\TestCase {
+class SetupAfterCacheTest extends \MediaWikiTestCase {
 
 	protected $localBasePath = null;
 	protected $localBootstrapVendorPath = null;

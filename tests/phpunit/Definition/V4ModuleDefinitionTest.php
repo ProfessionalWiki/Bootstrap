@@ -41,10 +41,10 @@ use Bootstrap\Definition\V4ModuleDefinition;
  *
  * @author mwjames
  */
-class V4ModuleDefinitionTest extends \PHPUnit\Framework\TestCase {
+class V4ModuleDefinitionTest extends \MediaWikiTestCase {
 
 	/**
-	 * @covers V4ModuleDefinition
+	 * @covers \Bootstrap\Definition\V4ModuleDefinition
 	 */
 	public function testCanConstruct() {
 		$this->assertInstanceOf(
@@ -55,7 +55,7 @@ class V4ModuleDefinitionTest extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider keyProvider
-	 * @covers V4ModuleDefinition
+	 * @covers \Bootstrap\Definition\V4ModuleDefinition
 	 */
 	public function testGet( $key ) {
 		$instance = new V4ModuleDefinition();
@@ -67,7 +67,7 @@ class V4ModuleDefinitionTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers V4ModuleDefinition
+	 * @covers \Bootstrap\Definition\V4ModuleDefinition
 	 */
 	public function testBootstrapManagerIntegration() {
 		$instance = new BootstrapManager( new V4ModuleDefinition() );
@@ -77,7 +77,7 @@ class V4ModuleDefinitionTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers V4ModuleDefinition
+	 * @covers \Bootstrap\Definition\V4ModuleDefinition
 	 */
 	public function testGetOnInvalidKeyThrowsException() {
 		$instance = new V4ModuleDefinition();
