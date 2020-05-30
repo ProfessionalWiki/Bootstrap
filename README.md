@@ -33,8 +33,6 @@ COMPOSER=composer.local.json composer require --no-update mediawiki/bootstrap:~4
 composer update mediawiki/bootstrap --no-dev -o
 ```
 
-Then, open `LocalSettings.php` in an editor, and add the following lines:
-
 2. Load the extension by adding the following line to `LocalSettings.php`:
 
    ```php
