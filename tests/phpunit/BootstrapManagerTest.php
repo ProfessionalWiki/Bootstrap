@@ -40,7 +40,7 @@ use Bootstrap\BootstrapManager;
  *
  * @author mwjames
  */
-class BootstrapManagerTest extends \MediaWikiTestCase {
+class BootstrapManagerTest extends \PHPUnit\Framework\TestCase {
 
 	protected $wgResourceModules = null;
 

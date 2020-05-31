@@ -41,7 +41,7 @@ use Bootstrap\Definition\V4ModuleDefinition;
  *
  * @author mwjames
  */
-class V4ModuleDefinitionTest extends \MediaWikiTestCase {
+class V4ModuleDefinitionTest extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers \Bootstrap\Definition\V4ModuleDefinition
