@@ -36,7 +36,10 @@ function addArguments( $args ) {
 	return $arguments;
 }
 
-$mw = isReadablePath( __DIR__ . "/../../../tests/phpunit/phpunit.php" );
-$config = isReadablePath( __DIR__ . "/../phpunit.xml.dist" );
+$IP = getenv( 'MW_INSTALL_PATH' ) !== false
+	? str_replace( '\\', '/', getenv( 'MW_INSTALL_PATH' ) )
+	: __DIR__ . '/../../..';
 
-passthru( "php {$mw} -c {$config} " . implode( ' ', addArguments( $GLOBALS['argv'] ) ) );
+$mw = isReadablePath( $IP . "/tests/phpunit/phpunit.php" );
+
+passthru( "php {$mw} " . implode( ' ', addArguments( $GLOBALS['argv'] ) ) );
