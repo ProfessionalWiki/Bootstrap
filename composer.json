@@ -44,6 +44,12 @@
 		"mediawiki/mediawiki-phan-config": "0.10.2",
 		"php": ">=7.2"
 	},
+	"autoload": {
+		"psr-4": {
+			"Bootstrap\\": "src/",
+			"Bootstrap\\Tests\\" : "tests/phpunit/"
+		}
+	},
 	"scripts": {
 		"test": [
 			"phpcs -p -s"
