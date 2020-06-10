@@ -44,16 +44,6 @@ use Bootstrap\Definition\V4ModuleDefinition;
 class V4ModuleDefinitionTest extends \PHPUnit\Framework\TestCase {
 
 	/**
-	 * @covers \Bootstrap\Definition\V4ModuleDefinition
-	 */
-	public function testCanConstruct() {
-		$this->assertInstanceOf(
-			'\Bootstrap\Definition\ModuleDefinition',
-			new V4ModuleDefinition()
-		);
-	}
-
-	/**
 	 * @dataProvider keyProvider
 	 * @covers \Bootstrap\Definition\V4ModuleDefinition
 	 */
