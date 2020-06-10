@@ -1,5 +1,11 @@
 ## Release Notes
 
+### MediaWiki Bootstrap 4.2.1
+
+Released on June 10, 2020.
+
+* Fixed 4.2.0 regression that broke calls to `addCacheTriggerFile` from `LocalSettings.php`
+
 ### MediaWiki Bootstrap 4.2.0
 
 Released on May 7, 2020.
