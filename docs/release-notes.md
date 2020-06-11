@@ -23,7 +23,7 @@ Released on April 21, 2020.
 Released on April 29, 2019.
 
 * Use Bootstrap 4
-* Depends on MW 1.27+, PHP 5.6+
+* Requires MW 1.29+ and PHP 5.6+
 
 ### MediaWiki Bootstrap 1.3.0
 
@@ -31,7 +31,7 @@ Released on January 15, 2019,
 
 * Drop dependency on oyejorge/less.php compiler, just depend on the one used by
   MediaWiki core instead 
-* Raise minimum MW version to 1.27+
+* Requires MW 1.27+
 
 ### MediaWiki Bootstrap 1.2.4
 
