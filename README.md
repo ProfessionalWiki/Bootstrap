@@ -12,7 +12,7 @@ This version of the extension provides Bootstrap 4.3.1.
 ## Requirements
 
 - PHP 5.6 or later
-- MediaWiki 1.27 or later
+- MediaWiki 1.29 or later
 
 ## Installation
 
