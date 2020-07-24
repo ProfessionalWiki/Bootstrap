@@ -21,7 +21,7 @@ environment.
 
 ### Method 1
 
-If you install Bootstrap with [Composer](composer), further required software packages will be installed
+If you install Bootstrap with [Composer][composer], further required software packages will be installed
 automatically. In this case, it is *not* necessary to install any dependencies. Composer will
 take care of that.
 
@@ -106,3 +106,4 @@ version 3][license] (or any later version).
 [composer]: https://getcomposer.org/
 [license]: https://www.gnu.org/copyleft/gpl.html
 [contact-form]: https://professional.wiki/en/contact
+[composer]: https://www.mediawiki.org/wiki/Composer
