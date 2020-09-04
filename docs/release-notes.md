@@ -1,10 +1,14 @@
 ## Release Notes
 
-### MediaWiki Bootstrap 4.3.0
+### MediaWiki Bootstrap 4.4.0
 
 Released on September 4, 2020.
 
-* Bundled SCSS library to make installation without Composer possible
+* Restored 4.2.1 release
+
+### MediaWiki Bootstrap 4.3.x
+
+Broken version, do not use
 
 ### MediaWiki Bootstrap 4.2.1
 
@@ -29,7 +33,7 @@ Released on April 21, 2020.
 Released on April 29, 2019.
 
 * Use Bootstrap 4
-* Requires MW 1.29+ and PHP 5.6+
+* Depends on MW 1.27+, PHP 5.6+
 
 ### MediaWiki Bootstrap 1.3.0
 
@@ -37,7 +41,7 @@ Released on January 15, 2019,
 
 * Drop dependency on oyejorge/less.php compiler, just depend on the one used by
   MediaWiki core instead 
-* Requires MW 1.27+
+* Raise minimum MW version to 1.27+
 
 ### MediaWiki Bootstrap 1.2.4
 
