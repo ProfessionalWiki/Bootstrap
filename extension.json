@@ -6,7 +6,7 @@
 		"[https://professional.wiki/ Professional.Wiki]",
 		"James Hong Kong"
 	],
-	"version": "4.3.3",
+	"version": "4.3.4",
 	"url": "https://www.mediawiki.org/wiki/Extension:Bootstrap",
 	"descriptionmsg": "bootstrap-desc",
 	"license-name": "GPL-3.0-or-later",
@@ -16,7 +16,7 @@
 	"AutoloadNamespaces": {
 		"Bootstrap\\": "src/",
 		"Bootstrap\\Tests\\": "tests/phpunit/",
-		"SCSS\\": "SCSS/vendor/mediawiki/scss/src/",
+		"SCSS\\": "SCSS/",
 		"ScssPhp\\ScssPhp\\": "SCSS/vendor/scssphp/scssphp/src/"
 	},
 	"ResourceFileModulePaths": {

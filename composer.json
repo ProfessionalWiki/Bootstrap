@@ -53,7 +53,8 @@
 		],
 		"fix": "phpcbf",
 		"update-scss": [
-			"cd SCSS && composer require mediawiki/scss:dev-master --update-no-dev --no-cache"
+			"cd SCSS && composer require mediawiki/scss:dev-master --update-no-dev --no-cache",
+			"cp SCSS/vendor/mediawiki/scss/src/* SCSS/"
 		]
 	},
 	"extra": {
