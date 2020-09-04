@@ -16,14 +16,10 @@ This version of the extension provides Bootstrap 4.3.1.
 
 ## Installation
 
-There are two methods for installing Bootstrap. You can select the method that best fits your
-environment.
+There are two methods for installing Bootstrap: using composer and manual download.
+You can select the method that best fits your environment.
 
-### Method 1
-
-If you install Bootstrap with [Composer][composer], further required software packages will be installed
-automatically. In this case, it is *not* necessary to install any dependencies. Composer will
-take care of that.
+### Using Composer
 
 1. On a command line go to your MediaWiki installation directory and run these two commands
 
@@ -35,50 +31,26 @@ composer update mediawiki/bootstrap --no-dev -o
 
 2. Load the extension by adding the following line to `LocalSettings.php`:
 
-   ```php
-   wfLoadExtension( 'Bootstrap' );
-   ``` 
+```php
+wfLoadExtension( 'Bootstrap' );
+``` 
 
 3. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
    extension is successfully installed.
 
-**Remark:** It is _NOT_ necessary to install or load any extensions this extensions
-depends on.
-
-### Method 2
-
-If you install Bootstrap without Composer, you will still need to use Composer to install
-the [SCSS library][scss] before you enable Bootstrap.
+### Manual download
 
 1. [Download][download] Bootstrap and place the file(s) in a directory called Bootstrap in your
     extensions/ folder. 
 
-2. In the MediaWiki installation directory, add `"extensions/Bootstrap/composer.json`
-   to the `extra/merge-plugin/include` section in the file `composer.local.json`.
-   For example,
-```
-{
-	"extra": {
-		"merge-plugin": {
-			"include": [
-				"extensions/Bootstrap/composer.json"
-			]
-		}
-	}
-}
-```
-
-3. Still in the MediaWiki installation directory, from a command line run<br>
-   `composer update`.
-
-4. Add the following code at the bottom of your LocalSettings.php:
+2. Add the following code at the bottom of your LocalSettings.php:
 
 ```php
 wfLoadExtension( 'Bootstrap' );
 ```
 
-5. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the extension
-   is successfully installed.
+3. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
+   extension is successfully installed.
 
 ## Documentation
 

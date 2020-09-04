@@ -1,5 +1,11 @@
 ## Release Notes
 
+### MediaWiki Bootstrap 4.3.0
+
+Released on September 4, 2020.
+
+* Bundled SCSS library to make installation without Composer possible
+
 ### MediaWiki Bootstrap 4.2.1
 
 Released on June 10, 2020.
