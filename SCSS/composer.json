@@ -1,53 +1,5 @@
 {
-	"name": "mediawiki/scss",
-	"type": "library",
-	"description": "Allows using SCSS files for MediaWiki styling",
-	"keywords": [
-		"wiki",
-		"MediaWiki",
-		"extension",
-		"SCSS",
-		"Sass",
-		"resouce loader",
-		"resouceloader",
-		"SCSSPHP"
-	],
-	"homepage": "https://github.com/ProfessionalWiki/SCSS",
-	"readme": "README.md",
-	"license": "GPL-3.0-or-later",
-	"authors": [
-		{
-			"name": "Stephan Gambke",
-			"email": "s7eph4n@protonmail.com",
-			"role": "Developer"
-		},
-		{
-			"name": "Professional.Wiki",
-			"email": "info@professional.wiki",
-			"homepage": "https://professional.wiki",
-			"role": "Maintainer"
-		}
-	],
-	"support": {
-		"issues": "https://github.com/ProfessionalWiki/SCSS/issues",
-		"irc": "irc://irc.freenode.org/mediawiki",
-		"source": "https://github.com/ProfessionalWiki/SCSS",
-		"docs": "https://github.com/ProfessionalWiki/SCSS/tree/latest/docs",
-		"rss": "https://github.com/ProfessionalWiki/SCSS/releases.atom"
-	},
-	"require": {
-		"php": ">=5.6",
-		"scssphp/scssphp": "^1.0.9"
-	},
-	"autoload": {
-		"psr-4": {
-			"SCSS\\": "src/",
-			"SCSS\\Tests\\": "tests/phpunit/"
-		}
-	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "2.x-dev"
-		}
-	}
+    "require": {
+        "mediawiki/scss": "dev-master"
+    }
 }

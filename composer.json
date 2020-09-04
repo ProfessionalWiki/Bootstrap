@@ -47,10 +47,12 @@
 		"mediawiki/scss": "2.0.1"
 	},
 	"autoload": {
+		"files": [
+			"SCSS/vendor/autoload.php"
+		],
 		"psr-4": {
 			"Bootstrap\\": "src/",
-			"Bootstrap\\Tests\\" : "tests/phpunit/",
-			"SCSS\\": "SCSS/src/"
+			"Bootstrap\\Tests\\" : "tests/phpunit/"
 		}
 	},
 	"scripts": {
@@ -59,11 +61,7 @@
 		],
 		"fix": "phpcbf",
 		"update-scss": [
-			"rm -rf SCSS",
-			"wget https://github.com/ProfessionalWiki/SCSS/archive/master.zip",
-			"unzip master.zip",
-			"rm master.zip",
-			"mv SCSS-master SCSS"
+			"cd SCSS && composer require mediawiki/scss:dev-master --update-no-dev --no-cache"
 		]
 	},
 	"extra": {
