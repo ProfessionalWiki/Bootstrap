@@ -44,16 +44,8 @@
 		"php": ">=7.2"
 	},
 	"provide": {
-		"mediawiki/scss": "2.0.1"
-	},
-	"autoload": {
-		"files": [
-			"SCSS/vendor/autoload.php"
-		],
-		"psr-4": {
-			"Bootstrap\\": "src/",
-			"Bootstrap\\Tests\\" : "tests/phpunit/"
-		}
+		"mediawiki/scss": "2.0.1",
+		"scssphp/scssphp": "1.2"
 	},
 	"scripts": {
 		"test": [
