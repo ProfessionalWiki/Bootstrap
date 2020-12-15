@@ -68,7 +68,7 @@ class V4ModuleDefinition implements ModuleDefinition {
 		'toasts'            => [ 'styles' =>
 			'toasts', 'scripts' => 'toast.js', 'dependencies' => 'js-util' ],
 		'modal'             => [ 'styles' => 'modal', 'scripts' => 'modal.js' ],
-		'tooltip'           => [ 'styles' => 'tooltip', 'dependencies' => [ 'popper', 'js-util' ] ],
+		'tooltip'           => [ 'styles' => 'tooltip', 'scripts' => 'tooltip.js', 'dependencies' => [ 'popper', 'js-util' ] ],
 		'popover'           => [ 'styles' =>
 			'popover', 'dependencies' => [ 'popper', 'tooltip', 'js-util' ] ],
 		'carousel'          => [ 'styles' =>
