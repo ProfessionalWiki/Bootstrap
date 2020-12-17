@@ -70,7 +70,7 @@ class V4ModuleDefinition implements ModuleDefinition {
 		'modal'             => [ 'styles' => 'modal', 'scripts' => 'modal.js' ],
 		'tooltip'           => [ 'styles' => 'tooltip', 'scripts' => 'tooltip.js', 'dependencies' => [ 'popper', 'js-util' ] ],
 		'popover'           => [ 'styles' =>
-			'popover', 'dependencies' => [ 'popper', 'tooltip', 'js-util' ] ],
+			'popover', 'scripts' => 'popover.js', 'dependencies' => [ 'popper', 'tooltip', 'js-util' ] ],
 		'carousel'          => [ 'styles' =>
 			'carousel', 'scripts' => 'carousel.js', 'dependencies' => 'js-util' ],
 		'spinners'          => [ 'styles' => 'spinners' ],
