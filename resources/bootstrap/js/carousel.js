@@ -1,67 +1,24 @@
 /*!
-  * Bootstrap carousel.js v4.3.1 (https://getbootstrap.com/)
-  * Copyright 2011-2019 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+  * Bootstrap carousel.js v4.5.3 (https://getbootstrap.com/)
+  * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('jquery'), require('./util.js')) :
   typeof define === 'function' && define.amd ? define(['jquery', './util.js'], factory) :
-  (global = global || self, global.Carousel = factory(global.jQuery, global.Util));
-}(this, function ($, Util) { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Carousel = factory(global.jQuery, global.Util));
+}(this, (function ($, Util) { 'use strict';
 
-  $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
-  Util = Util && Util.hasOwnProperty('default') ? Util['default'] : Util;
+  function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
+  var $__default = /*#__PURE__*/_interopDefaultLegacy($);
+  var Util__default = /*#__PURE__*/_interopDefaultLegacy(Util);
 
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
-  }
+  function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-      });
-    } else {
-      obj[key] = value;
-    }
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-    return obj;
-  }
-
-  function _objectSpread(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-      var ownKeys = Object.keys(source);
-
-      if (typeof Object.getOwnPropertySymbols === 'function') {
-        ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-          return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-        }));
-      }
-
-      ownKeys.forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    }
-
-    return target;
-  }
-
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
   /**
    * ------------------------------------------------------------------------
    * Constants
@@ -69,11 +26,11 @@
    */
 
   var NAME = 'carousel';
-  var VERSION = '4.3.1';
+  var VERSION = '4.5.3';
   var DATA_KEY = 'bs.carousel';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
-  var JQUERY_NO_CONFLICT = $.fn[NAME];
+  var JQUERY_NO_CONFLICT = $__default['default'].fn[NAME];
   var ARROW_LEFT_KEYCODE = 37; // KeyboardEvent.which value for left arrow key
 
   var ARROW_RIGHT_KEYCODE = 39; // KeyboardEvent.which value for right arrow key
@@ -97,62 +54,50 @@
     wrap: 'boolean',
     touch: 'boolean'
   };
-  var Direction = {
-    NEXT: 'next',
-    PREV: 'prev',
-    LEFT: 'left',
-    RIGHT: 'right'
-  };
-  var Event = {
-    SLIDE: "slide" + EVENT_KEY,
-    SLID: "slid" + EVENT_KEY,
-    KEYDOWN: "keydown" + EVENT_KEY,
-    MOUSEENTER: "mouseenter" + EVENT_KEY,
-    MOUSELEAVE: "mouseleave" + EVENT_KEY,
-    TOUCHSTART: "touchstart" + EVENT_KEY,
-    TOUCHMOVE: "touchmove" + EVENT_KEY,
-    TOUCHEND: "touchend" + EVENT_KEY,
-    POINTERDOWN: "pointerdown" + EVENT_KEY,
-    POINTERUP: "pointerup" + EVENT_KEY,
-    DRAG_START: "dragstart" + EVENT_KEY,
-    LOAD_DATA_API: "load" + EVENT_KEY + DATA_API_KEY,
-    CLICK_DATA_API: "click" + EVENT_KEY + DATA_API_KEY
-  };
-  var ClassName = {
-    CAROUSEL: 'carousel',
-    ACTIVE: 'active',
-    SLIDE: 'slide',
-    RIGHT: 'carousel-item-right',
-    LEFT: 'carousel-item-left',
-    NEXT: 'carousel-item-next',
-    PREV: 'carousel-item-prev',
-    ITEM: 'carousel-item',
-    POINTER_EVENT: 'pointer-event'
-  };
-  var Selector = {
-    ACTIVE: '.active',
-    ACTIVE_ITEM: '.active.carousel-item',
-    ITEM: '.carousel-item',
-    ITEM_IMG: '.carousel-item img',
-    NEXT_PREV: '.carousel-item-next, .carousel-item-prev',
-    INDICATORS: '.carousel-indicators',
-    DATA_SLIDE: '[data-slide], [data-slide-to]',
-    DATA_RIDE: '[data-ride="carousel"]'
-  };
+  var DIRECTION_NEXT = 'next';
+  var DIRECTION_PREV = 'prev';
+  var DIRECTION_LEFT = 'left';
+  var DIRECTION_RIGHT = 'right';
+  var EVENT_SLIDE = "slide" + EVENT_KEY;
+  var EVENT_SLID = "slid" + EVENT_KEY;
+  var EVENT_KEYDOWN = "keydown" + EVENT_KEY;
+  var EVENT_MOUSEENTER = "mouseenter" + EVENT_KEY;
+  var EVENT_MOUSELEAVE = "mouseleave" + EVENT_KEY;
+  var EVENT_TOUCHSTART = "touchstart" + EVENT_KEY;
+  var EVENT_TOUCHMOVE = "touchmove" + EVENT_KEY;
+  var EVENT_TOUCHEND = "touchend" + EVENT_KEY;
+  var EVENT_POINTERDOWN = "pointerdown" + EVENT_KEY;
+  var EVENT_POINTERUP = "pointerup" + EVENT_KEY;
+  var EVENT_DRAG_START = "dragstart" + EVENT_KEY;
+  var EVENT_LOAD_DATA_API = "load" + EVENT_KEY + DATA_API_KEY;
+  var EVENT_CLICK_DATA_API = "click" + EVENT_KEY + DATA_API_KEY;
+  var CLASS_NAME_CAROUSEL = 'carousel';
+  var CLASS_NAME_ACTIVE = 'active';
+  var CLASS_NAME_SLIDE = 'slide';
+  var CLASS_NAME_RIGHT = 'carousel-item-right';
+  var CLASS_NAME_LEFT = 'carousel-item-left';
+  var CLASS_NAME_NEXT = 'carousel-item-next';
+  var CLASS_NAME_PREV = 'carousel-item-prev';
+  var CLASS_NAME_POINTER_EVENT = 'pointer-event';
+  var SELECTOR_ACTIVE = '.active';
+  var SELECTOR_ACTIVE_ITEM = '.active.carousel-item';
+  var SELECTOR_ITEM = '.carousel-item';
+  var SELECTOR_ITEM_IMG = '.carousel-item img';
+  var SELECTOR_NEXT_PREV = '.carousel-item-next, .carousel-item-prev';
+  var SELECTOR_INDICATORS = '.carousel-indicators';
+  var SELECTOR_DATA_SLIDE = '[data-slide], [data-slide-to]';
+  var SELECTOR_DATA_RIDE = '[data-ride="carousel"]';
   var PointerType = {
     TOUCH: 'touch',
     PEN: 'pen'
-    /**
-     * ------------------------------------------------------------------------
-     * Class Definition
-     * ------------------------------------------------------------------------
-     */
-
   };
+  /**
+   * ------------------------------------------------------------------------
+   * Class Definition
+   * ------------------------------------------------------------------------
+   */
 
-  var Carousel =
-  /*#__PURE__*/
-  function () {
+  var Carousel = /*#__PURE__*/function () {
     function Carousel(element, config) {
       this._items = null;
       this._interval = null;
@@ -164,7 +109,7 @@
       this.touchDeltaX = 0;
       this._config = this._getConfig(config);
       this._element = element;
-      this._indicatorsElement = this._element.querySelector(Selector.INDICATORS);
+      this._indicatorsElement = this._element.querySelector(SELECTOR_INDICATORS);
       this._touchSupported = 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0;
       this._pointerEvent = Boolean(window.PointerEvent || window.MSPointerEvent);
 
@@ -177,21 +122,22 @@
     // Public
     _proto.next = function next() {
       if (!this._isSliding) {
-        this._slide(Direction.NEXT);
+        this._slide(DIRECTION_NEXT);
       }
     };
 
     _proto.nextWhenVisible = function nextWhenVisible() {
-      // Don't call next when the page isn't visible
+      var $element = $__default['default'](this._element); // Don't call next when the page isn't visible
       // or the carousel or its parent isn't visible
-      if (!document.hidden && $(this._element).is(':visible') && $(this._element).css('visibility') !== 'hidden') {
+
+      if (!document.hidden && $element.is(':visible') && $element.css('visibility') !== 'hidden') {
         this.next();
       }
     };
 
     _proto.prev = function prev() {
       if (!this._isSliding) {
-        this._slide(Direction.PREV);
+        this._slide(DIRECTION_PREV);
       }
     };
 
@@ -200,8 +146,8 @@
         this._isPaused = true;
       }
 
-      if (this._element.querySelector(Selector.NEXT_PREV)) {
-        Util.triggerTransitionEnd(this._element);
+      if (this._element.querySelector(SELECTOR_NEXT_PREV)) {
+        Util__default['default'].triggerTransitionEnd(this._element);
         this.cycle(true);
       }
 
@@ -227,7 +173,7 @@
     _proto.to = function to(index) {
       var _this = this;
 
-      this._activeElement = this._element.querySelector(Selector.ACTIVE_ITEM);
+      this._activeElement = this._element.querySelector(SELECTOR_ACTIVE_ITEM);
 
       var activeIndex = this._getItemIndex(this._activeElement);
 
@@ -236,7 +182,7 @@
       }
 
       if (this._isSliding) {
-        $(this._element).one(Event.SLID, function () {
+        $__default['default'](this._element).one(EVENT_SLID, function () {
           return _this.to(index);
         });
         return;
@@ -248,14 +194,14 @@
         return;
       }
 
-      var direction = index > activeIndex ? Direction.NEXT : Direction.PREV;
+      var direction = index > activeIndex ? DIRECTION_NEXT : DIRECTION_PREV;
 
       this._slide(direction, this._items[index]);
     };
 
     _proto.dispose = function dispose() {
-      $(this._element).off(EVENT_KEY);
-      $.removeData(this._element, DATA_KEY);
+      $__default['default'](this._element).off(EVENT_KEY);
+      $__default['default'].removeData(this._element, DATA_KEY);
       this._items = null;
       this._config = null;
       this._element = null;
@@ -268,8 +214,8 @@
     ;
 
     _proto._getConfig = function _getConfig(config) {
-      config = _objectSpread({}, Default, config);
-      Util.typeCheckConfig(NAME, config, DefaultType);
+      config = _extends({}, Default, config);
+      Util__default['default'].typeCheckConfig(NAME, config, DefaultType);
       return config;
     };
 
@@ -280,7 +226,8 @@
         return;
       }
 
-      var direction = absDeltax / this.touchDeltaX; // swipe left
+      var direction = absDeltax / this.touchDeltaX;
+      this.touchDeltaX = 0; // swipe left
 
       if (direction > 0) {
         this.prev();
@@ -296,15 +243,15 @@
       var _this2 = this;
 
       if (this._config.keyboard) {
-        $(this._element).on(Event.KEYDOWN, function (event) {
+        $__default['default'](this._element).on(EVENT_KEYDOWN, function (event) {
           return _this2._keydown(event);
         });
       }
 
       if (this._config.pause === 'hover') {
-        $(this._element).on(Event.MOUSEENTER, function (event) {
+        $__default['default'](this._element).on(EVENT_MOUSEENTER, function (event) {
           return _this2.pause(event);
-        }).on(Event.MOUSELEAVE, function (event) {
+        }).on(EVENT_MOUSELEAVE, function (event) {
           return _this2.cycle(event);
         });
       }
@@ -365,27 +312,27 @@
         }
       };
 
-      $(this._element.querySelectorAll(Selector.ITEM_IMG)).on(Event.DRAG_START, function (e) {
+      $__default['default'](this._element.querySelectorAll(SELECTOR_ITEM_IMG)).on(EVENT_DRAG_START, function (e) {
         return e.preventDefault();
       });
 
       if (this._pointerEvent) {
-        $(this._element).on(Event.POINTERDOWN, function (event) {
+        $__default['default'](this._element).on(EVENT_POINTERDOWN, function (event) {
           return start(event);
         });
-        $(this._element).on(Event.POINTERUP, function (event) {
+        $__default['default'](this._element).on(EVENT_POINTERUP, function (event) {
           return end(event);
         });
 
-        this._element.classList.add(ClassName.POINTER_EVENT);
+        this._element.classList.add(CLASS_NAME_POINTER_EVENT);
       } else {
-        $(this._element).on(Event.TOUCHSTART, function (event) {
+        $__default['default'](this._element).on(EVENT_TOUCHSTART, function (event) {
           return start(event);
         });
-        $(this._element).on(Event.TOUCHMOVE, function (event) {
+        $__default['default'](this._element).on(EVENT_TOUCHMOVE, function (event) {
           return move(event);
         });
-        $(this._element).on(Event.TOUCHEND, function (event) {
+        $__default['default'](this._element).on(EVENT_TOUCHEND, function (event) {
           return end(event);
         });
       }
@@ -406,19 +353,17 @@
           event.preventDefault();
           this.next();
           break;
-
-        default:
       }
     };
 
     _proto._getItemIndex = function _getItemIndex(element) {
-      this._items = element && element.parentNode ? [].slice.call(element.parentNode.querySelectorAll(Selector.ITEM)) : [];
+      this._items = element && element.parentNode ? [].slice.call(element.parentNode.querySelectorAll(SELECTOR_ITEM)) : [];
       return this._items.indexOf(element);
     };
 
     _proto._getItemByDirection = function _getItemByDirection(direction, activeElement) {
-      var isNextDirection = direction === Direction.NEXT;
-      var isPrevDirection = direction === Direction.PREV;
+      var isNextDirection = direction === DIRECTION_NEXT;
+      var isPrevDirection = direction === DIRECTION_PREV;
 
       var activeIndex = this._getItemIndex(activeElement);
 
@@ -429,7 +374,7 @@
         return activeElement;
       }
 
-      var delta = direction === Direction.PREV ? -1 : 1;
+      var delta = direction === DIRECTION_PREV ? -1 : 1;
       var itemIndex = (activeIndex + delta) % this._items.length;
       return itemIndex === -1 ? this._items[this._items.length - 1] : this._items[itemIndex];
     };
@@ -437,27 +382,27 @@
     _proto._triggerSlideEvent = function _triggerSlideEvent(relatedTarget, eventDirectionName) {
       var targetIndex = this._getItemIndex(relatedTarget);
 
-      var fromIndex = this._getItemIndex(this._element.querySelector(Selector.ACTIVE_ITEM));
+      var fromIndex = this._getItemIndex(this._element.querySelector(SELECTOR_ACTIVE_ITEM));
 
-      var slideEvent = $.Event(Event.SLIDE, {
+      var slideEvent = $__default['default'].Event(EVENT_SLIDE, {
         relatedTarget: relatedTarget,
         direction: eventDirectionName,
         from: fromIndex,
         to: targetIndex
       });
-      $(this._element).trigger(slideEvent);
+      $__default['default'](this._element).trigger(slideEvent);
       return slideEvent;
     };
 
     _proto._setActiveIndicatorElement = function _setActiveIndicatorElement(element) {
       if (this._indicatorsElement) {
-        var indicators = [].slice.call(this._indicatorsElement.querySelectorAll(Selector.ACTIVE));
-        $(indicators).removeClass(ClassName.ACTIVE);
+        var indicators = [].slice.call(this._indicatorsElement.querySelectorAll(SELECTOR_ACTIVE));
+        $__default['default'](indicators).removeClass(CLASS_NAME_ACTIVE);
 
         var nextIndicator = this._indicatorsElement.children[this._getItemIndex(element)];
 
         if (nextIndicator) {
-          $(nextIndicator).addClass(ClassName.ACTIVE);
+          $__default['default'](nextIndicator).addClass(CLASS_NAME_ACTIVE);
         }
       }
     };
@@ -465,7 +410,7 @@
     _proto._slide = function _slide(direction, element) {
       var _this4 = this;
 
-      var activeElement = this._element.querySelector(Selector.ACTIVE_ITEM);
+      var activeElement = this._element.querySelector(SELECTOR_ACTIVE_ITEM);
 
       var activeElementIndex = this._getItemIndex(activeElement);
 
@@ -478,17 +423,17 @@
       var orderClassName;
       var eventDirectionName;
 
-      if (direction === Direction.NEXT) {
-        directionalClassName = ClassName.LEFT;
-        orderClassName = ClassName.NEXT;
-        eventDirectionName = Direction.LEFT;
+      if (direction === DIRECTION_NEXT) {
+        directionalClassName = CLASS_NAME_LEFT;
+        orderClassName = CLASS_NAME_NEXT;
+        eventDirectionName = DIRECTION_LEFT;
       } else {
-        directionalClassName = ClassName.RIGHT;
-        orderClassName = ClassName.PREV;
-        eventDirectionName = Direction.RIGHT;
+        directionalClassName = CLASS_NAME_RIGHT;
+        orderClassName = CLASS_NAME_PREV;
+        eventDirectionName = DIRECTION_RIGHT;
       }
 
-      if (nextElement && $(nextElement).hasClass(ClassName.ACTIVE)) {
+      if (nextElement && $__default['default'](nextElement).hasClass(CLASS_NAME_ACTIVE)) {
         this._isSliding = false;
         return;
       }
@@ -512,18 +457,18 @@
 
       this._setActiveIndicatorElement(nextElement);
 
-      var slidEvent = $.Event(Event.SLID, {
+      var slidEvent = $__default['default'].Event(EVENT_SLID, {
         relatedTarget: nextElement,
         direction: eventDirectionName,
         from: activeElementIndex,
         to: nextElementIndex
       });
 
-      if ($(this._element).hasClass(ClassName.SLIDE)) {
-        $(nextElement).addClass(orderClassName);
-        Util.reflow(nextElement);
-        $(activeElement).addClass(directionalClassName);
-        $(nextElement).addClass(directionalClassName);
+      if ($__default['default'](this._element).hasClass(CLASS_NAME_SLIDE)) {
+        $__default['default'](nextElement).addClass(orderClassName);
+        Util__default['default'].reflow(nextElement);
+        $__default['default'](activeElement).addClass(directionalClassName);
+        $__default['default'](nextElement).addClass(directionalClassName);
         var nextElementInterval = parseInt(nextElement.getAttribute('data-interval'), 10);
 
         if (nextElementInterval) {
@@ -533,20 +478,20 @@
           this._config.interval = this._config.defaultInterval || this._config.interval;
         }
 
-        var transitionDuration = Util.getTransitionDurationFromElement(activeElement);
-        $(activeElement).one(Util.TRANSITION_END, function () {
-          $(nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(ClassName.ACTIVE);
-          $(activeElement).removeClass(ClassName.ACTIVE + " " + orderClassName + " " + directionalClassName);
+        var transitionDuration = Util__default['default'].getTransitionDurationFromElement(activeElement);
+        $__default['default'](activeElement).one(Util__default['default'].TRANSITION_END, function () {
+          $__default['default'](nextElement).removeClass(directionalClassName + " " + orderClassName).addClass(CLASS_NAME_ACTIVE);
+          $__default['default'](activeElement).removeClass(CLASS_NAME_ACTIVE + " " + orderClassName + " " + directionalClassName);
           _this4._isSliding = false;
           setTimeout(function () {
-            return $(_this4._element).trigger(slidEvent);
+            return $__default['default'](_this4._element).trigger(slidEvent);
           }, 0);
         }).emulateTransitionEnd(transitionDuration);
       } else {
-        $(activeElement).removeClass(ClassName.ACTIVE);
-        $(nextElement).addClass(ClassName.ACTIVE);
+        $__default['default'](activeElement).removeClass(CLASS_NAME_ACTIVE);
+        $__default['default'](nextElement).addClass(CLASS_NAME_ACTIVE);
         this._isSliding = false;
-        $(this._element).trigger(slidEvent);
+        $__default['default'](this._element).trigger(slidEvent);
       }
 
       if (isCycling) {
@@ -557,19 +502,19 @@
 
     Carousel._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
-        var data = $(this).data(DATA_KEY);
+        var data = $__default['default'](this).data(DATA_KEY);
 
-        var _config = _objectSpread({}, Default, $(this).data());
+        var _config = _extends({}, Default, $__default['default'](this).data());
 
         if (typeof config === 'object') {
-          _config = _objectSpread({}, _config, config);
+          _config = _extends({}, _config, config);
         }
 
         var action = typeof config === 'string' ? config : _config.slide;
 
         if (!data) {
           data = new Carousel(this, _config);
-          $(this).data(DATA_KEY, data);
+          $__default['default'](this).data(DATA_KEY, data);
         }
 
         if (typeof config === 'number') {
@@ -588,19 +533,19 @@
     };
 
     Carousel._dataApiClickHandler = function _dataApiClickHandler(event) {
-      var selector = Util.getSelectorFromElement(this);
+      var selector = Util__default['default'].getSelectorFromElement(this);
 
       if (!selector) {
         return;
       }
 
-      var target = $(selector)[0];
+      var target = $__default['default'](selector)[0];
 
-      if (!target || !$(target).hasClass(ClassName.CAROUSEL)) {
+      if (!target || !$__default['default'](target).hasClass(CLASS_NAME_CAROUSEL)) {
         return;
       }
 
-      var config = _objectSpread({}, $(target).data(), $(this).data());
+      var config = _extends({}, $__default['default'](target).data(), $__default['default'](this).data());
 
       var slideIndex = this.getAttribute('data-slide-to');
 
@@ -608,10 +553,10 @@
         config.interval = false;
       }
 
-      Carousel._jQueryInterface.call($(target), config);
+      Carousel._jQueryInterface.call($__default['default'](target), config);
 
       if (slideIndex) {
-        $(target).data(DATA_KEY).to(slideIndex);
+        $__default['default'](target).data(DATA_KEY).to(slideIndex);
       }
 
       event.preventDefault();
@@ -638,12 +583,12 @@
    */
 
 
-  $(document).on(Event.CLICK_DATA_API, Selector.DATA_SLIDE, Carousel._dataApiClickHandler);
-  $(window).on(Event.LOAD_DATA_API, function () {
-    var carousels = [].slice.call(document.querySelectorAll(Selector.DATA_RIDE));
+  $__default['default'](document).on(EVENT_CLICK_DATA_API, SELECTOR_DATA_SLIDE, Carousel._dataApiClickHandler);
+  $__default['default'](window).on(EVENT_LOAD_DATA_API, function () {
+    var carousels = [].slice.call(document.querySelectorAll(SELECTOR_DATA_RIDE));
 
     for (var i = 0, len = carousels.length; i < len; i++) {
-      var $carousel = $(carousels[i]);
+      var $carousel = $__default['default'](carousels[i]);
 
       Carousel._jQueryInterface.call($carousel, $carousel.data());
     }
@@ -654,15 +599,15 @@
    * ------------------------------------------------------------------------
    */
 
-  $.fn[NAME] = Carousel._jQueryInterface;
-  $.fn[NAME].Constructor = Carousel;
+  $__default['default'].fn[NAME] = Carousel._jQueryInterface;
+  $__default['default'].fn[NAME].Constructor = Carousel;
 
-  $.fn[NAME].noConflict = function () {
-    $.fn[NAME] = JQUERY_NO_CONFLICT;
+  $__default['default'].fn[NAME].noConflict = function () {
+    $__default['default'].fn[NAME] = JQUERY_NO_CONFLICT;
     return Carousel._jQueryInterface;
   };
 
   return Carousel;
 
-}));
+})));
 //# sourceMappingURL=carousel.js.map
