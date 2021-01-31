@@ -1,20 +1,17 @@
-// Deactivated. See https://github.com/leafo/scssphp/issues/616
-// Has been included manually where used in Bootstrap. Will not be available downstream.
+@mixin badge-variant($bg) {
+  color: color-yiq($bg);
+  background-color: $bg;
 
-//@mixin badge-variant($bg) {
-//  color: color-yiq($bg);
-//  background-color: $bg;
-//
-//  @at-root a#{&} {
-//    @include hover-focus {
-//      color: color-yiq($bg);
-//      background-color: darken($bg, 10%);
-//    }
-//
-//    &:focus,
-//    &.focus {
-//      outline: 0;
-//      box-shadow: 0 0 0 $badge-focus-width rgba($bg, .5);
-//    }
-//  }
-//}
+  @at-root a#{&} {
+    @include hover-focus() {
+      color: color-yiq($bg);
+      background-color: darken($bg, 10%);
+    }
+
+    &:focus,
+    &.focus {
+      outline: 0;
+      box-shadow: 0 0 0 $badge-focus-width rgba($bg, .5);
+    }
+  }
+}
