@@ -1,5 +1,17 @@
 ## Release Notes
 
+### MediaWiki Bootstrap 4.4.3
+
+Released on April 1, 2021.
+
+* Fixed issue about the registered version 
+
+### MediaWiki Bootstrap 4.4.2
+
+Released on April 1, 2021.
+
+* Fixed another tooltip issue (thanks @pierreboutet)
+
 ### MediaWiki Bootstrap 4.4.1
 
 Released on December 15, 2020.
