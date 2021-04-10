@@ -1,5 +1,12 @@
 ## Release Notes
 
+### MediaWiki Bootstrap 4.5.0
+
+Released on April 10, 2021.
+
+* Upgraded Bootstrap from 4.3.1 to 4.6.0 (thanks @malberts)
+* Upgraded Popper to 1.16.1 (thanks @malberts)
+
 ### MediaWiki Bootstrap 4.4.3
 
 Released on April 1, 2021.
