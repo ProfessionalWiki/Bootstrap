@@ -15,8 +15,8 @@
   @include border-radius($badge-border-radius);
   @include transition($badge-transition);
 
-  @at-root a.badge {
-    @include hover-focus {
+  @at-root a#{&} {
+    @include hover-focus() {
       text-decoration: none;
     }
   }
@@ -48,26 +48,7 @@
 // Contextual variations (linked badges get darker on :hover).
 
 @each $color, $value in $theme-colors {
-	.badge-#{$color} {
-
-		// Included manually. See https://github.com/leafo/scssphp/issues/616
-		//@include badge-variant($value);
-
-		color: color-yiq($value);
-		background-color: $value;
-
-	}
-
-	a.badge-#{$color} {
-		@include hover-focus {
-			color: color-yiq($value);
-			background-color: darken($value, 10%);
-		}
-
-		&:focus,
-		&.focus {
-			outline: 0;
-			box-shadow: 0 0 0 $badge-focus-width rgba($value, .5);
-		}
-	}
+  .badge-#{$color} {
+    @include badge-variant($value);
+  }
 }
