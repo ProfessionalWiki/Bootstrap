@@ -7,7 +7,7 @@
 The [Bootstrap extension][mw-bootstrap] provides the
 [Bootstrap web front-end framework][bootstrap] to skins and extensions.
 
-This version of the extension provides Bootstrap 4.6.0 and Popper 1.16.1.
+This version of the extension provides Bootstrap 4.6.1 and Popper 1.16.1.
 
 ## Requirements
 
@@ -25,19 +25,19 @@ If you install Bootstrap with [Composer](composer), further required software pa
 automatically. In this case, it is *not* necessary to install any dependencies. Composer will
 take care of that.
 
-1. On a command line go to your MediaWiki installation directory and run these two commands   
+1. On a command line go to your MediaWiki installation directory and run these two commands
    ```
    COMPOSER=composer.local.json composer require --no-update mediawiki/bootstrap:~4.0
-   ```  
+   ```
    ```
    composer update mediawiki/bootstrap --no-dev -o
-   ```  
+   ```
 
 2. Load the extension by adding the following line to `LocalSettings.php`:
 
    ```php
    wfLoadExtension( 'Bootstrap' );
-   ``` 
+   ```
 
 3. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the
    extension is successfully installed.
@@ -51,12 +51,12 @@ If you install Bootstrap without Composer, you will still need to use Composer t
 the [SCSS library][scss] before you enable Bootstrap.
 
 1. [Download][download] Bootstrap and place the file(s) in a directory called Bootstrap in your
-    extensions/ folder. 
+    extensions/ folder.
 
 2. In the MediaWiki installation directory, add `"extensions/Bootstrap/composer.json`
    to the `extra/merge-plugin/include` section in the file `composer.local.json`.
    For example,
-   
+
    ```json
    {
 		"extra": {
@@ -67,18 +67,18 @@ the [SCSS library][scss] before you enable Bootstrap.
 			}
 		}
 	}
-   ``` 
+   ```
 
 3. Still in the MediaWiki installation directory, from a command line run<br>
 
    ```
    composer update
-   ``` 
+   ```
 4. Add the following code at the bottom of your LocalSettings.php:
 
    ```php
    wfLoadExtension( 'Bootstrap' );
-   ``` 
+   ```
 
 5. __Done:__ Navigate to _Special:Version_ on your wiki to verify that the extension
    is successfully installed.
