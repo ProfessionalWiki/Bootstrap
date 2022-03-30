@@ -6,7 +6,7 @@
 		"[https://professional.wiki/ Professional.Wiki]",
 		"James Hong Kong"
 	],
-	"version": "4.6.0",
+	"version": "4.6.0-dev",
 	"url": "https://www.mediawiki.org/wiki/Extension:Bootstrap",
 	"descriptionmsg": "bootstrap-desc",
 	"license-name": "GPL-3.0-or-later",
