@@ -29,7 +29,7 @@
 		"issues": "https://github.com/cmln/mw-bootstrap/issues",
 		"forum": "https://www.mediawiki.org/wiki/Extension_talk:Bootstrap",
 		"wiki": "https://www.mediawiki.org/wiki/Extension:Bootstrap",
-		"irc": "irc://irc.freenode.org/mediawiki",
+		"irc": "irc://libera.chat:6667/mediawiki",
 		"source": "https://github.com/cmln/mw-bootstrap",
 		"docs": "https://github.com/cmln/mw-bootstrap/tree/latest/docs",
 		"rss": "https://github.com/cmln/mw-bootstrap/releases.atom"
