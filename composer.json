@@ -40,7 +40,7 @@
 		"mediawiki/scss": "~2.0"
 	},
 	"require-dev": {
-		"mediawiki/mediawiki-codesniffer": "38.0.0",
+		"mediawiki/mediawiki-codesniffer": "39.0.0",
 		"mediawiki/mediawiki-phan-config": "0.11.1",
 		"php": ">=7.2"
 	},
