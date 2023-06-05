@@ -14,26 +14,14 @@ jobs:
     strategy:
       matrix:
         include:
-          - mw: 'REL1_35'
-            php: 7.4
-          - mw: 'REL1_37'
-            php: 7.4
-          - mw: 'REL1_37'
+          - mw: 'REL1_39'
             php: 8.0
-          - mw: 'REL1_37'
-            php: 8.1
-          - mw: 'REL1_38'
-            php: 7.4
-          - mw: 'REL1_38'
-            php: 8.0
-          - mw: 'REL1_38'
+          - mw: 'REL1_40'
             php: 8.1
           - mw: 'master'
-            php: 7.4
-          - mw: 'master'
-            php: 8.0
-          - mw: 'master'
             php: 8.1
+          - mw: 'master'
+            php: 8.2
 
     runs-on: ubuntu-latest
 
@@ -51,7 +39,7 @@ jobs:
 
       - name: Cache MediaWiki
         id: cache-mediawiki
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             mediawiki
@@ -60,7 +48,7 @@ jobs:
           key: mw_${{ matrix.mw }}-php${{ matrix.php }}
 
       - name: Cache Composer cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.composer/cache
           key: composer-php${{ matrix.php }}
