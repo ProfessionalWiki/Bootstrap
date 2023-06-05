@@ -11,7 +11,7 @@
 	"descriptionmsg": "bootstrap-desc",
 	"license-name": "GPL-3.0-or-later",
 	"requires": {
-		"MediaWiki": ">= 1.35.0"
+		"MediaWiki": ">= 1.39.0"
 	},
 	"AutoloadNamespaces": {
 		"Bootstrap\\": "src/"

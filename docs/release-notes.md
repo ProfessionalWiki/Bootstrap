@@ -4,8 +4,8 @@
 
 Under development.
 
-* Raised minimum MediaWiki version from 1.29 to 1.35
-* Raised minimum PHP version from 5.6 to 7.4.3
+* Raised minimum MediaWiki version from 1.29 to 1.39
+* Raised minimum PHP version from 5.6 to 8.0
 
 ### MediaWiki Bootstrap 4.6.2
 

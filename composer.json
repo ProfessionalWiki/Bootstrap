@@ -35,14 +35,14 @@
 		"rss": "https://github.com/cmln/mw-bootstrap/releases.atom"
 	},
 	"require": {
-		"php": ">=7.4.3",
+		"php": ">=8.0",
 		"composer/installers": "^2|^1.0.1",
-		"mediawiki/scss": "~3.0|~2.0"
+		"mediawiki/scss": "4.x-dev"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "39.0.0",
 		"mediawiki/mediawiki-phan-config": "0.11.1",
-		"php": ">=7.4.3"
+		"php": ">=8.0.0"
 	},
 	"autoload": {
 		"psr-4": {
