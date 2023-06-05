@@ -108,7 +108,8 @@ class SetupAfterCache {
 			[
 				'localBasePath'  => $localBasePath . '/js',
 				'remoteBasePath' => $remoteBasePath . '/js',
-				'scripts' => [],
+				'es6' => true,
+				'scripts'=> [],
 			],
 			array_key_exists( 'ext.bootstrap.scripts', $GLOBALS[ 'wgResourceModules' ] ) ?
 				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] : []
