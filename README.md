@@ -11,8 +11,8 @@ This version of the extension provides Bootstrap 4.6.2 and Popper 1.16.1.
 
 ## Requirements
 
-- PHP 7.4.3 or later
-- MediaWiki 1.35 or later
+- PHP 8.0 or later
+- MediaWiki 1.39 or later
 
 ## Installation
 
