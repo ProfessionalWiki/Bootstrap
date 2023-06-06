@@ -1,5 +1,11 @@
 ## Release Notes
 
+### MediaWiki Bootstrap 4.6.2
+
+Under development.
+
+* Allow using SCSS 3.x dependency (thanks @robis24)
+
 ### MediaWiki Bootstrap 4.6.1
 
 Released on June 4, 2023.
