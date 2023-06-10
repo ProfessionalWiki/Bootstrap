@@ -28,78 +28,109 @@ use InvalidArgumentException;
 /**
  * Class describing the Bootstrap 4 module definitions
  *
- * @since 4.0
+ * @since 5.0
  * @ingroup   Bootstrap
  */
-class V4ModuleDefinition implements ModuleDefinition {
+class V5ModuleDefinition implements ModuleDefinition {
 
 	private static $moduleDescriptions = [
+		// Configuration
 		'functions'         => [ 'styles' => [ 'functions' => [ 'position' => 'functions' ] ] ],
-		'variables'         => [ 'styles' =>
-			[ 'variables' => [ 'position' => 'variables' ] ], 'dependencies' => 'functions' ],
+		'variables'         => [ 'styles' => [ 'variables' => [ 'position' => 'variables' ] ], 'dependencies' => 'functions' ],
+		'variables-dark'    => [ 'styles' => [ 'variables-dark' => [ 'position' => 'variables' ] ], 'dependencies' => 'functions' ],
+		'maps'              => [ 'styles' => 'maps' ],
 		'mixins'            => [ 'styles' => 'mixins' ],
+		'utilities'         => [ 'styles' => 'utilities' ],
+
+		 // Layout & components
 		'root'              => [ 'styles' => 'root' ],
 		'reboot'            => [ 'styles' => 'reboot' ],
 		'type'              => [ 'styles' => 'type' ],
 		'images'            => [ 'styles' => 'images' ],
-		'code'              => [ 'styles' => 'code' ],
+		'containers'        => [ 'styles' => 'containers' ],
 		'grid'              => [ 'styles' => 'grid' ],
 		'tables'            => [ 'styles' => 'tables' ],
 		'forms'             => [ 'styles' => 'forms' ],
 		'buttons'           => [ 'styles' => 'buttons' ],
 		'transitions'       => [ 'styles' => 'transitions' ],
-		'dropdown'          => [ 'styles' =>
-			'dropdown', 'scripts' => 'dropdown.js', 'dependencies' => [ 'popper', 'js-util' ] ],
+		'dropdown'          => [ 'styles' => 'dropdown', 'scripts' => 'dropdown.js', 'dependencies' => [ 'popper', 'base-component' ] ],
 		'button-group'      => [ 'styles' => 'button-group', 'dependencies' => [ 'buttons' ] ],
-		'input-group'       => [ 'styles' => 'input-group', 'dependencies' => [ 'forms' ] ],
-		'custom-forms'      => [ 'styles' => 'custom-forms' ],
 		'nav'               => [ 'styles' => 'nav' ],
 		'navbar'            => [ 'styles' => 'navbar' ],
 		'card'              => [ 'styles' => 'card' ],
+		'accordion'         => [ 'styles' => 'accordion' ],
 		'breadcrumb'        => [ 'styles' => 'breadcrumb' ],
 		'pagination'        => [ 'styles' => 'pagination' ],
 		'badge'             => [ 'styles' => 'badge' ],
-		'jumbotron'         => [ 'styles' => 'jumbotron' ],
 		'alert'             => [ 'styles' => 'alert' ],
 		'progress'          => [ 'styles' => 'progress' ],
-		'media'             => [ 'styles' => 'media' ],
 		'list-group'        => [ 'styles' => 'list-group' ],
 		'close'             => [ 'styles' => 'close' ],
-		'toasts'            => [ 'styles' =>
-			'toasts', 'scripts' => 'toast.js', 'dependencies' => 'js-util' ],
-		'modal'             => [ 'styles' => 'modal', 'scripts' => 'modal.js' ],
-		'tooltip'           => [ 'styles' => 'tooltip', 'scripts' => 'tooltip.js', 'dependencies' => [ 'popper', 'js-util' ] ],
-		'popover'           => [ 'styles' =>
-			'popover', 'scripts' => 'popover.js', 'dependencies' => [ 'popper', 'tooltip', 'js-util' ] ],
-		'carousel'          => [ 'styles' =>
-			'carousel', 'scripts' => 'carousel.js', 'dependencies' => 'js-util' ],
+		'toasts'            => [ 'styles' => 'toasts', 'scripts' => 'toast.js', 'dependencies' => 'base-component' ],
+		'modal'             => [ 'styles' => 'modal', 'scripts' => 'modal.js', 'dependencies' => 'base-component' ],
+		'tooltip'           => [ 'styles' => 'tooltip', 'scripts' => 'tooltip.js', 'dependencies' => [ 'popper', 'base-component' ] ],
+		'popover'           => [ 'styles' => 'popover', 'scripts' => 'popover.js', 'dependencies' => [ 'popper', 'tooltip', 'base-component' ] ],
+		'carousel'          => [ 'styles' => 'carousel', 'scripts' => 'carousel.js', 'dependencies' => 'base-component' ],
 		'spinners'          => [ 'styles' => 'spinners' ],
-		'utilities'         => [ 'styles' => 'utilities' ],
-		'print'             => [ 'styles' => 'print' ],
-		'active-buttons'    => [ 'scripts' => 'button.js', 'dependencies' => [ 'buttons' ] ],
-		'dismissable-alert' => [ 'scripts' => 'alert.js', 'dependencies' => [ 'alert', 'js-util' ] ],
-		'collapse'          => [ 'scripts' => 'collapse.js' ],
-		'scrollspy'         => [ 'scripts' => 'scrollspy.js', 'dependencies' => [ 'popper', 'js-util' ] ],
-		'tab'               => [ 'scripts' => 'tab.js', 'dependencies' => [ 'list-group' ] ],
-		'js-util'           => [ 'scripts' => 'util.js' ],
-		'popper'            => [ 'scripts' => 'popper.js' ],
+		'offcanvas'         => [ 'styles' => 'offcanvas', 'scripts' => 'offcanvas.js' ],
+		'placeholders'      => [ 'styles' => 'placeholders' ],
 
-		'bs-core'   => [ 'dependencies' => [ 'variables', 'mixins' ] ],
+		// Helpers
+		'helpers'           => [ 'styles' => 'helpers' ],
+
+		// Helpers
+		'utilities/api'           => [ 'styles' => 'utilities/api' ],
+
+		// Javascript
+		'active-buttons'    => [ 'scripts' => 'button.js', 'dependencies' => [ 'buttons', 'js-util' ] ],
+		'dismissable-alert' => [ 'scripts' => 'alert.js', 'dependencies' => [ 'alert', 'base-component' ] ],
+		'collapse'          => [ 'scripts' => 'collapse.js', 'dependencies' => [ 'js-util' ] ],
+		'scrollspy'         => [ 'scripts' => 'scrollspy.js', 'dependencies' => [ 'popper', 'js-util' ] ],
+		'tab'               => [ 'scripts' => 'tab.js', 'dependencies' => [ 'list-group', 'js-util' ] ],
+		'popper'            => [ 'scripts' => 'popper.js', 'dependencies' => [ 'js-util' ] ],
+
+		'base-component'    => [ 'scripts' => 'base-component.js', 'dependencies' => [ 'js-util' ] ],
+
+		'js-dom' => [
+			'scripts' => [
+				'dom/data.js',
+				'dom/event-handler.js',
+				'dom/manipulator.js',
+				'dom/selector-engine.js'
+			]
+		],
+		'js-util'  => [
+			'scripts' => [
+				'util/config.js',
+				'util/backdrop.js',
+				'util/component-functions.js',
+				'util/focustrap.js',
+				'util/index.js',
+				'util/sanitizer.js',
+				'util/scrollbar.js',
+				'util/swipe.js',
+				'util/template-factory.js'
+			],
+			'dependencies' => ['js-dom' ]
+		],
+
+		'bs-core'   => [ 'dependencies' => [ 'variables', 'variables-dark', 'maps', 'mixins', 'utilities' ] ],
 		'bs-reboot' => [ 'dependencies' => [ 'bs-core', 'reboot' ] ],
 		'bs-grid'   => [ 'styles' => 'bootstrap-grid' ],
 
 		'bs-basic'  => [ 'dependencies' => [
-			'bs-core', 'root', 'reboot', 'type', 'images', 'code', 'grid',
-			'tables', 'transitions', 'utilities', 'print'
+			'bs-core', 'root', 'reboot', 'type', 'images', 'containers', 'grid',
+			'tables', 'transitions', 'tooltip'
 		] ],
 
 		'bs-all'    => [ 'dependencies' => [
-			'bs-core', 'root', 'reboot', 'type', 'images', 'code', 'grid',
+			'bs-core', 'root', 'reboot', 'type', 'images', 'containers', 'grid',
 			'tables', 'forms', 'buttons', 'transitions', 'dropdown',
-			'button-group', 'input-group', 'custom-forms', 'nav', 'navbar',
-			'card', 'breadcrumb', 'pagination', 'badge', 'jumbotron', 'alert',
-			'progress', 'media', 'list-group', 'close', 'toasts', 'modal', 'tooltip',
-			'popover', 'carousel', 'spinners', 'utilities', 'print', 'active-buttons',
+			'button-group', 'nav', 'navbar',
+			'card', 'accordion', 'breadcrumb', 'pagination', 'badge', 'alert',
+			'progress', 'list-group', 'close', 'toasts', 'modal', 'tooltip',
+			'popover', 'carousel', 'spinners', 'offcanvas', 'placeholders', 'active-buttons',
+			'helpers', 'utilities/api',
 			'dismissable-alert', 'collapse', 'scrollspy', 'tab', 'js-util',
 		] ],
 
