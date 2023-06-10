@@ -26,7 +26,7 @@
 namespace Bootstrap;
 
 use Bootstrap\Definition\ModuleDefinition;
-use Bootstrap\Definition\V4ModuleDefinition;
+use Bootstrap\Definition\V5ModuleDefinition;
 
 /**
  * Class managing the Bootstrap framework.
@@ -63,7 +63,7 @@ class BootstrapManager {
 	 */
 	public static function getInstance() {
 		if ( self::$instance === null ) {
-			self::$instance = new self( new V4ModuleDefinition );
+			self::$instance = new self( new V5ModuleDefinition );
 		}
 
 		return self::$instance;

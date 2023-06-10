@@ -26,10 +26,11 @@
 namespace Bootstrap\Tests\Definition;
 
 use Bootstrap\BootstrapManager;
-use Bootstrap\Definition\V4ModuleDefinition;
+use Bootstrap\Definition\V5ModuleDefinition;
+use PHPUnit\Framework\TestCase;
 
 /**
- * @uses \Bootstrap\Definition\V4ModuleDefinition
+ * @uses \Bootstrap\Definition\V5ModuleDefinition
  *
  * @ingroup Test
  * @ingroup Bootstrap
@@ -37,18 +38,18 @@ use Bootstrap\Definition\V4ModuleDefinition;
  * @group extension-bootstrap
  * @group mediawiki-databaseless
  *
- * @since 4.0
+ * @since 5.0
  *
  * @author mwjames
  */
-class V4ModuleDefinitionTest extends \PHPUnit\Framework\TestCase {
+class V5ModuleDefinitionTest extends TestCase {
 
 	/**
 	 * @dataProvider keyProvider
-	 * @covers \Bootstrap\Definition\V4ModuleDefinition
+	 * @covers \Bootstrap\Definition\V5ModuleDefinition
 	 */
 	public function testGet( $key ) {
-		$instance = new V4ModuleDefinition();
+		$instance = new V5ModuleDefinition();
 
 		$this->assertIsArray(
 
@@ -57,20 +58,20 @@ class V4ModuleDefinitionTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Bootstrap\Definition\V4ModuleDefinition
+	 * @covers \Bootstrap\Definition\V5ModuleDefinition
 	 */
 	public function testBootstrapManagerIntegration() {
-		$instance = new BootstrapManager( new V4ModuleDefinition() );
+		$instance = new BootstrapManager( new V5ModuleDefinition() );
 		$instance->addAllBootstrapModules();
 
 		$this->assertTrue( true );
 	}
 
 	/**
-	 * @covers \Bootstrap\Definition\V4ModuleDefinition
+	 * @covers \Bootstrap\Definition\V5ModuleDefinition
 	 */
 	public function testGetOnInvalidKeyThrowsException() {
-		$instance = new V4ModuleDefinition();
+		$instance = new V5ModuleDefinition();
 
 		$this->expectException( \InvalidArgumentException::class );
 		$instance->get( 'Foo' );
