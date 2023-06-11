@@ -11,8 +11,8 @@ This version of the extension provides Bootstrap 4.6.2 and Popper 1.16.1.
 
 ## Requirements
 
-- PHP 5.6 or later
-- MediaWiki 1.29 or later
+- PHP 8.0 or later
+- MediaWiki 1.39 or later
 
 ## Installation
 
@@ -27,7 +27,7 @@ take care of that.
 
 1. On a command line go to your MediaWiki installation directory and run these two commands
    ```
-   COMPOSER=composer.local.json composer require --no-update mediawiki/bootstrap:~4.0
+   COMPOSER=composer.local.json composer require --no-update mediawiki/bootstrap:~5.0
    ```
    ```
    composer update mediawiki/bootstrap --no-dev -o
