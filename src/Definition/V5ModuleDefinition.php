@@ -53,7 +53,7 @@ class V5ModuleDefinition implements ModuleDefinition {
 		'forms'             => [ 'styles' => 'forms' ],
 		'buttons'           => [ 'styles' => 'buttons' ],
 		'transitions'       => [ 'styles' => 'transitions' ],
-		'dropdown'          => [ 'styles' => 'dropdown', 'scripts' => 'dropdown.js', 'dependencies' => [ 'popper', 'base-component' ] ],
+		'dropdown'          => [ 'styles' => 'dropdown', 'packageFiles' => 'dropdown.js', 'dependencies' => [ 'popper', 'base-component' ] ],
 		'button-group'      => [ 'styles' => 'button-group', 'dependencies' => [ 'buttons' ] ],
 		'nav'               => [ 'styles' => 'nav' ],
 		'navbar'            => [ 'styles' => 'navbar' ],
@@ -66,33 +66,34 @@ class V5ModuleDefinition implements ModuleDefinition {
 		'progress'          => [ 'styles' => 'progress' ],
 		'list-group'        => [ 'styles' => 'list-group' ],
 		'close'             => [ 'styles' => 'close' ],
-		'toasts'            => [ 'styles' => 'toasts', 'scripts' => 'toast.js', 'dependencies' => 'base-component' ],
-		'modal'             => [ 'styles' => 'modal', 'scripts' => 'modal.js', 'dependencies' => 'base-component' ],
-		'tooltip'           => [ 'styles' => 'tooltip', 'scripts' => 'tooltip.js', 'dependencies' => [ 'popper', 'base-component' ] ],
-		'popover'           => [ 'styles' => 'popover', 'scripts' => 'popover.js', 'dependencies' => [ 'popper', 'tooltip', 'base-component' ] ],
-		'carousel'          => [ 'styles' => 'carousel', 'scripts' => 'carousel.js', 'dependencies' => 'base-component' ],
+		'toasts'            => [ 'styles' => 'toasts', 'packageFiles' => 'toast.js', 'dependencies' => 'base-component' ],
+		'modal'             => [ 'styles' => 'modal', 'packageFiles' => 'modal.js', 'dependencies' => 'base-component' ],
+		'tooltip'           => [ 'styles' => 'tooltip', 'packageFiles' => 'tooltip.js', 'dependencies' => [ 'popper', 'base-component' ] ],
+		'popover'           => [ 'styles' => 'popover', 'packageFiles' => 'popover.js', 'dependencies' => [ 'popper', 'tooltip', 'base-component' ] ],
+		'carousel'          => [ 'styles' => 'carousel', 'packageFiles' => 'carousel.js', 'dependencies' => 'base-component' ],
 		'spinners'          => [ 'styles' => 'spinners' ],
-		'offcanvas'         => [ 'styles' => 'offcanvas', 'scripts' => 'offcanvas.js' ],
+		'offcanvas'         => [ 'styles' => 'offcanvas', 'packageFiles' => 'offcanvas.js' ],
 		'placeholders'      => [ 'styles' => 'placeholders' ],
 
 		// Helpers
 		'helpers'           => [ 'styles' => 'helpers' ],
 
 		// Helpers
-		'utilities/api'           => [ 'styles' => 'utilities/api' ],
+		'utilities/api'     => [ 'styles' => 'utilities/api' ],
 
-		// Javascript
-		'active-buttons'    => [ 'scripts' => 'button.js', 'dependencies' => [ 'buttons', 'js-util' ] ],
-		'dismissable-alert' => [ 'scripts' => 'alert.js', 'dependencies' => [ 'alert', 'base-component' ] ],
-		'collapse'          => [ 'scripts' => 'collapse.js', 'dependencies' => [ 'js-util' ] ],
-		'scrollspy'         => [ 'scripts' => 'scrollspy.js', 'dependencies' => [ 'popper', 'js-util' ] ],
-		'tab'               => [ 'scripts' => 'tab.js', 'dependencies' => [ 'list-group', 'js-util' ] ],
-		'popper'            => [ 'scripts' => 'popper.js', 'dependencies' => [ 'js-util' ] ],
+		// Component JavaScript requirements
+		'base-component'    => [ 'packageFiles' => 'base-component.js', 'dependencies' => [ 'js-util' ] ],
+		'active-buttons'    => [ 'packageFiles' => 'button.js', 'dependencies' => [ 'buttons', 'js-util' ] ],
+		'dismissable-alert' => [ 'packageFiles' => 'alert.js', 'dependencies' => [ 'alert', 'base-component' ] ],
+		'collapse'          => [ 'packageFiles' => 'collapse.js', 'dependencies' => [ 'js-util' ] ],
+		'scrollspy'         => [ 'packageFiles' => 'scrollspy.js', 'dependencies' => [ 'popper', 'js-util' ] ],
+		'tab'               => [ 'packageFiles' => 'tab.js', 'dependencies' => [ 'list-group', 'js-util' ] ],
+		// TODO: this needs to be included via ResourceLoader module
+		'popper'            => [ 'packageFiles' => 'popper.js', 'dependencies' => [ 'js-util' ] ],
 
-		'base-component'    => [ 'scripts' => 'base-component.js', 'dependencies' => [ 'js-util' ] ],
-
+		// General JavaScript requirements
 		'js-dom' => [
-			'scripts' => [
+			'packageFiles' => [
 				'dom/data.js',
 				'dom/event-handler.js',
 				'dom/manipulator.js',
@@ -100,7 +101,7 @@ class V5ModuleDefinition implements ModuleDefinition {
 			]
 		],
 		'js-util'  => [
-			'scripts' => [
+			'packageFiles' => [
 				'util/config.js',
 				'util/backdrop.js',
 				'util/component-functions.js',
@@ -114,6 +115,7 @@ class V5ModuleDefinition implements ModuleDefinition {
 			'dependencies' => ['js-dom' ]
 		],
 
+		// Pre-defined collections
 		'bs-core'   => [ 'dependencies' => [ 'variables', 'variables-dark', 'maps', 'mixins', 'utilities' ] ],
 		'bs-reboot' => [ 'dependencies' => [ 'bs-core', 'reboot' ] ],
 		'bs-grid'   => [ 'styles' => 'bootstrap-grid' ],

@@ -104,7 +104,7 @@ class BootstrapManager {
 				}
 
 				$this->addFilesToGlobalResourceModules( 'styles', $description );
-				$this->addFilesToGlobalResourceModules( 'scripts', $description );
+				$this->addFilesToGlobalResourceModules( 'packageFiles', $description );
 
 			}
 		}
@@ -188,6 +188,12 @@ class BootstrapManager {
 	 */
 	protected function adjustArrayElementOfResourceModuleDescription( $key, $value,
 		$filetype = 'styles' ) {
+
+		// TODO: handle better
+		if ( $filetype === 'packageFiles' ) {
+			$filetype = 'scripts';
+		}
+
 		if ( !isset( $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] ) ) {
 			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] = [];
 		}
