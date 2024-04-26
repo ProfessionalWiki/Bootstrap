@@ -36,7 +36,7 @@
 	},
 	"require": {
 		"php": ">=8.0",
-		"composer/installers": "^2",
+		"composer/installers": "^2|^1.0.1",
 		"mediawiki/scss": "~4.0"
 	},
 	"require-dev": {
