@@ -2,7 +2,7 @@
 
 ### MediaWiki Bootstrap 5.0.0
 
-Under development.
+Released on April 26, 2024.
 
 * Raised minimum MediaWiki version from 1.29 to 1.39
 * Raised minimum PHP version from 5.6 to 8.0
