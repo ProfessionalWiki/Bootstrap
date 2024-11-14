@@ -1,7 +1,7 @@
 # Bootstrap extension
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ProfessionalWiki/Bootstrap/ci.yml?branch=master)](https://github.com/ProfessionalWiki/Bootstrap/actions?query=workflow%3ACI)
-[![Latest Stable Version](https://poser.pugx.org/mediawiki/bootstrap/version.png)](https://packagist.org/packages/mediawiki/bootstrap)
+[![Latest Stable Version](https://poser.pugx.org/mediawiki/bootstrap/v/stable)](https://packagist.org/packages/mediawiki/bootstrap)
 [![License](https://poser.pugx.org/mediawiki/bootstrap/license)](https://packagist.org/packages/mediawiki/bootstrap)
 
 The [Bootstrap extension][mw-bootstrap] provides the
