@@ -27,8 +27,11 @@ jobs:
           - mw: 'REL1_42'
             php: 8.2
             experimental: true
-          - mw: 'master'
+          - mw: 'REL1_43'
             php: 8.3
+            experimental: false
+          - mw: 'master'
+            php: 8.4
             experimental: true
 
     runs-on: ubuntu-latest
