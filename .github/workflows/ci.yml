@@ -26,7 +26,7 @@ jobs:
             experimental: false
           - mw: 'REL1_42'
             php: 8.2
-            experimental: true
+            experimental: false
           - mw: 'REL1_43'
             php: 8.3
             experimental: false
