@@ -6,12 +6,12 @@
 		"[https://professional.wiki/ Professional Wiki]",
 		"James Hong Kong"
 	],
-	"version": "5.0.0",
+	"version": "6.0.0-dev",
 	"url": "https://www.mediawiki.org/wiki/Extension:Bootstrap",
 	"descriptionmsg": "bootstrap-desc",
 	"license-name": "GPL-3.0-or-later",
 	"requires": {
-		"MediaWiki": ">= 1.39.0"
+		"MediaWiki": ">= 1.43.0"
 	},
 	"AutoloadNamespaces": {
 		"Bootstrap\\": "src/"
