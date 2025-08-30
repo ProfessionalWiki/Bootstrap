@@ -4,10 +4,9 @@
 	"license": "GPL-2.0+",
 	"scripts": {
 		"preinstall": "if [ -d resources/bootstrap ]; then rm -r resources/bootstrap; fi",
-		"install": "mkdir -p resources/bootstrap/js && cp -R node_modules/bootstrap/scss resources/bootstrap && cp -R node_modules/bootstrap/js/dist/* resources/bootstrap/js && cp -R node_modules/@popperjs/core/dist/umd/popper.js* resources/bootstrap/js"
+		"install": "mkdir -p resources/bootstrap/js && cp -R node_modules/bootstrap/scss resources/bootstrap && cp -R node_modules/bootstrap/dist/js/bootstrap.bundle.js* resources/bootstrap/js"
 	},
 	"dependencies": {
-		"@popperjs/core": "^2.11.8",
 		"bootstrap": "^5.3.8"
 	},
 	"devDependencies": {}

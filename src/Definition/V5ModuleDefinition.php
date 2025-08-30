@@ -53,7 +53,7 @@ class V5ModuleDefinition implements ModuleDefinition {
 		'forms'             => [ 'styles' => 'forms' ],
 		'buttons'           => [ 'styles' => 'buttons' ],
 		'transitions'       => [ 'styles' => 'transitions' ],
-		'dropdown'          => [ 'styles' => 'dropdown', 'packageFiles' => 'dropdown.js', 'dependencies' => [ 'popper', 'base-component' ] ],
+		'dropdown'          => [ 'styles' => 'dropdown', 'dependencies' => [ 'popper', 'base-component' ] ],
 		'button-group'      => [ 'styles' => 'button-group', 'dependencies' => [ 'buttons' ] ],
 		'nav'               => [ 'styles' => 'nav' ],
 		'navbar'            => [ 'styles' => 'navbar' ],
@@ -66,13 +66,13 @@ class V5ModuleDefinition implements ModuleDefinition {
 		'progress'          => [ 'styles' => 'progress' ],
 		'list-group'        => [ 'styles' => 'list-group' ],
 		'close'             => [ 'styles' => 'close' ],
-		'toasts'            => [ 'styles' => 'toasts', 'packageFiles' => 'toast.js', 'dependencies' => 'base-component' ],
-		'modal'             => [ 'styles' => 'modal', 'packageFiles' => 'modal.js', 'dependencies' => 'base-component' ],
-		'tooltip'           => [ 'styles' => 'tooltip', 'packageFiles' => 'tooltip.js', 'dependencies' => [ 'popper', 'base-component' ] ],
-		'popover'           => [ 'styles' => 'popover', 'packageFiles' => 'popover.js', 'dependencies' => [ 'popper', 'tooltip', 'base-component' ] ],
-		'carousel'          => [ 'styles' => 'carousel', 'packageFiles' => 'carousel.js', 'dependencies' => 'base-component' ],
+		'toasts'            => [ 'styles' => 'toasts', 'dependencies' => 'base-component' ],
+		'modal'             => [ 'styles' => 'modal', 'dependencies' => 'base-component' ],
+		'tooltip'           => [ 'styles' => 'tooltip', 'dependencies' => [ 'popper', 'base-component' ] ],
+		'popover'           => [ 'styles' => 'popover', 'dependencies' => [ 'popper', 'tooltip', 'base-component' ] ],
+		'carousel'          => [ 'styles' => 'carousel', 'dependencies' => 'base-component' ],
 		'spinners'          => [ 'styles' => 'spinners' ],
-		'offcanvas'         => [ 'styles' => 'offcanvas', 'packageFiles' => 'offcanvas.js' ],
+		'offcanvas'         => [ 'styles' => 'offcanvas' ],
 		'placeholders'      => [ 'styles' => 'placeholders' ],
 
 		// Helpers
@@ -82,37 +82,20 @@ class V5ModuleDefinition implements ModuleDefinition {
 		'utilities/api'     => [ 'styles' => 'utilities/api' ],
 
 		// Component JavaScript requirements
-		'base-component'    => [ 'packageFiles' => 'base-component.js', 'dependencies' => [ 'js-util' ] ],
-		'active-buttons'    => [ 'packageFiles' => 'button.js', 'dependencies' => [ 'buttons', 'js-util' ] ],
-		'dismissable-alert' => [ 'packageFiles' => 'alert.js', 'dependencies' => [ 'alert', 'base-component' ] ],
-		'collapse'          => [ 'packageFiles' => 'collapse.js', 'dependencies' => [ 'js-util' ] ],
-		'scrollspy'         => [ 'packageFiles' => 'scrollspy.js', 'dependencies' => [ 'popper', 'js-util' ] ],
-		'tab'               => [ 'packageFiles' => 'tab.js', 'dependencies' => [ 'list-group', 'js-util' ] ],
+		'base-component'    => [ 'dependencies' => [ 'js' ] ],
+		'active-buttons'    => [ 'dependencies' => [ 'buttons', 'js' ] ],
+		'dismissable-alert' => [ 'dependencies' => [ 'alert', 'base-component' ] ],
+		'collapse'          => [ 'dependencies' => [ 'js' ] ],
+		'scrollspy'         => [ 'dependencies' => [ 'popper', 'js' ] ],
+		'tab'               => [ 'dependencies' => [ 'list-group', 'js' ] ],
 		// TODO: this needs to be included via ResourceLoader module
-		'popper'            => [ 'packageFiles' => 'popper.js', 'dependencies' => [ 'js-util' ] ],
+		'popper'            => [ 'dependencies' => [ 'js' ] ],
 
 		// General JavaScript requirements
-		'js-dom' => [
-			'packageFiles' => [
-				'dom/data.js',
-				'dom/event-handler.js',
-				'dom/manipulator.js',
-				'dom/selector-engine.js'
+		'js' => [
+			'scripts' => [
+				'bootstrap.bundle.js'
 			]
-		],
-		'js-util'  => [
-			'packageFiles' => [
-				'util/config.js',
-				'util/backdrop.js',
-				'util/component-functions.js',
-				'util/focustrap.js',
-				'util/index.js',
-				'util/sanitizer.js',
-				'util/scrollbar.js',
-				'util/swipe.js',
-				'util/template-factory.js'
-			],
-			'dependencies' => ['js-dom' ]
 		],
 
 		// Pre-defined collections
@@ -133,7 +116,7 @@ class V5ModuleDefinition implements ModuleDefinition {
 			'progress', 'list-group', 'close', 'toasts', 'modal', 'tooltip',
 			'popover', 'carousel', 'spinners', 'offcanvas', 'placeholders', 'active-buttons',
 			'helpers', 'utilities/api',
-			'dismissable-alert', 'collapse', 'scrollspy', 'tab', 'js-util',
+			'dismissable-alert', 'collapse', 'scrollspy', 'tab', 'js',
 		] ],
 
 		// TODO: Add each SCSS util separately?

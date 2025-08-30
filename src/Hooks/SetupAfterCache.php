@@ -109,25 +109,11 @@ class SetupAfterCache {
 				'localBasePath'  => $localBasePath . '/js',
 				'remoteBasePath' => $remoteBasePath . '/js',
 				'es6' => true,
-				'packageFiles'=> [],
-				'dependencies' => [
-					// TODO: should be conditional
-					'@popperjs/core',
-				]
+				'scripts'=> [],
 			],
 			array_key_exists( 'ext.bootstrap.scripts', $GLOBALS[ 'wgResourceModules' ] ) ?
 				$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.scripts' ] : []
 		);
-
-		// Separate module because Bootstrap JavaScript calls require('@popperjs/core')
-		$GLOBALS[ 'wgResourceModules' ][ '@popperjs/core' ] = [
-			'localBasePath' => $localBasePath . '/js',
-			'remoteBasePath' => $remoteBasePath . '/js',
-			'es6' => true,
-			'packageFiles' => [
-				'popper.js'
-			]
-		];
 
 		$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap' ] = [
 			'dependencies' => [ 'ext.bootstrap.styles', 'ext.bootstrap.scripts' ],
