@@ -26,23 +26,23 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/cmln/mw-bootstrap/issues",
+		"issues": "https://github.com/ProfessionalWiki/Bootstrap/issues",
 		"forum": "https://www.mediawiki.org/wiki/Extension_talk:Bootstrap",
 		"wiki": "https://www.mediawiki.org/wiki/Extension:Bootstrap",
 		"irc": "irc://libera.chat:6667/mediawiki",
-		"source": "https://github.com/cmln/mw-bootstrap",
-		"docs": "https://github.com/cmln/mw-bootstrap/tree/latest/docs",
-		"rss": "https://github.com/cmln/mw-bootstrap/releases.atom"
+		"source": "https://github.com/ProfessionalWiki/Bootstrap",
+		"docs": "https://github.com/ProfessionalWiki/Bootstrap/tree/master/docs",
+		"rss": "https://github.com/ProfessionalWiki/Bootstrap/releases.atom"
 	},
 	"require": {
-		"php": ">=8.0",
+		"php": ">=8.1",
 		"composer/installers": "^2|^1.0.1",
 		"mediawiki/scss": "~4.0"
 	},
 	"require-dev": {
 		"mediawiki/mediawiki-codesniffer": "45.0.0",
 		"mediawiki/mediawiki-phan-config": "0.15.0",
-		"php": ">=8.0"
+		"php": ">=8.1"
 	},
 	"autoload": {
 		"psr-4": {
@@ -58,7 +58,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "5.x-dev"
+			"dev-master": "6.x-dev"
 		}
 	},
 	"config": {
