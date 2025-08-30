@@ -7,12 +7,12 @@
 The [Bootstrap extension][mw-bootstrap] provides the
 [Bootstrap web front-end framework][bootstrap] to skins and extensions.
 
-This version of the extension provides Bootstrap 4.6.2 and Popper 1.16.1.
+This version of the extension provides Bootstrap 5.3.8 and Popper 2.11.8.
 
 ## Requirements
 
-- PHP 8.0 or later
-- MediaWiki 1.39 or later
+- PHP 8.1 or later
+- MediaWiki 1.43 or later
 
 ## Installation
 
@@ -27,7 +27,7 @@ take care of that.
 
 1. On a command line go to your MediaWiki installation directory and run these two commands
    ```
-   COMPOSER=composer.local.json composer require --no-update mediawiki/bootstrap:~5.0
+   COMPOSER=composer.local.json composer require --no-update mediawiki/bootstrap:~6.0
    ```
    ```
    composer update mediawiki/bootstrap --no-dev -o
