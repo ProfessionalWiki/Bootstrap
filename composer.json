@@ -26,13 +26,13 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/cmln/mw-bootstrap/issues",
+		"issues": "https://github.com/ProfessionalWiki/Bootstrap/issues",
 		"forum": "https://www.mediawiki.org/wiki/Extension_talk:Bootstrap",
 		"wiki": "https://www.mediawiki.org/wiki/Extension:Bootstrap",
 		"irc": "irc://libera.chat:6667/mediawiki",
-		"source": "https://github.com/cmln/mw-bootstrap",
-		"docs": "https://github.com/cmln/mw-bootstrap/tree/latest/docs",
-		"rss": "https://github.com/cmln/mw-bootstrap/releases.atom"
+		"source": "https://github.com/ProfessionalWiki/Bootstrap",
+		"docs": "https://github.com/ProfessionalWiki/Bootstrap/tree/master/docs",
+		"rss": "https://github.com/ProfessionalWiki/Bootstrap/releases.atom"
 	},
 	"require": {
 		"php": ">=8.1",
