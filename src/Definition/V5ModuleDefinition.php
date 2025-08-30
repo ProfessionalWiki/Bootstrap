@@ -88,15 +88,10 @@ class V5ModuleDefinition implements ModuleDefinition {
 		'collapse'          => [ 'dependencies' => [ 'js' ] ],
 		'scrollspy'         => [ 'dependencies' => [ 'popper', 'js' ] ],
 		'tab'               => [ 'dependencies' => [ 'list-group', 'js' ] ],
-		// TODO: this needs to be included via ResourceLoader module
 		'popper'            => [ 'dependencies' => [ 'js' ] ],
 
 		// General JavaScript requirements
-		'js' => [
-			'scripts' => [
-				'bootstrap.bundle.js'
-			]
-		],
+		'js'                => [ 'scripts' => [ 'bootstrap.bundle.js' ] ],
 
 		// Pre-defined collections
 		'bs-core'   => [ 'dependencies' => [ 'variables', 'variables-dark', 'maps', 'mixins', 'utilities' ] ],

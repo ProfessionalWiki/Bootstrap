@@ -188,7 +188,6 @@ class BootstrapManager {
 	 */
 	protected function adjustArrayElementOfResourceModuleDescription( $key, $value,
 		$filetype = 'styles' ) {
-
 		if ( !isset( $GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] ) ) {
 			$GLOBALS[ 'wgResourceModules' ][ 'ext.bootstrap.' . $filetype ][ $key ] = [];
 		}
