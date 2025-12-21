@@ -1,7 +1,7 @@
 {
 	"name": "mediawiki/bootstrap",
 	"type": "mediawiki-extension",
-	"description": "Provides the Bootstrap 4 web front-end framework to MediaWiki skins and extensions",
+	"description": "Provides the Bootstrap 5 web front-end framework to MediaWiki skins and extensions",
 	"keywords": [
 		"wiki",
 		"MediaWiki",
