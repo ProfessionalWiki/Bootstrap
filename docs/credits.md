@@ -17,7 +17,7 @@ Composer tool during installation. They are:
 * Twitter Bootstrap, the most popular HTML, CSS, and JS framework for
   developing responsive, mobile first projects on the web. Maintained by the
   [TWBS core team](https://github.com/orgs/twbs/people). See
-  http://getbootstrap.com/
+  https://getbootstrap.com/
 * loads of other software that I either forgot, am not aware of or that should
   be obvious (e.g. PHP, MediaWiki, etc.)
 
