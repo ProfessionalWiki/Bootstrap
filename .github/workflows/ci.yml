@@ -97,4 +97,4 @@ jobs:
             wget -q -O phpunit.xml.template "https://raw.githubusercontent.com/wikimedia/mediawiki/${{ matrix.mw }}/phpunit.xml.template"
           fi
           composer phpunit:config
-          vendor/bin/phpunit -c extensions/Bootstrap/
+          vendor/bin/phpunit --group extension-bootstrap
