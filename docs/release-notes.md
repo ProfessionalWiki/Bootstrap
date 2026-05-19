@@ -2,7 +2,7 @@
 
 ### MediaWiki Bootstrap 6.0.0
 
-Under development.
+Released on May 19, 2026.
 
 * Upgraded Bootstrap from 4.6.2 to 5.3.8 (thanks @malberts)
 * Raised minimum MediaWiki version from 1.39 to 1.43
