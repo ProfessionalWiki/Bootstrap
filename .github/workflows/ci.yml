@@ -24,9 +24,9 @@ jobs:
           - mw: 'REL1_45'
             php: 8.3
             experimental: false
-          - mw: 'master'
+          - mw: 'REL1_46'
             php: 8.4
-            experimental: true
+            experimental: false
           - mw: 'master'
             php: 8.5
             experimental: true
@@ -80,15 +80,12 @@ jobs:
       - name: Composer update
         run: composer update
 
-      # "master" currently tracks MW >= 1.46, where tests/phpunit/phpunit.php
-      # was removed. Once REL1_46 lands in the matrix, it needs the master
-      # invocation below as well.
-      - name: Run PHPUnit (MW < master)
-        if: matrix.mw != 'master'
-        run: php tests/phpunit/phpunit.php -c extensions/Bootstrap/
-
-      - name: Run PHPUnit (MW master)
-        if: matrix.mw == 'master'
+      - name: Run PHPUnit
         run: |
-          composer phpunit:config
-          vendor/bin/phpunit --group extension-bootstrap
+          if [ -f tests/phpunit/phpunit.php ]; then
+            php tests/phpunit/phpunit.php -c extensions/Bootstrap/
+          else
+            # MW 1.46 and later
+            composer phpunit:config
+            vendor/bin/phpunit --group extension-bootstrap
+          fi
