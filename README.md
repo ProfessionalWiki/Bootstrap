@@ -7,7 +7,7 @@
 The [Bootstrap extension][mw-bootstrap] provides the
 [Bootstrap web front-end framework][bootstrap] to skins and extensions.
 
-This version of the extension provides Bootstrap 5.3.8 and Popper 2.11.8.
+This version of the extension provides Bootstrap 5.3.9 and Popper 2.11.8.
 
 ## Requirements
 
